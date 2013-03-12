@@ -8,4 +8,10 @@
   "repository": "",
   "author": "alee chou",
   "license": "MIT"
+
+	, "dependencies": {
+		"connect": "2.7.0"
+		, "ocTemplate": "0.1"
+		, "ocClass": "0.1"
+	}
 }

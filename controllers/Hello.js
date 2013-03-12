@@ -1,9 +1,19 @@
-var Controller = require("./../lib/mvc/Controller.js") ;
 
-module.exports = Controller.extend({
+module.exports = {
 
-	process: function(param,out){
-		out.write("hello") ;
+	config: {
+		title: "Hello World, this is OpenComb"
+		, view: "ocPlatform/Hello.html"
+		, layout: "front"
 	}
 
-}) ;
+	, process: function(req,rspn){
+		rspn.write("hello") ;
+
+		req.params ;
+
+		// req.layout.params.id ;
+
+		return ;
+	}
+} ;
