@@ -1,7 +1,7 @@
-var Controller = requre("../lib/mvc/Controller.js");
-
-module.exports = Controller.extend({
+module.exports = function(req,rspn){
 
 
+	rspn.write(__filename) ;
 
-});
+	return true ;
+};
