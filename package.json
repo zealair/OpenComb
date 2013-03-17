@@ -13,5 +13,6 @@
 		"connect": "2.7.0"
 		, "ocTemplate": "0.1"
 		, "ocClass": "0.1"
+		, "ocShipper": "0.1"
 	}
 }
