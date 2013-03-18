@@ -6,7 +6,6 @@ module.exports = {
 	, layout: "ocPlatform/layout/LayoutWebBrowse.js"
 
 	, process: function(req,rspn){
-		rspn.write("hello") ;
 
 		req.params ;
 
