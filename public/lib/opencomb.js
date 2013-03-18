@@ -1,19 +1,22 @@
 
-var $opencomb = {} ;
+var $opencomb = null ;
 
 jQuery(function($){
 
-
 	var initOpenComb = function() {
 
+		$opencomb = $(document) ;
+		$opencomb.views = {} ;
+		$opencomb.viewpool = [] ;
 		$opencomb.shipper = new Shipper() ;
+
 		$opencomb.shipper.require("ocPlatform/lib/frontend/mvc/View.js",function(err,module){
 			if(err)
 			{
 				throw err ;
 			}
 
-			console.log( module.test() ) ;
+			module.initViewsInDocument($opencomb,$) ;
 		}) ;
 
 		console.log("OpenComb frontend has loaded on your browser :)") ;
@@ -46,7 +49,14 @@ jQuery(function($){
 	{
 		if( typeof this._moduleCache[path]!="undefined" )
 		{
-			return this._moduleCache[path] ;
+			if(this._moduleCache[path].error)
+			{
+				throw new Error(this._moduleCache[path].error) ;
+			}
+			else
+			{
+				return this._moduleCache[path] ;
+			}
 		}
 		if( !create )
 		{
@@ -83,16 +93,14 @@ jQuery(function($){
 				this.waitingDownloadCallbacks.push(callback) ;
 				this.downloading = true ;
 
-				var ele = document.createElement("script") ;
-				ele.src = "/ship-down:"+path ;
-				ele.type = "text/javascript" ;
-				document.head.appendChild(ele) ;
+				shipper.createScript("/ship-down:"+path + "?callwrapper=$opencomb.shipper._onDownloaded($path,$deps,$define)&errcallwrapper=$opencomb.shipper._onDownloadError($path,$message)",true) ;
 			}
 
-			, _onDownloaded: function(deps,func)
+			, _onDownloaded: function(err,deps,func)
 			{
 				this.deps = deps ;
 				this.func = func ;
+				this.error = err ;
 
 				var cache = this ;
 				var downloadDone = function(){
@@ -156,7 +164,22 @@ jQuery(function($){
 	}
 	Shipper.prototype._onDownloaded = function(path,deps,func)
 	{
-		this.cache(path,true)._onDownloaded(deps,func) ;
+		this.cache(path,true)._onDownloaded(null,deps,func) ;
+	}
+	Shipper.prototype._onDownloadError = function(path,message)
+	{
+		this.cache(path,true)._onDownloaded(message,[],function(){}) ;
+	}
+	Shipper.prototype.createScript = function(src,load)
+	{
+		var ele = document.createElement("script") ;
+		ele.src = src ;
+		ele.type = "text/javascript" ;
+		if(load)
+		{
+			document.head.appendChild(ele) ;
+		}
+		return ele ;
 	}
 ////////////////////////////////
 
