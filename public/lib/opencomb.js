@@ -3,21 +3,20 @@ var $opencomb = null ;
 
 jQuery(function($){
 
+	var shipdownloads = [
+		"ocTemplate/lib/TemplateCaches.js"
+		, "ocPlatform/lib/frontend/mvc/View.js"
+	] ;
+
 	var initOpenComb = function() {
 
-		$opencomb = $(document) ;
-		$opencomb.views = {} ;
-		$opencomb.viewpool = [] ;
-		$opencomb.shipper = new Shipper() ;
+		$opencomb.shipper.module("ocPlatform/lib/frontend/mvc/View.js").initViewsInDocument($opencomb,$) ;
 
-		$opencomb.shipper.require("ocPlatform/lib/frontend/mvc/View.js",function(err,module){
-			if(err)
-			{
-				throw err ;
-			}
 
-			module.initViewsInDocument($opencomb,$) ;
-		}) ;
+		var Factory = $opencomb.shipper.module("ocHtmlParser/lib/Factory.js") ;
+		var uitree = Factory.htmlParser().parseSync(document.body.innerHTML) ;
+		console.log(uitree) ;
+
 
 		console.log("OpenComb frontend has loaded on your browser :)") ;
 	}
@@ -93,7 +92,7 @@ jQuery(function($){
 				this.waitingDownloadCallbacks.push(callback) ;
 				this.downloading = true ;
 
-				shipper.createScript("/ship-down:"+path + "?callwrapper=$opencomb.shipper._onDownloaded($path,$deps,$define)&errcallwrapper=$opencomb.shipper._onDownloadError($path,$message)",true) ;
+				shipper.createScript("/ship-down:"+path + "?wrapper=$opencomb.shipper._onDownloaded($err,$path,$deps,$define)",true) ;
 			}
 
 			, _onDownloaded: function(err,deps,func)
@@ -162,14 +161,47 @@ jQuery(function($){
 
 		}
 	}
-	Shipper.prototype._onDownloaded = function(path,deps,func)
+	Shipper.prototype._onDownloaded = function(err,path,deps,func)
 	{
-		this.cache(path,true)._onDownloaded(null,deps,func) ;
+		if(err)
+		{
+			this.cache(path,true)._onDownloaded(err,[],function(){}) ;
+
+			var modules = this.revertQueryDep(path) ;
+			if(modules.length)
+			{
+				err+= " , and these modules depended it : \"" + modules.join("\", \"") + '"' ;
+			}
+
+			throw new Error(err) ;
+		}
+		else
+		{
+			this.cache(path,true)._onDownloaded(null,deps,func) ;
+		}
 	}
-	Shipper.prototype._onDownloadError = function(path,message)
+	Shipper.prototype.revertQueryDep = function(dep)
 	{
-		this.cache(path,true)._onDownloaded(message,[],function(){}) ;
+		var modules = [] ;
+
+		for(var key in this._moduleCache)
+		{
+			if(this._moduleCache[key].deps)
+			{
+				for(var l=0;l<this._moduleCache[key].deps.length;l++)
+				{
+					if( this._moduleCache[key].deps[l] == dep )
+					{
+						modules.push(key) ;
+						break ;
+					}
+				}
+			}
+		}
+
+		return modules ;
 	}
+
 	Shipper.prototype.createScript = function(src,load)
 	{
 		var ele = document.createElement("script") ;
@@ -184,6 +216,25 @@ jQuery(function($){
 ////////////////////////////////
 
 
-	initOpenComb() ;
+	$opencomb = $(document) ;
+	$opencomb.views = {} ;
+	$opencomb.viewpool = [] ;
+	$opencomb.shipper = new Shipper() ;
+
+	var waiting = shipdownloads.length ;
+	for(var i=0;i<shipdownloads.length;i++)
+	{
+		$opencomb.shipper.require(shipdownloads[i],function(err,module){
+			if(err)
+			{
+				throw err ;
+			}
+			if( !(--waiting) )
+			{
+				initOpenComb() ;
+			}
+		}) ;
+	}
+
 }) ;
 
