@@ -11,8 +11,12 @@ jQuery(function($){
 
 	var initOpenComb = function() {
 
+		// 初始化视图
+		var View = $oc.shipper.module("ocPlatform/lib/frontend/mvc/View.js") ;
+		$(".ocview").each(function(){
+			View.buildView( this, $oc ) ;
+		}) ;
 
-		$oc.shipper.module("ocPlatform/lib/frontend/mvc/View.js").initViewsInDocument($oc,$) ;
 
 		// init controller director
 		var Director = $oc.shipper.module("ocPlatform/lib/frontend/mvc/Director.js") ;
