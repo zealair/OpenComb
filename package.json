@@ -17,5 +17,6 @@
 		, "ocClass": "0.1"
 		, "ocShipper": "0.1"
 		, "jquery-ui": "1.10"
+		, "step": "0.0.5"
 	}
 }
