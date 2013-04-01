@@ -11,4 +11,6 @@ module.exports = {
 	, server: {
 		port: 6060
 	}
+
+	, dev: true
 }
