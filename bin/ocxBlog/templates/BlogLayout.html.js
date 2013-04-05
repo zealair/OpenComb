@@ -1,14 +1,14 @@
 module.exports = function anonymous($model,buff,callback,require) {
 try{
 var $variables = {};
-$variables.__proto__ = $model;
 $helper = this.helper ;
 function _$step_0(err)
 {
 	if(err){ _$step_last(err) ; return ;}
 	var $nextstep = _$step_last ;
-	with($variables)
-	{try{
+	with($model){
+	with($variables){
+	try{
 		// 搜集css文件
 		$model.$view.assets.putin("/ocxBlog/public/style/BlogLayout.css") ;
 		buff.write( "\n\n<div class=\"row\">\n    <div class=\"span9\">\n\n        <ul class=\"breadcrumb\" style=\"margin-top:0px;margin-bottom: 5px\">\n            <li><a href=\"/\" direct>首页</a> <span class=\"divider\">/</span></li>\n            <li class=\"breadcrumb-item-index\"><a href=\"/ocxBlog/index\" direct>Blog</a> <span class=\"divider\">/</span></li>\n            <li class=\"breadcrumb-item-blog\" style=\"display: none\"></li>\n        </ul>\n\n        " );
@@ -34,7 +34,7 @@ function _$step_0(err)
 				buff.write($model.$view._children[name].buff,mode||'soft') ;
 			}
 		}
-		buff.write( "\n    </div>\n\n    <div class=\"span3\">\n    <div class=\"sidebar\">\n    <div class=\"sidebar-box clearfix\">\n        <h4>\n            文章分类\n        </h4>\n        <ul>\n            <li class=\"cat-item cat-item-3\">\n                <a href=\"http://www.sysui.com/post/category/htmlcsspost\" title=\"查看 HTML/CSS 下的所有文章\">\n                    HTML/CSS\n                </a>\n                (12)\n            </li>\n            <li class=\"cat-item cat-item-4\">\n                <a href=\"http://www.sysui.com/post/category/scriptpost\" title=\"查看 Jquery/Js 下的所有文章\">\n                    Jquery/Js\n                </a>\n                (35)\n            </li>\n            <li class=\"cat-item cat-item-1\">\n                <a href=\"http://www.sysui.com/post/category/mobilepost\" title=\"查看 Mobile Web 下的所有文章\">\n                    Mobile Web\n                </a>\n                (1)\n            </li>\n            <li class=\"cat-item cat-item-5\">\n                <a href=\"http://www.sysui.com/post/category/designpost\" title=\"查看 前端设计 下的所有文章\">\n                    前端设计\n                </a>\n                (25)\n            </li>\n            <li class=\"cat-item cat-item-6\">\n                <a href=\"http://www.sysui.com/post/category/articlepost\" title=\"查看 经验文章 下的所有文章\">\n                    经验文章\n                </a>\n                (25)\n            </li>\n            <li class=\"cat-item cat-item-7\">\n                <a href=\"http://www.sysui.com/post/category/sharepost\" title=\"查看 资源分享 下的所有文章\">\n                    资源分享\n                </a>\n                (18)\n            </li>\n        </ul>\n    </div>\n\n    " );
+		buff.write( "\n    </div>\n\n    <div class=\"span3\">\n    <div class=\"sidebar\">\n    " );
 		var name = "tophot" ;
 		var mode = undefined ;
 		// 连接所有子视图
@@ -87,7 +87,7 @@ function _$step_0(err)
 	}catch(err){
 		callback && callback(err) ;
 		return ;
-	}}
+	}}}
 }
 
 function _$step_last(err)

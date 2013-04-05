@@ -1,14 +1,14 @@
 module.exports = function anonymous($model,buff,callback,require) {
 try{
 var $variables = {};
-$variables.__proto__ = $model;
 $helper = this.helper ;
 function _$step_0(err)
 {
 	if(err){ _$step_last(err) ; return ;}
 	var $nextstep = _$step_last ;
-	with($variables)
-	{try{
+	with($model){
+	with($variables){
+	try{
 		// 搜集css文件
 		$model.$view.assets.putin("/ocxBlog/public/style/index.css") ;
 		buff.write( "\n" );
@@ -55,7 +55,7 @@ function _$step_0(err)
 	}catch(err){
 		callback && callback(err) ;
 		return ;
-	}}
+	}}}
 }
 
 function _$step_last(err)

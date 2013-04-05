@@ -1,14 +1,14 @@
 module.exports = function anonymous($model,buff,callback,require) {
 try{
 var $variables = {};
-$variables.__proto__ = $model;
 $helper = this.helper ;
 function _$step_0(err)
 {
 	if(err){ _$step_last(err) ; return ;}
 	var $nextstep = _$step_last ;
-	with($variables)
-	{try{
+	with($model){
+	with($variables){
+	try{
 		// 搜集css文件
 		$model.$view.assets.putin("/ocPlatform/public/style/WebLayout.css") ;
 		buff.write( "\n\n<div class=\"header-wrapper\">\n    <div class=\"header-texture\">\n        <div class=\"header\">\n            <div class=\"header-left\">\n            </div>\n\n            <div class=\"clear hide-clear\"></div>\n\n            <div class=\"header-right\">\n\n                <div class=\"header-userpad\" style=\"float:right\">\n                    " );
@@ -34,7 +34,7 @@ function _$step_0(err)
 				buff.write($model.$view._children[name].buff,mode||'soft') ;
 			}
 		}
-		buff.write( "\n                </div>\n\n                <div class=\"menu-header-container\">\n                    <ul id=\"topnav\" class=\"nav-top\">\n                        <li class=\"menu-item current-menu-item\"><a href=\"/\" direct>首页</a></li>\n                        <li class=\"menu-item\"><a href=\"/\" direct>Typography</a></li>\n                        <li class=\"menu-item\">\n                            <a href=\"/\" direct>Drop Down</a>\n                            <ul class=\"sub-menu\" style=\"display: none; \">\n                                <li class=\"menu-item\"><a href=\"/\">Drop Menu</a></li>\n                                <li class=\"menu-item\"><a href=\"/\">Drop Menu</a></li>\n                                <li class=\"menu-item\"><a href=\"/\">Drop Menu</a></li>\n                                <li class=\"menu-item\"><a href=\"/\">Drop Menu</a></li>\n                            </ul>\n                        </li>\n                        <li class=\"menu-item\"><a href=\"/\" direct>Portfolio</a></li>\n                        <li class=\"menu-item\"><a href=\"/ocxBlog/index\" direct>Blog</a></li>\n                        <li class=\"menu-item\"><a href=\"/\" direct>Contact</a></li>\n                    </ul>\n                </div>\n            </div>\n\n            <div class=\"clear\"></div>\n\n        </div>\n    </div>\n</div>\n\n<div class=\"container body-wrapper\">\n    " );
+		buff.write( "\n                </div>\n\n                <div class=\"menu-header-container\">\n                    <ul id=\"topnav\" class=\"nav-top\">\n                        <li class=\"menu-item current-menu-item\"><a href=\"/\" direct>首页</a></li>\n                        <li class=\"menu-item\">\n                            <a href=\"/\" id=\"link-document\" direct>文档</a>\n                            <ul class=\"sub-menu\" style=\"display: none; \">\n                                <li class=\"menu-item\"><a href=\"/\">Drop Menu</a></li>\n                                <li class=\"menu-item\"><a href=\"/\">Drop Menu</a></li>\n                                <li class=\"menu-item\"><a href=\"/\">Drop Menu</a></li>\n                                <li class=\"menu-item\"><a href=\"/\">Drop Menu</a></li>\n                            </ul>\n                        </li>\n                        <li class=\"menu-item\"><a href=\"/\" direct>下载</a></li>\n                        <li class=\"menu-item\"><a href=\"/ocxBlog/index\" direct>Blog</a></li>\n                        <li class=\"menu-item\"><a href=\"/\" direct>联系</a></li>\n                    </ul>\n                </div>\n            </div>\n\n            <div class=\"clear\"></div>\n\n        </div>\n    </div>\n</div>\n\n<div class=\"container body-wrapper\">\n    " );
 		var name = '*' ;
 		var mode = undefined ;
 		// 连接所有子视图
@@ -64,7 +64,7 @@ function _$step_0(err)
 	}catch(err){
 		callback && callback(err) ;
 		return ;
-	}}
+	}}}
 }
 
 function _$step_last(err)

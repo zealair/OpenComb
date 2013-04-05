@@ -1,24 +1,27 @@
 module.exports = function anonymous($model,buff,callback,require) {
 try{
 var $variables = {};
-$variables.__proto__ = $model;
 $helper = this.helper ;
 function _$step_0(err)
 {
 	if(err){ _$step_last(err) ; return ;}
 	var $nextstep = _$step_last ;
-	with($variables)
-	{try{
+	with($model){
+	with($variables){
+	try{
 		// 搜集css文件
 		$model.$view.assets.putin("/ocxBlog/public/style/index.css") ;
-		buff.write( "\n\n<div class=\"entry\">\n    <ul>\n    " );
+		buff.write( "\n\n<div class=\"entry\">\n    <h4>" );
+		buff.write(title) 
+
+		buff.write( "</h4>\n    <ul>\n    " );
 		
 		// foreach loop's body ----------------------------------------
-		$variables.foreach_3 = blogs ;
-		if($variables.foreach_3)
+		$variables.foreach_4 = blogs ;
+		if($variables.foreach_4)
 		{
 			// for each body
-			function foreach_body_3($variables)
+			function foreach_body_4($variables)
 			{
 				with($variables){
 					buff.write( "\n    <li>\n        <a href=\"/ocxBlog/blog?id=" );
@@ -35,22 +38,22 @@ function _$step_0(err)
 			}
 			
 			// for each as array or string
-			if($variables.foreach_3.constructor===Array || $variables.foreach_3.constructor===String)
+			if($variables.foreach_4.constructor===Array || $variables.foreach_4.constructor===String)
 			{
-				for($variables.foreach_key_3=0;$variables.foreach_key_3<$variables.foreach_3.length;$variables.foreach_key_3++)
+				for($variables.foreach_key_4=0;$variables.foreach_key_4<$variables.foreach_4.length;$variables.foreach_key_4++)
 				{
-					$variables.blog = $variables.foreach_3[$variables.foreach_key_3] ;
-					foreach_body_3 ($variables) ;
+					$variables.blog = $variables.foreach_4[$variables.foreach_key_4] ;
+					foreach_body_4 ($variables) ;
 				}
 			}
 			
 			// for each as object
 			else
 			{
-				for($variables.foreach_key_3 in $variables.foreach_3)
+				for($variables.foreach_key_4 in $variables.foreach_4)
 				{
-					$variables.blog = $variables.foreach_3[$variables.foreach_key_3] ;
-					foreach_body_3 ($variables) ;
+					$variables.blog = $variables.foreach_4[$variables.foreach_key_4] ;
+					foreach_body_4 ($variables) ;
 				}
 			}
 		}
@@ -61,7 +64,7 @@ function _$step_0(err)
 	}catch(err){
 		callback && callback(err) ;
 		return ;
-	}}
+	}}}
 }
 
 function _$step_last(err)

@@ -1,14 +1,14 @@
 module.exports = function anonymous($model,buff,callback,require) {
 try{
 var $variables = {};
-$variables.__proto__ = $model;
 $helper = this.helper ;
 function _$step_0(err)
 {
 	if(err){ _$step_last(err) ; return ;}
 	var $nextstep = _$step_last ;
-	with($variables)
-	{try{
+	with($model){
+	with($variables){
+	try{
 		buff.write( "\n" );
 		if( $model.currentId ){
 			buff.write( "\n    <div>\n        <a href=\"/signout\" direct>Sign Out</a>\n    </div>\n\n" );
@@ -22,7 +22,7 @@ function _$step_0(err)
 	}catch(err){
 		callback && callback(err) ;
 		return ;
-	}}
+	}}}
 }
 
 function _$step_last(err)
