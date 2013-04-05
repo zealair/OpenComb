@@ -7,5 +7,5 @@ node_modules/*
 !node_modules/ocPlatform
 .DS_Store
 .config.js
-.bin
+bin
 test*
