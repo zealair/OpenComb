@@ -69,7 +69,4 @@ module.exports.Caches = ViewTemplateCaches.extend({
 }) ;
 
 
-// module.exports.Caches.singleton = new module.exports.Caches ;
-
-
 module.exports.__SHIPPABLE = true ;

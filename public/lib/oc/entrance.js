@@ -39,8 +39,12 @@ jQuery(function($){
 		jQuery.shipper.module("ocPlatform/public/lib/oc/mvc/Director.js") ;
 		jQuery.director.setup() ;
 
-		var ViewTemplate = jQuery.shipper.module("ocPlatform/public/lib/oc/mvc/ViewTemplate.js") ;
-		jQuery.tplCaches = new ViewTemplate.Caches ;
+		// template cahces for frontend
+		var FrontendView = jQuery.shipper.module("ocPlatform/public/lib/oc/mvc/ViewTemplate.js") ;
+		jQuery.tplCaches = new FrontendView.Caches ;
+		var ViewTemplateCaches = jQuery.shipper.module("ocPlatform/lib/mvc/view/ViewTemplateCaches.js") ;
+		ViewTemplateCaches.singleton(jQuery.tplCahces) ;
+
 
 		/**
 		 * 创建一个受限制的 jQuery 函数，所有的selector 仅在 root 内查找（包括root）

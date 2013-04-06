@@ -1,4 +1,4 @@
-(function (window,jQuery){
+jQuery(function ($){
 
 var Shipper = function()
 {
@@ -284,4 +284,4 @@ var util = {
 jQuery.shipper = new Shipper() ;
 $shipper = jQuery.shipper ;		// init global variable $shipper
 
-}) (window,jQuery) ;
+}) ;
