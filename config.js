@@ -12,5 +12,19 @@ module.exports = {
 		port: 6060
 	}
 
-	, dev: true
+
+	, enableDev: true
+
+	, dev: {
+
+		frontend: {
+			dontBundle: true
+		}
+
+		, watching: {
+			template: true
+			, controller: true
+			, shipdown: true
+		}
+	}
 }
