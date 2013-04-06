@@ -25,6 +25,7 @@ module.exports = {
 			template: true
 			, controller: true
 			, shipdown: true
+			, markdown: true
 		}
 	}
 }
