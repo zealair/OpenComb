@@ -28,6 +28,15 @@ module.exports = {
 }
 ```
 
+由于exports变量本来就是一个对象，所以下面的写法效果和上面的完全一样：
+```javascript
+exports.process = function(seed,nut,earth)
+{
+	nut.message('hello') ;
+	return true ;
+}
+```
+
 3. controller 完整的定义方式(较少用到，所以你也可以跳过这个部分)是从 ocPlatform/lib/mvc/Controller 类继承(关于ocClass的用法在专门的章节里介绍)，它其实和方法2很像，但是你会立刻得到新的Controller类，
 
 ```javascript
