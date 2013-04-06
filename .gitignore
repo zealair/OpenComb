@@ -1,0 +1,10 @@
+*.sublime-project
+*.sublime-workspace
+.settings.xml
+.settings
+.idea
+node_modules/*
+.DS_Store
+.config.js
+bin
+test*
