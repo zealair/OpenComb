@@ -43,7 +43,7 @@ jQuery(function($){
 		var FrontendView = jQuery.shipper.module("ocPlatform/public/lib/oc/mvc/ViewTemplate.js") ;
 		jQuery.tplCaches = new FrontendView.Caches ;
 		var ViewTemplateCaches = jQuery.shipper.module("ocPlatform/lib/mvc/view/ViewTemplateCaches.js") ;
-		ViewTemplateCaches.singleton(jQuery.tplCahces) ;
+		ViewTemplateCaches.singleton(jQuery.tplCaches) ;
 
 
 		/**
