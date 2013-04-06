@@ -1,3 +1,17 @@
-# How does it work?
 
-Enter Text in Markdown format.
+1. ##hello world##
+
+2. ##控制器##
+
+	1.1 如何定义控制器
+    
+    1.2 seed/nut 模式
+    
+    1.3 控制器的组合
+    
+  
+
+3. ##视图和模板## 
+
+
+4. ##前端##
