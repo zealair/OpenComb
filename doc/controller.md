@@ -5,35 +5,41 @@
 有三种方式定义一个contrller：
 
 1. 最简单的方式，是通过exports变量导出一个函数，这个函数就是controller的process()方法，至于controller类以及其他部分，系统都会帮你处理好。举个栗子：
-	
-	// exports 一个函数作为控制器的 process 方法
-	module.exports = function(seed,nut,earth)
+
+```javascript
+// exports 一个函数作为控制器的 process 方法
+module.exports = function(seed,nut,earth)
+{
+	nut.message('hello') ;
+	return true ;
+}
+```
+
+2. 通常还需要为controller提供更多的信息，例如其视图的模板文件，layout,action等（后文将会专门介绍layout和action），这时就需要 exports 一个JSON对象，而方法1所定义的函数，则要作为 JSON 的一项属性：process。这很好理解，对吧？举个栗子：
+
+```javascript
+// exports的是一个JSON对象
+module.exports = {
+	process: function(seed,nut,earth)
 	{
 		nut.message('hello') ;
 		return true ;
 	}
-
-2. 通常还需要为controller提供更多的信息，例如其视图的模板文件，layout,action等（后文将会专门介绍layout和action），这时就需要 exports 一个JSON对象，而方法1所定义的函数，则要作为 JSON 的一项属性：process。这很好理解，对吧？举个栗子：
-
-	// exports的是一个JSON对象
-	module.exports = {
-		process: function(seed,nut,earth)
-		{
-			nut.message('hello') ;
-			return true ;
-		}
-	}
+}
+```
 
 3. controller 完整的定义方式(较少用到，所以你也可以跳过这个部分)是从 ocPlatform/lib/mvc/Controller 类继承(关于ocClass的用法在专门的章节里介绍)，它其实和方法2很像，但是你会立刻得到新的Controller类，
 
-	// 载入 Controller 基类
-	var Controller = require("ocPlatform/lib/mvc/controller/Controller") ;
-	
-	// 从 Controller 基类中派生出一个子类，然后导出
-	module.exports = Controller.extend({
-		process: function(seed,nut,earth)
-		{
-			nut.message('hello') ;
-			return true ;
-		}
-	}) ;
+```javascript
+// 载入 Controller 基类
+var Controller = require("ocPlatform/lib/mvc/controller/Controller") ;
+
+// 从 Controller 基类中派生出一个子类，然后导出
+module.exports = Controller.extend({
+	process: function(seed,nut,earth)
+	{
+		nut.message('hello') ;
+		return true ;
+	}
+}) ;
+```
