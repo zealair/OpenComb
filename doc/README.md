@@ -1,4 +1,29 @@
-## 定义一个controller
+
+##hello world
+
+
+
+
+## 目录结构约定
+
+
+
+	opencomb目录/
+		index.js
+		config.js
+		node_modules/
+			你的项目目录/
+				你的文件
+				...				
+			蜂巢依赖的其他模块
+			...
+	
+
+## API 文档
+
+### 1. 控制器
+
+#### 定义一个controller
 
 写 controller 是你在蜂巢下完成开发工作最主要的任务。controller 是一个类，它必须有一个方法process()，执行一个controller对象，实际上就是执行这个函数。对你来说，controller.process() 函数就是任务执行的入口，而你需要的所有API 和 对象，都会作为process()的参数传给你。
 
@@ -52,3 +77,12 @@
 		}
 	}) ;
 	```
+
+    
+
+### 2. 视图和模板
+
+
+### 3. 前端
+
+
