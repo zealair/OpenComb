@@ -1,12 +1,11 @@
 
-
 ## 定义一个controller
 
-写 controller 是你在opencomb下完成开发工作最主要的任务。controller 是一个类，它必须有一个方法process()，执行一个controller对象，实际上就是执行这个函数。对你来说，controller.process() 函数就是任务执行的入口，而且几乎所有你需要的对象，也都会作为process()的参数传给你。
+写 controller 是你在蜂巢下完成开发工作最主要的任务。controller 是一个类，它必须有一个方法process()，执行一个controller对象，实际上就是执行这个函数。对你来说，controller.process() 函数就是任务执行的入口，而你需要的所有API 和 对象，都会作为process()的参数传给你。
 
 有三种方式定义一个contrller：
 
-1. 最简单的方式，是exports一个函数，这个函数将作为contrller.process()方法，至于controller类，以及其他部分，系统都会帮你处理好。举个栗子：
+1. 最简单的方式，是通过exports变量导出一个函数，这个函数就是controller的process()方法，至于controller类以及其他部分，系统都会帮你处理好。举个栗子：
 	
 	todo ...
 
