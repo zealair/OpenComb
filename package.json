@@ -1,0 +1,26 @@
+{
+  "name": "opencomb",
+  "version": "0.9.0",
+  "description": "OpenComb ========",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+    "ocplatform": "~0.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+	  ,"scripts": {
+		  "start": "node index.js"
+	  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/OpenCombJS/OpenComb.git"
+  },
+  "author": "aleechou",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}

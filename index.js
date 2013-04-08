@@ -1,7 +1,8 @@
-require("ocPlatform/lib/system/reset.js") ;
-var Platform = require("ocPlatform/lib/system/Platform.js") ;
+require("ocplatform/lib/system/reset.js") ;
+var Platform = require("ocplatform/lib/system/Platform.js") ;
 
-(new Platform()).startup(function(err){
+var platform = new Platform() ;
+platform.startup(function(err){
 
 	if(err)
 	{
