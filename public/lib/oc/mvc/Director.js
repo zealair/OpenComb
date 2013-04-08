@@ -1,9 +1,9 @@
-var Class = require("ocClass/lib/Class.js") ;
-var View = require("ocPlatform/public/lib/oc/mvc/View.js") ;
-var Switch = require("ocPlatform/public/lib/oc/mvc/Switch.js") ;
-var Nut = require("ocPlatform/lib/mvc/controller/Nut.js") ;
+var Class = require("occlass/lib/Class.js") ;
+var View = require("ocplatform/public/lib/oc/mvc/View.js") ;
+var Switch = require("ocplatform/public/lib/oc/mvc/Switch.js") ;
+var Nut = require("ocplatform/lib/mvc/controller/Nut.js") ;
 var Step = require("step") ;
-var utilstr = require("ocPlatform/lib/util/string.js") ;
+var utilstr = require("ocplatform/lib/util/string.js") ;
 
 (function(jQuery){
 
@@ -435,7 +435,7 @@ var utilstr = require("ocPlatform/lib/util/string.js") ;
 
 	Director.prototype.createViewLoading = function()
 	{
-		var $widget = jQuery('<div class="ocview-loading" style="position: fixed; z-index: 1000"><img src="/ocPlatform/public/style/images/loader_light.gif" ></div>')
+		var $widget = jQuery('<div class="ocview-loading" style="position: fixed; z-index: 1000"><img src="/ocplatform/public/style/images/loader_light.gif" ></div>')
 						.appendTo(document.body) ;
 
 		function loadingPlace()

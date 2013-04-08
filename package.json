@@ -1,6 +1,6 @@
 {
-  "name": "ocPlatform",
-  "version": "0.9.0",
+  "name": "ocplatform",
+  "version": "0.1.0",
   "description": "ERROR: No README.md file found!",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,10 +13,8 @@
 	, "dependencies": {
 		"send": "0.1.0"
 		, "connect": "2.7.0"
-		, "ocTemplate": "0.1"
-		, "ocClass": "0.1"
-		, "ocShipper": "0.1"
-		, "jquery-ui": "1.10"
+		, "octemplate": "0.1"
+		, "occlass": "0.1"
 		, "step": "0.0.5"
 	}
 }

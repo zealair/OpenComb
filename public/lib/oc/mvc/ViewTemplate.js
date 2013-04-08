@@ -1,5 +1,5 @@
-var Template = require("ocTemplate/lib/Template.js") ;
-var ViewTemplateCaches = require("ocPlatform/lib/mvc/view/ViewTemplateCaches.js") ;
+var Template = require("octemplate/lib/Template.js") ;
+var ViewTemplateCaches = require("ocplatform/lib/mvc/view/ViewTemplateCaches.js") ;
 
 module.exports = Template.extend({
 

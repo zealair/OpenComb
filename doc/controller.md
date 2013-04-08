@@ -37,11 +37,11 @@
 	}
 	```
 
-3. controller 完整的定义方式(较少用到，所以你也可以跳过这个部分)是从 ocPlatform/lib/mvc/Controller 类继承(关于ocClass的用法在专门的章节里介绍)，它其实和方法2很像，但是你会立刻得到新的Controller类，
+3. controller 完整的定义方式(较少用到，所以你也可以跳过这个部分)是从 ocplatform/lib/mvc/Controller 类继承(关于occlass的用法在专门的章节里介绍)，它其实和方法2很像，但是你会立刻得到新的Controller类，
 
 	```javascript
 	// 载入 Controller 基类
-	var Controller = require("ocPlatform/lib/mvc/controller/Controller") ;
+	var Controller = require("ocplatform/lib/mvc/controller/Controller") ;
 	
 	// 从 Controller 基类中派生出一个子类，然后导出
 	module.exports = Controller.extend({

@@ -19,11 +19,11 @@ jQuery(function($){
 		console.log("initOpenComb()") ;
 
 		// 为浏览器打补丁，以便一些为 node.js 开发的 module 可以在浏览器中运行
-		jQuery.shipper.module("ocPlatform/public/lib/oc/patchs.js") ;
+		jQuery.shipper.module("ocplatform/public/lib/oc/patchs.js") ;
 
 
 		// 初始化视图
-		var View = jQuery.shipper.module("ocPlatform/public/lib/oc/mvc/View.js") ;
+		var View = jQuery.shipper.module("ocplatform/public/lib/oc/mvc/View.js") ;
 		jQuery(".ocview").each(function(){
 			View.buildView( this, jQuery.shipper, function(err,view){
 				if(err)
@@ -36,13 +36,13 @@ jQuery(function($){
 
 
 		// init controller director
-		jQuery.shipper.module("ocPlatform/public/lib/oc/mvc/Director.js") ;
+		jQuery.shipper.module("ocplatform/public/lib/oc/mvc/Director.js") ;
 		jQuery.director.setup() ;
 
 		// template cahces for frontend
-		var FrontendView = jQuery.shipper.module("ocPlatform/public/lib/oc/mvc/ViewTemplate.js") ;
+		var FrontendView = jQuery.shipper.module("ocplatform/public/lib/oc/mvc/ViewTemplate.js") ;
 		jQuery.tplCaches = new FrontendView.Caches ;
-		var ViewTemplateCaches = jQuery.shipper.module("ocPlatform/lib/mvc/view/ViewTemplateCaches.js") ;
+		var ViewTemplateCaches = jQuery.shipper.module("ocplatform/lib/mvc/view/ViewTemplateCaches.js") ;
 		ViewTemplateCaches.singleton(jQuery.tplCaches) ;
 
 
