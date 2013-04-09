@@ -345,13 +345,13 @@ controller path 会用在：
 ocxblog/lib/blog.js
 ```
 
-	可以简化为：
+可以简化为：
 
 ```
 ocxblog/blog
 ```
 
-	当他作为一个 url 的时候，省略版本显得更像一个 url ：
+当他作为一个 url 的时候，省略版本显得更像一个 url ：
 	
 ```
 http://www.youdomin.com/ocxblog/blog
