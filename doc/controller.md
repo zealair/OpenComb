@@ -279,7 +279,8 @@ layout 只有一个，不需要命名，所有访问 layout的时候就是这样
 ```
 
 #### “殊途同归”？
-> 你可能已经意识到，在这个机制里，有一个有趣的现象：不同的 controller path 可能指向一个相同的控制器。
+
+你可能已经意识到，在这个机制里，有一个有趣的现象：不同的 controller path 可能指向一个相同的控制器。
 举个例子：
 
 ```javascript
@@ -312,8 +313,10 @@ module.exports = function()
 
 我要说的是，现在有两个不同的 controller path ,他们都指向 Hello.js :
 
-> ocxexample/Hello.js
-> ocxexample/SayHello.js:hello
+```
+ocxexample/Hello.js
+ocxexample/SayHello.js:hello
+```
 
 这是一个问题吗？对蜂巢来说，不是。蜂巢需要靠 controller path 找到控制器，但不介意它们是否唯一对应。所以，这个现象除了可能会轻微地诱发强迫症外，并没有什么坏处。反而，它让框架变得轻盈、灵活。
 
@@ -323,20 +326,20 @@ module.exports = function()
 
 controller path 会用在：
 
-	1. url 里，蜂巢的路由机制，会从浏览器请求的 url 里识别出 controller path，并执行对应的控制器
+1. url 里，蜂巢的路由机制，会从浏览器请求的 url 里识别出 controller path，并执行对应的控制器
 
-	2. 程序里引入一个控制器类，例如，你需要引用另一个控制器作为 layout, children, actions 时
+2. 程序里引入一个控制器类，例如，你需要引用另一个控制器作为 layout, children, actions 时
 
 
 ### 简化 controller path
 
 为了在url里能够短一点，controller path 可以做一些简化，框架一样能够找到对应的控制器：
 
-	1. <扩展名称>/lib 后的目录，如果是"lib" ，那么这 lib 可以省略；
+1. <扩展名称>/lib 后的目录，如果是"lib" ，那么这 lib 可以省略；
 
-	2. 文件的扩展名".js" 可以省略。
+2. 文件的扩展名".js" 可以省略。
 
-	例如：
+例如：
 
 ```
 ocxblog/lib/blog.js
@@ -355,8 +358,10 @@ http://www.youdomin.com/ocxblog/blog
 ```
 
 > 【约定】我们建议：
+>
 > 1. 在前端链接的 href 属性里面，尽量使用省略版本的controller path，这样做，无论是对用户（他们有时要复制这些链接，分享给别人）,
 > 还是对搜索引擎都更加友好；但是在程序代码里，则尽量使用完整的 controller path ，便于阅读代码的程序员 和 智能IDE（点击一个看上去是路径的字符串，IDE会帮你打开对应的文件）找到对应的文件。
+>
 > 2. 在搜索引擎可见的链接中，使用一致的 url （当然，最好是省略版本），以便搜索引擎把他们当做同一个url。
 
 
