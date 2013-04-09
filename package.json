@@ -1,6 +1,6 @@
 {
   "name": "ocplatform",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "ERROR: No README.md file found!",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +16,8 @@
 		, "octemplate": "0.1"
 		, "occlass": "0.1"
 		, "step": "0.0.5"
+		, "mongodb": "1.2.14"
+		, "stack-trace": "0.0.6"
+		, "marked": "0.2.8"
 	}
 }
