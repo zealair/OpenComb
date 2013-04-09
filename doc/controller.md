@@ -17,41 +17,42 @@
 
 2. 通常还需要为controller提供更多的信息，例如其视图的模板文件，layout,action等（后文将会专门介绍layout和action），这时就需要 exports 一个JSON对象，而方法1所定义的函数，则要作为 JSON 的一项属性：process。这很好理解，对吧？举个栗子：
 
-```javascript
-// exports的是一个JSON对象
-module.exports = {
-	process: function(seed,nut,earth)
+	```javascript
+	// exports的是一个JSON对象
+	module.exports = {
+		process: function(seed,nut,earth)
+		{
+			nut.message('hello') ;
+			return true ;
+		}
+	}
+	```
+
+	由于exports变量本来就是一个对象，所以下面的写法效果和上面的完全一样：
+
+	```javascript
+	exports.process = function(seed,nut,earth)
 	{
 		nut.message('hello') ;
 		return true ;
 	}
-}
-```
-
-由于exports变量本来就是一个对象，所以下面的写法效果和上面的完全一样：
-```javascript
-exports.process = function(seed,nut,earth)
-{
-	nut.message('hello') ;
-	return true ;
-}
-```
+	```
 
 3. controller 完整的定义方式(较少用到，所以你也可以跳过这个部分)是从 ocplatform/lib/mvc/Controller 类继承(关于occlass的用法在专门的章节里介绍)，它其实和方法2很像，但是你会立刻得到新的Controller类，
 
-```javascript
-// 载入 Controller 基类
-var Controller = require("ocplatform/lib/mvc/controller/Controller") ;
-
-// 从 Controller 基类中派生出一个子类，然后导出
-module.exports = Controller.extend({
-	process: function(seed,nut,earth)
-	{
-		nut.message('hello') ;
-		return true ;
-	}
-}) ;
-```
+	```javascript
+	// 载入 Controller 基类
+	var Controller = require("ocplatform/lib/mvc/controller/Controller") ;
+	
+	// 从 Controller 基类中派生出一个子类，然后导出
+	module.exports = Controller.extend({
+		process: function(seed,nut,earth)
+		{
+			nut.message('hello') ;
+			return true ;
+		}
+	}) ;
+	```
 
 
 
@@ -69,96 +70,98 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 
 为一个控制器声明layout有以下方法 (或者说控制器的 layout 属性接受的参数类型)：
 
-	1. 一个表示 controller path 的字符串，例如：
+1. 一个表示 controller path 的字符串，例如：
 
-```javascript
-module.exports = {
-
-	layout: "ocplatform/lib/mvc/controller/layout/WebLayout.js"
-
-	, process: function(seed,nut,earth)
-	{
-		nut.message('hello') ;
-		return true ;
+	```javascript
+	module.exports = {
+	
+		// 用一个路径来引用 layout 
+		layout: "ocplatform/lib/mvc/controller/layout/WebLayout.js"
+	
+		, process: function(seed,nut,earth)
+		{
+			nut.message('hello') ;
+			return true ;
+		}
 	}
-}
-```
+	```
 
-	2. 一个表示 controller 别名的字符串，例如：
+2. 一个表示 controller 别名的字符串，例如：
 
-```javascript
-module.exports = {
-
-	layout: "weblayout"
-
-	, process: function(seed,nut,earth)
-	{
-		nut.message('hello') ;
-		return true ;
+	```javascript
+	module.exports = {
+	
+		// "weblayout" 是 "ocplatform/lib/mvc/controller/layout/WebLayout.js" 的别名
+		layout: "weblayout"
+	
+		, process: function(seed,nut,earth)
+		{
+			nut.message('hello') ;
+			return true ;
+		}
 	}
-}
-```
+	```
 
 	这和前面一个里的意义完全一样，"weblayout" 就是 "ocplatform/lib/mvc/controller/layout/WebLayout.js" 的别名
 
-	3. 一个将作为 layout 控制器的函数：
+3. 一个将作为 layout 控制器的函数：
 
-```javascript
-// 你的控制器
-module.exports = {
-
-	// 用一个函数来定义一个匿名的 layout 控制器
-	layout: function(seed,nut,earth)
-	{
-		nut.write("from layout") ;
-	}
-
-	, process: function(seed,nut,earth)
-	{
-		nut.message('hello') ;
-		return true ;
-	}
-}
-```
-
-	4. 用一个完整的 json 定义 layout，这个json的结构你在定义控制器的时候，是完全一样的
-
-```javascript
-// 你的控制器
-module.exports = {
-
-	// 用一个函数来定义一个匿名的 layout 控制器
-	layout: {
-		process: function(seed,nut,earth)
+	```javascript
+	// 你的控制器
+	module.exports = {
+	
+		// 用一个函数来定义一个匿名的 layout 控制器
+		layout: function(seed,nut,earth)
 		{
 			nut.write("from layout") ;
 		}
+	
+		, process: function(seed,nut,earth)
+		{
+			nut.message('hello') ;
+			return true ;
+		}
 	}
+	```
 
-	, process: function(seed,nut,earth)
-	{
-		nut.message('hello') ;
-		return true ;
+4. 用一个完整的 json 定义 layout，这个json的结构你在定义控制器的时候，是完全一样的
+
+	```javascript
+	// 你的控制器
+	module.exports = {
+	
+		// 用一个函数来定义一个匿名的 layout 控制器
+		layout: {
+			process: function(seed,nut,earth)
+			{
+				nut.write("from layout") ;
+			}
+		}
+	
+		, process: function(seed,nut,earth)
+		{
+			nut.message('hello') ;
+			return true ;
+		}
 	}
-}
-```
+	```
 
-	5. null 和 undefined（默认）是不同的，null表示不要使用 layout， undefined （在你没有提供这个属性时）表示使用默认的 layout ，也就是 "weblayout" 。
+5. null 和 undefined（默认）是不同的，null表示不要使用 layout， undefined （在你没有提供这个属性时）表示使用默认的 layout ，也就是 "weblayout" 。
 
-```javascript
-// 你的控制器
-module.exports = {
-
-	// 不要使用 layout ，如果缺少 layout属性，默认值是 "weblayout"
-	layout: null
-
-	, process: function(seed,nut,earth)
-	{
-		nut.message('hello') ;
-		return true ;
+	```javascript
+	// 你的控制器
+	module.exports = {
+	
+		// 不要使用 layout ，如果缺少 layout属性，默认值是 "weblayout"
+		layout: null
+	
+		, process: function(seed,nut,earth)
+		{
+			nut.message('hello') ;
+			return true ;
+		}
 	}
-}
-```
+	```
 
 
 layout完全是一个普通的控制器，所以，你既可以用 controller path （或它的别名）来引用一个在其他文件中定义的控制器作为layout，
