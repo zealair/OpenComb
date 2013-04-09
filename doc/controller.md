@@ -63,13 +63,14 @@
 layout实际上就是一个普通的控制器，也需要process()方法，并且生成视图显示在网页上。
 
 
-### 声明 layout
+### 如何声明 layout
 
-控制器可以通过自己的 "layout" 属性去引用另外一个控制器，然后自己的视图，就会显示在 layout 控制器的视图内。
+控制器可以通过自己的 "layout" 属性去引用另外一个控制器，然后，自己的视图就会显示在 layout控制器的视图内。
 
 为一个控制器声明layout有以下方法 (或者说控制器的 layout 属性接受的参数类型)：
 
 	1. 一个表示 controller path 的字符串，例如：
+
 	```javascript
 	module.exports = {
 
@@ -84,6 +85,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 	```
 
 	2. 一个表示 controller 别名的字符串，例如：
+
 	```javascript
 	module.exports = {
 
@@ -96,9 +98,11 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 		}
 	}
 	```
+
 	这和前面一个里的意义完全一样，"weblayout" 就是 "ocplatform/lib/mvc/controller/layout/WebLayout.js" 的别名
 
 	3. 一个将作为 layout 控制器的函数：
+
 	```javascript
 	// 你的控制器
 	module.exports = {
@@ -118,6 +122,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 	```
 
 	4. 用一个完整的 json 定义 layout，这个json的结构你在定义控制器的时候，是完全一样的
+
 	```javascript
 	// 你的控制器
 	module.exports = {
@@ -139,6 +144,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 	```
 
 	5. null 和 undefined（默认）是不同的，null表示不要使用 layout， undefined （在你没有提供这个属性时）表示使用默认的 layout ，也就是 "weblayout" 。
+
 	```javascript
 	// 你的控制器
 	module.exports = {
@@ -219,9 +225,11 @@ layout链是一个简单却很使用的机制，蜂巢的很多实现，都依�
 所以，文件的引用，查找，都是以 node_modules 为根目录的，而不是以网站目录为根目录，这样做是为了完全兼容 nodejs 的 require 路径查找规则。
 
 一个控制器的路径也是如此，它应该是这个样子：
+
 ```
 <扩展名称>/lib/folder path/<控制器文件名>.js
 ```
+
 <扩展名称> 就是 <网站目录>/node_modules 目录下的子目录名称。
 
 
@@ -244,11 +252,13 @@ layout 只有一个，不需要命名，所有访问 layout的时候就是这样
 ```
 
 指向成员的成员
+
 ```
 <扩展名称>/lib/folder path/Foo.js:layout:bar
 ```
 
 那么下面这种情况，就不用我解释了：
+
 ```
 <扩展名称>/lib/folder path/Foo.js:layout:layout:bar:ooo:xxx
 ```
@@ -256,8 +266,9 @@ layout 只有一个，不需要命名，所有访问 layout的时候就是这样
 #### “殊途同归”？
 > 你可能已经意识到，在这个机制里，有一个有趣的现象：不同的 controller path 可能指向一个相同的控制器。
 举个例子：
-文件: ocxexample/lib/Hello.js
+
 ```javascript
+// 文件: ocxexample/lib/Hello.js
 module.exports = function()
 {
 	process: function(seed,nut,earth)
@@ -267,8 +278,8 @@ module.exports = function()
 }
 ```
 
-文件: ocxexample/lib/SayHello.js
 ```javascript
+// 文件: ocxexample/lib/SayHello.js
 module.exports = function()
 {
 	process: function(seed,nut,earth)
@@ -311,14 +322,19 @@ controller path 会用在：
 	2. 文件的扩展名".js" 可以省略。
 
 	例如：
+
 	```
 	ocxblog/lib/blog.js
 	```
-	可以简化为
+
+	可以简化为：
+
 	```
 	ocxblog/blog
 	```
+
 	当他作为一个 url 的时候，省略版本显得更像一个 url ：
+	
 	```
 	http://www.youdomin.com/ocxblog/blog
 	```
