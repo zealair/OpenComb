@@ -13,6 +13,7 @@
 		nut.message('hello') ;
 		return true ;
 	}
+	module.exports.__as_controller = true ;
 	```
 
 2. 通常还需要为controller提供更多的信息，例如其视图的模板文件，layout,action等（后文将会专门介绍layout和action），这时就需要 exports 一个JSON对象，而方法1所定义的函数，则要作为 JSON 的一项属性：process。这很好理解，对吧？举个栗子：
@@ -26,6 +27,7 @@
 			return true ;
 		}
 	}
+	module.exports.__as_controller = true ;
 	```
 
 	由于exports变量本来就是一个对象，所以下面的写法效果和上面的完全一样：
@@ -36,6 +38,7 @@
 		nut.message('hello') ;
 		return true ;
 	}
+	module.exports.__as_controller = true ;
 	```
 
 3. controller 完整的定义方式(较少用到，所以你也可以跳过这个部分)是从 ocplatform/lib/mvc/Controller 类继承(关于occlass的用法在专门的章节里介绍)，它其实和方法2很像，但是你会立刻得到新的Controller类，
@@ -52,6 +55,7 @@
 			return true ;
 		}
 	}) ;
+	module.exports.__as_controller = true ;
 	```
 
 
@@ -74,16 +78,17 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 
 	```javascript
 	module.exports = {
-	
-		// 用一个路径来引用 layout 
+
+		// 用一个路径来引用 layout
 		layout: "ocplatform/lib/mvc/controller/layout/WebLayout.js"
-	
+
 		, process: function(seed,nut,earth)
 		{
 			nut.message('hello') ;
 			return true ;
 		}
 	}
+	module.exports.__as_controller = true ;
 	```
 
 2. 一个表示 controller 别名的字符串，例如：
@@ -100,6 +105,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 			return true ;
 		}
 	}
+	module.exports.__as_controller = true ;
 	```
 
 	这和前面一个里的意义完全一样，"weblayout" 就是 "ocplatform/lib/mvc/controller/layout/WebLayout.js" 的别名
@@ -122,6 +128,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 			return true ;
 		}
 	}
+	module.exports.__as_controller = true ;
 	```
 
 4. 用一个完整的 json 定义 layout，这个json的结构你在定义控制器的时候，是完全一样的
@@ -144,6 +151,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 			return true ;
 		}
 	}
+	module.exports.__as_controller = true ;
 	```
 
 5. null 和 undefined（默认）是不同的，null表示不要使用 layout， undefined （在你没有提供这个属性时）表示使用默认的 layout ，也就是 "weblayout" 。
@@ -161,6 +169,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 			return true ;
 		}
 	}
+	module.exports.__as_controller = true ;
 	```
 
 
@@ -292,6 +301,7 @@ module.exports = function()
 		nut.message("hello") ;
 	}
 }
+module.exports.__as_controller = true ;
 ```
 
 ```javascript
@@ -306,6 +316,7 @@ module.exports = function()
 		say: "ocxexample/lib/Hello.js"
 	}
 }
+module.exports.__as_controller = true ;
 ```
 
 这个例子很能说明问题，控制器 SayHello.js 显示一个链接，点击这个链接，就在网页上执行自己的一个名为"say"的 action，而这个action，实际上引用了另一个控制器 Hello.js 。
