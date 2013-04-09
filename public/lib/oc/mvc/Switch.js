@@ -48,7 +48,7 @@ module.exports.replacein = function(newview,target,callback)
 						, null
 						,function(){
 							// 清理状态
-							$newview.css("overflow-y",null).height("auto") ;
+							$newview.css("overflow-y",'').height('') ;
 
 							// 放置到网页上之后 再调用 viewIn, viewOut
 							$newview.find('.ocview').andSelf().each(function(){

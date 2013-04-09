@@ -521,7 +521,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 	 * 这是一个 jQuery 函数
 	 * use: jQuery('selector').request() ;
 	 */
-	jQuery.fn.request = function(thenOptions,ajaxOptions,asForm)
+	jQuery.fn.request = function(ajaxOptions,thenOptions,asForm)
 	{
 		if( !this.length )
 		{
@@ -529,7 +529,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		}
 		if( this.constructor!==jQuery )
 		{
-			throw new ("Director.requestElement() only called on a jQuery array") ;
+			throw new Error("$.fn.request() only called on a jQuery array") ;
 			return ;
 		}
 
@@ -563,7 +563,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 
 		else
 		{
-			throw new ("Director.requestElement() only call as a method of A or FORM element") ;
+			throw new Error("$.fn.request() only call as a method of A or FORM element") ;
 			return ;
 		}
 
