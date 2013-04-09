@@ -235,10 +235,22 @@ layout链是一个简单却很使用的机制，蜂巢的很多实现，都依�
 
 <扩展名称> 就是 <网站目录>/node_modules 目录下的子目录名称。
 
+例如，控制器文件 <网站目录>/node_modules/example/lib/Hello.js , 可以在浏览器地址栏里，通过以下url访问：
+
+```
+http://www.your-domain.com/example/lib/Hello.js
+```
+
+其中，"lib" 和 ".js" 可以省略，结果就是这样：
+
+```
+http://www.your-domain.com/example/Hello
+```
+
 
 ### controller path 中的子控制器
 
-由于 layout, child, action ，他们其实也都是再普通不过的控制器，而他们常常不是在独立的文件中定义，而是在其他的控制器内部面定义的，
+由于 layout, child, action ，他们其实也都是再普通不过的控制器，而他们有时候不是在独立的文件中定义，而是在其他的控制器内部面定义的，
 因此，我们需要扩展一下 controller path 的格式，以便能够访问到这些“内部控制器”。
 
 controller path 指向一个控制器的成员控制器（layout，child， action），以及这些成员的成员，以及成员的成员的成员（……无限递归中）。
