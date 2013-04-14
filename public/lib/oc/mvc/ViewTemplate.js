@@ -1,5 +1,4 @@
 var Template = require("octemplate/lib/Template.js") ;
-var ViewTemplateCaches = require("ocplatform/lib/mvc/view/ViewTemplateCaches.js") ;
 
 module.exports = Template.extend({
 
@@ -40,33 +39,3 @@ module.exports = Template.extend({
 }) ;
 
 
-
-// caches ---------------------------
-module.exports.Caches = ViewTemplateCaches.extend({
-
-	ctor: function(){
-		this._super.apply(this,arguments) ;
-		this._tempateclass = module.exports ;
-	}
-
-	, resolve: function(filename)
-	{
-		return filename ;
-	}
-
-	, downloaded: function(err,path,renderer)
-	{
-		var tpl = this.cache(path) ;
-		if(!tpl)
-		{
-			throw new Error("服务器返回了无效的模板："+path) ;
-		}
-
-		tpl.renderer = renderer ;
-		tpl._loadDone(err) ;
-	}
-
-}) ;
-
-
-module.exports.__SHIPPABLE = true ;

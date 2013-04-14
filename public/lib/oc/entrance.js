@@ -40,11 +40,7 @@ jQuery(function($){
 		jQuery.director.setup() ;
 
 		// template cahces for frontend
-		var FrontendView = jQuery.shipper.module("ocplatform/public/lib/oc/mvc/ViewTemplate.js") ;
-		jQuery.tplCaches = new FrontendView.Caches ;
-		var ViewTemplateCaches = jQuery.shipper.module("ocplatform/lib/mvc/view/ViewTemplateCaches.js") ;
-		ViewTemplateCaches.singleton(jQuery.tplCaches) ;
-
+		jQuery.shipper.module("ocplatform/lib/mvc/view/ViewTemplateCaches.js").initForFrontend() ;
 
 		/**
 		 * 创建一个受限制的 jQuery 函数，所有的selector 仅在 root 内查找（包括root）

@@ -1,0 +1,10 @@
+[
+	"ocplatform/public/lib/oc/patchs.js"
+	, "octemplate/lib/TemplateCaches.js"
+	, "ocplatform/lib/mvc/view/ViewTemplateCaches.js"
+	, "ocplatform/public/lib/oc/mvc/View.js"
+	, "ocplatform/public/lib/oc/mvc/ViewTemplate.js"
+	, "ocplatform/public/lib/oc/mvc/Director.js"
+]
+
+
