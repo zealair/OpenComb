@@ -28,7 +28,7 @@ exports.onload = function(platform,callback)
 				}
 			) ;
 		}) ;
-
-
 	}) ;
+
+	callback(null) ;
 }
