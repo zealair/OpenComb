@@ -1,0 +1,20 @@
+<div style="height:300px">
+
+    <if condition="@usernames.length">
+
+
+        <select id="selUsername" class="input-large">
+            <foreach for="@usernames" var="username">
+            <option>{@username}</option>
+            </foreach>
+        </select>
+
+        <button id="btnSignOut" class="btn btn-success">退出</button>
+
+    <else />
+        <div>
+            正在以游客身份浏览
+        </div>
+    </if>
+
+</div>

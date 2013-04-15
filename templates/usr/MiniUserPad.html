@@ -1,0 +1,27 @@
+
+
+<div class="miniuserpad-login form" style="width:205px;padding:12px 0; padding-left: 10px;">
+<if condition="@$model.currentId">
+
+    <div class="btn-group">
+
+        <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#">
+            退出
+            <span class="caret"></span>
+        </a>
+
+        <ul class="dropdown-menu">
+            <foreach for="@usernames" var="username">
+                <li><a class="logout-username" href="/ocplatform/lib/usr/SignOut:do?username={@username}">{@username}</a></li>
+            </foreach>
+        </ul>
+
+    </div>
+
+<else />
+
+    <input type="text" name="username" class="input-mini" placeholder="email" style="margin-bottom:0px;" />
+    <input type="password" name="password" class="input-mini" placeholder="password here" style="margin-bottom:0px;" />
+    <button class="miniuserpad-btn-signin">登陆</button>
+</if>
+</div>
