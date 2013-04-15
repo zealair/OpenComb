@@ -14,7 +14,7 @@
 
 3. 为蜂巢安装一个简单的Blog扩展：
 	
-	> npm i ocxBlog
+	> npm i ocxblog
 
 4. 启动蜂巢：
 	
