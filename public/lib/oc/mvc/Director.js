@@ -1,6 +1,6 @@
 var Class = require("occlass/lib/Class.js") ;
 var View = require("ocplatform/public/lib/oc/mvc/View.js") ;
-var Nut = require("ocplatform/lib/mvc/controller/Nut.js") ;
+var Nut = require("ocplatform/lib/mvc/Nut.js") ;
 var Step = require("step") ;
 var utilstr = require("ocplatform/lib/util/string.js") ;
 
