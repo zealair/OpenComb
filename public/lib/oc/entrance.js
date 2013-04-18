@@ -42,6 +42,9 @@ jQuery(function($){
 		// template cahces for frontend
 		jQuery.shipper.module("ocplatform/lib/mvc/view/ViewTemplateCaches.js").initForFrontend() ;
 
+		// init switcher
+		jQuery.shipper.module("ocplatform/public/lib/oc/mvc/Switcher.js") ;
+
 		/**
 		 * 创建一个受限制的 jQuery 函数，所有的selector 仅在 root 内查找（包括root）
 		 */

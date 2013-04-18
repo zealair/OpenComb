@@ -4,6 +4,8 @@ module.exports.buildView = function(ele,shipper,callback)
 
 	ele._children = {} ;
 	ele._tpl = null ;
+	ele.nut = null ;
+	ele.ajaxOpt = null ;
 
 	$ele = jQuery(ele) ;
 

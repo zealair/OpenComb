@@ -1,6 +1,5 @@
 var Class = require("occlass/lib/Class.js") ;
 var View = require("ocplatform/public/lib/oc/mvc/View.js") ;
-var Switch = require("ocplatform/public/lib/oc/mvc/Switch.js") ;
 var Nut = require("ocplatform/lib/mvc/controller/Nut.js") ;
 var Step = require("step") ;
 var utilstr = require("ocplatform/lib/util/string.js") ;
@@ -37,7 +36,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		// state 事件
 		window.onpopstate = function(e) {
 
-			if(e.state)
+			if(e.state && e.state.ocstate)
 			{
 				director.request(
 					{
@@ -58,6 +57,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 			window.history.replaceState({
 				url: location.pathname
 				, data: queryStrings(location.search)
+				, ocstate: true
 			},null) ;
 		}
 	}
@@ -312,6 +312,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 					url: url
 					, data: ajaxReq.data
 					, type: ajaxReq.type
+					, ocstate: true
 				}
 				, null
 				, url
@@ -349,6 +350,8 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 
 					$rootview.find('.ocview').andSelf().each(function(){
 						View.buildView(this,jQuery.shipper,group()) ;
+						this.nut = nut ;
+						this.ajaxOpt = ajaxReq ;
 					}) ;
 				}
 				, function placeInViews(err){
@@ -361,7 +364,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 					// 切换视图
 					if( thenOpt.target )
 					{
-						Switch.replacein($rootview[0],thenOpt.target,this) ;
+						$.switcher.replacein(undefined,$rootview[0],thenOpt.target,this) ;
 					}
 					else
 					{
@@ -372,7 +375,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 				, function done(err){
 					if(err)
 					{
-						console.log(err) ;
+						console.log(err.stack) ;
 					}
 					thenOpt.callback && thenOpt.callback(err,nut,$rootview) ;
 				}

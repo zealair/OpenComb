@@ -5,6 +5,7 @@
 	, "ocplatform/public/lib/oc/mvc/View.js"
 	, "ocplatform/public/lib/oc/mvc/ViewTemplate.js"
 	, "ocplatform/public/lib/oc/mvc/Director.js"
+	, "ocplatform/public/lib/oc/mvc/Switcher.js"
 ]
 
 
