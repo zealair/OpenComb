@@ -11,6 +11,11 @@
 	}
 
 
+	, "compile": {
+		"file": true
+		, "dir": "bin"
+	}
+
 	, "enableDev": true
 
 

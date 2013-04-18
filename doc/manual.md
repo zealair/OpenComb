@@ -88,7 +88,7 @@
 
 	```javascript
 	// 载入 Controller 基类
-	var Controller = require("ocPlatform/lib/mvc/controller/Controller") ;
+	var Controller = require("ocPlatform/lib/mvc/Controller") ;
 	
 	// 从 Controller 基类中派生出一个子类，然后导出
 	module.exports = Controller.extend({

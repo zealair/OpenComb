@@ -45,7 +45,7 @@
 
 	```javascript
 	// 载入 Controller 基类
-	var Controller = require("ocplatform/lib/mvc/controller/Controller") ;
+	var Controller = require("ocplatform/lib/mvc/Controller") ;
 	
 	// 从 Controller 基类中派生出一个子类，然后导出
 	module.exports = Controller.extend({
@@ -80,7 +80,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 	module.exports = {
 
 		// 用一个路径来引用 layout
-		layout: "ocplatform/lib/mvc/controller/layout/WebLayout.js"
+		layout: "ocplatform/lib/mvc/controllers/layout/WebLayout.js"
 
 		, process: function(seed,nut,earth)
 		{
@@ -96,7 +96,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 	```javascript
 	module.exports = {
 	
-		// "weblayout" 是 "ocplatform/lib/mvc/controller/layout/WebLayout.js" 的别名
+		// "weblayout" 是 "ocplatform/lib/mvc/controllers/layout/WebLayout.js" 的别名
 		layout: "weblayout"
 	
 		, process: function(seed,nut,earth)
@@ -108,7 +108,7 @@ layout实际上就是一个普通的控制器，也需要process()方法，并�
 	module.exports.__as_controller = true ;
 	```
 
-	这和前面一个里的意义完全一样，"weblayout" 就是 "ocplatform/lib/mvc/controller/layout/WebLayout.js" 的别名
+	这和前面一个里的意义完全一样，"weblayout" 就是 "ocplatform/lib/mvc/controllers/layout/WebLayout.js" 的别名
 
 3. 一个将作为 layout 控制器的函数：
 
