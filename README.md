@@ -1,6 +1,77 @@
 OpenComb
 ========
 
+![opencomb logo](doc/images/logo.png)
+
+蜂巢(OpenComb) 不只是一个 Node.js 的 Web 框架。
+
+
+```javascript
+module.exports = function(seed,nut,earth)
+{
+	nut.write("hello world") ;
+	return true ;
+}
+module.exports.__as_controller = true ;
+```
+
+## 安装
+
+```
+$ npm install -g opencomb
+```
+
+## 快速开始
+
+在 `~/opencomb` 目录下部署蜂巢
+
+```
+oc init ~/opencomb && cd ~/opencomb
+```
+
+启动蜂巢
+
+```
+node index.js
+```
+
+在浏览器里访问 url `http://127.0.0.1:6060`
+
+
+## 特性
+
+
+
+## 原则
+
+
+
+## 文档目录
+
+### 开发者手册
+
+1. 安装和部署
+
+2. 控制器
+
+3. 视图和模板
+
+4. 前端开发
+
+5. 扩展
+
+### API
+
+	controller
+
+
+
+
+
+
+
+
+----
 蜂巢(OpenComb) 是一个 Node.js 的 Web 框架。
 
 #概念

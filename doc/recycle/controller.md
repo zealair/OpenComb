@@ -310,7 +310,7 @@ module.exports = function()
 {
 	process: function(seed,nut,earth)
 	{
-		nut.write( "<a href='ocxexample/SayHello:say' direct>say</a>" ) ;
+		nut.write( "<a href='ocxexample/SayHello:say' class='stay'>say</a>" ) ;
 	}
 	, action: {
 		say: "ocxexample/lib/Hello.js"
