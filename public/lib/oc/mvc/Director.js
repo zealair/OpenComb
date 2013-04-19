@@ -28,10 +28,10 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		}
 
 		// for link(a tag)
-		this.$document.on("click","a[direct]",onRequestElement) ;
+		this.$document.on("click","a.stay,a.stay-view,a.stay-top,a.stay-lazy",onRequestElement) ;
 
 		// for form
-		this.$document.on("submit","form[direct]",onRequestElement) ;
+		this.$document.on("submit","form.stay,form.stay-view,form.stay-top,form.stay-lazy",onRequestElement) ;
 
 		// state 事件
 		window.onpopstate = function(e) {
@@ -69,14 +69,24 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 	{
 		if(then===undefined)
 		{
-			then = 'lazy' ;
+			// 从elemt
+			if(element)
+			{
+				$element = $(element) ;
+				then = $element.hasClass('stay-top')? 'top':
+					( $element.hasClass('stay-view')? 'view': 'layze' ) ;
+			}
+			else
+			{
+				then = 'lazy' ;
+			}
 		}
 
 		var type = typeof then ;
 		if( type=='string' )
 		{
 			then = {
-				target: then || 'direct'
+				target: then || 'lazy'
 			}
 		}
 		else if( type=='function' )
@@ -119,7 +129,6 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 					break ;
 
 				case 'lazy' :
-				case 'direct' :
 				case 'default' :
 					then.target = null ;
 					break ;
@@ -538,7 +547,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 
 		ajaxOptions = ajaxOptions || {} ;
 		thenOptions = Director.buildParamThen(
-						thenOptions || this.attr("direct")
+						thenOptions
 						, this[0]
 					) ;
 
