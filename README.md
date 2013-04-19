@@ -1,32 +1,36 @@
+
 ![opencomb logo](doc/images/logo.png)
 
 蜂巢(OpenComb)
 ===
 
-蜂巢(OpenComb) 不只是一个 Node.js 的 Web 框架。
+蜂巢(OpenComb)不只是一个 Node.js 的开发框架。
 
-
-```javascript
-module.exports = function(seed,nut,earth)
-{
-	nut.write("hello world") ;
-	return true ;
-}
-module.exports.__as_controller = true ;
-```
 
 ## 快速开始
 
-在 `~/opencomb` 目录下部署蜂巢
+在 `~/opencomb` 目录下部署蜂巢：
 
 ```
-npm i opencomb && cd ~/opencomb
+git clone git@github.com:OpenComb/OpenComb.git opencomb
 ```
 
-安装 blog 扩展
+安装蜂巢的依赖：
+
+```
+cd opencomb && npm i
+```
+
+安装一个 blog 扩展
 
 ```
 npm i ocxblog
+```
+
+启动 mongodb
+
+```
+mongod &
 ```
 
 启动蜂巢
@@ -38,7 +42,20 @@ node index.js
 在浏览器里访问 url `http://127.0.0.1:6060`
 
 
+
 ## 特性
+
+蜂巢(OpenComb)是一个面向二次开发的Web应用框架，用户可以通过为蜂巢安装扩展来搭建一个网站或Web App。
+
+蜂巢的控制器强调“可组合”：每个控制器只负责一个视图，当控制器聚合在一起时，他们的视图也会自动聚合，最后“拼组”成一个网页。
+由扩展向蜂巢提供控制器，而你可以打散这些控制器，自由发挥，组合出新的网页。
+
+扩展不但可以向蜂巢提供新的功能，还可以“修改”其他扩展的功能，类似于为模板和程序打补丁，例如：
+为其他扩展的模板增加（或隐藏）内容，执行控制器时加载一些额外的数据，等等。
+
+当扩展提供的功能，和你的需求不完全一致时，你可以写一个新的扩展来“重塑”这些功能，而不是直接去修改他们的源代码。蜂巢则确保“重塑”过程，安全而且简单。
+
+蜂巢还有一些其他的特性：
 
 * 最小程度更新网页，而不是刷新整个网页
 * 服务器仅向前端传送数据
