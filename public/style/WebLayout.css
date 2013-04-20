@@ -151,17 +151,6 @@ p { margin-bottom: 15px }
 
 .last { margin-right: 0 !important }
 
-blockquote p {
-    position: relative;
-    font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
-    color: #999;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 30px;
-    text-align: right;
-    padding: 10px 15px 10px 50px;
-    border-right: solid 10px #f0f0f0;
-}
 
 ::selection {
     background: #666;
@@ -201,7 +190,7 @@ img {
 }
 
 .header {
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
 }
 
 .header-left {
@@ -670,6 +659,7 @@ img {
     background-image: -ms-linear-gradient(bottom, rgb(54,50,50) 0%, rgb(79,78,78) 100%);
     background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(54,50,50)), color-stop(1, rgb(79,78,78)) );
     color: #aaa;
+    margin: 10px auto 0px auto;
 }
 
 .footer-texture { background: url(images/dark-texture.png) }
