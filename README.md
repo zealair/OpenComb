@@ -137,7 +137,7 @@ node index.js
 
 1. [如何开始](doc/manual/how-to-start.md)
 
-2. [控制器](doc/manual/use-controller.md)
+2. [控制器](doc/manual/useing-controller.md)
 	* [使用控制器](doc/manual/using-controller.md)
 		* [API:earth](doc/manual/earth-api.md)
 		* [API:nut](doc/manual/nut-api.md)

@@ -285,20 +285,25 @@ module.exports = {
 	```
 2. 可以使用 jQuery ，但是 $ 被做了限制，selector 只能在视图内部查找元素。这是因为蜂巢的控制器是可以组合的，同一个控制器的视图能在网页上出现多次。这种情况下，如果 jQuery 在整个网页范围内查找元素，那么操作的元素，总是第一个视图里的。
 
-	于是，蜂巢对 `viewIn` 和 `viewOut` 这两个闭包环境上的 $ 做了限制：只在视图范围内查找元素，不会误影响到视图意外的元素。如果需要对视图外的元素操作，可以使用 jQuery 变量，不过，视图之间的访问，我建议使用jQuery的自定义事件，以避免耦合。
+	于是，蜂巢对 `viewIn` 和 `viewOut` 这两个闭包环境上的 $ 做了限制：只在视图范围内查找元素，不会误影响到视图以外的元素。如果需要对视图外的元素操作，可以使用 jQuery 变量，不过，视图之间的访问，我建议使用jQuery的自定义事件，以避免耦合。
 
-3. 可以视图事件函数里使用 require 加载其它文件，这些文件会随着事件函数一起 ship down 到浏览器执行，因此这些文件需要事先声明为 shippable :
+3. 可以在视图事件函数里使用 require 加载其它文件，这些文件会随着事件函数一起 ship down 到浏览器执行，因此这些文件需要事先声明为 shippable 。
 
+	通常在 extension.js 文件的 onload 函数里声明 shippable ：
+
+	文件：example/extension.js
 	```javascript
 
-	// 声明一个路径下的所有文件，均可以 shipdown 到浏览器
-	$opencomb.shipper.registerAllowFolder(path_prefix) ;
+	module.exports.onload = function(){
 
-	// 注册一个正则表达式，匹配该表达式的文件路径，均可以shipdown 到浏览器
-	$opencomb.shipper.registerAllowFilter(regexp) ;
+		// 声明一个路径下的所有文件，均可以 shipdown 到浏览器
+		$opencomb.shipper.registerAllowFolder(path_prefix) ;
 
+		// 注册一个正则表达式，匹配该表达式的文件路径，均可以shipdown 到浏览器
+		$opencomb.shipper.registerAllowFilter(regexp) ;
+		
+	}
 	```
-
 
 
 [返回文档首页](../../README.md)
