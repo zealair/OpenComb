@@ -5,6 +5,15 @@
 
 蜂巢(OpenComb)不只是一个 Node.js 的开发框架。
 
+## 依赖环境
+
+* [Node.js](http://nodejs.org/)
+* [MongoDB](http://www.mongodb.org/)
+* [Git](http://git-scm.com/)
+
+它们都是流行的开源项目，支持几乎所有平台，安装也很简单，你可以直接访问它们的主页，或google。
+
+在开始使用蜂巢以前，你需要花10分钟准备好蜂巢依赖的环境。
 
 ## 快速开始
 
@@ -85,7 +94,7 @@ node index.js
 
 ## 网页是可以组合和重用的
 
-在蜂巢的MVC模式中，___一个控制器对应一个视图___ ，
+在蜂巢的MVC模式中，一个控制器对应一个视图 ，
 网页是由视图组成的，控制器的 layout 和 children 属性用于关联其他控制器，通过这种方式，控制器就“聚合”成一颗“树”，而他们的视图也会自动组合，最后“拼合”成一个完整的网页。
 
 所有网页都是由控制器（及其视图）组成的，这意味着你可以：
@@ -99,47 +108,60 @@ node index.js
 
 ## 面向二次开发
 
-蜂巢是一个“面向二次开发”的框架，在这个框架里有众多功能完整的扩展，
-你可以通过安装各种扩展来构建一个“接近”的系统，然后创建新的扩展实现剩下的功能，并且可以在新扩展里“修改”、“重塑”已有的扩展，而不是每个项目都从0开始。
+蜂巢是一个“面向二次开发”的框架，你可以通过安装各种扩展来构建一个“接近”的系统，然后创建新的扩展实现剩下的功能，而不是每个项目都从0开始。
 
-* 你可以在自己开发的网页里，引用别的扩展里的控制器
+蜂巢的扩展机制允许你：
 
-* 你可以将自己写的控制器，添加到其他扩展的网页里
+* ___在自己开发的网页里，引用其他的扩展里的控制器___
 
-* 你可以将某个网页里的视图重新布局
+* ___将自己写的控制器，添加到其他扩展的网页里___
 
-* 你可以用 jQuery 控制任何扩展的模板
+* ___让某个网页里的视图重新布局___
 
-* 你可以将里的代码，通过 AOP 机制“切入”到任何地方
+* ___用 jQuery 控制任何扩展的模板___
+
+* ___将你的代码，通过 AOP 机制“切入”到任何地方___
 
 于是，你可以：往某个导航菜单里增加一项内容；在你看中的地方插入一个banner；往某个CMS的内容表单里面增加几项特殊的字段；不喜欢blog扩展使用的富文本编辑器？那就换一个。
 
-实现所有这些，你都没有修改对应的源代码，所以，你可以将这些“改进”打包成一个新扩展发布出去，分享给所有人；返过来讲，你可以安装各种扩展，以及更多“增强”它们的扩展。
+完成以上的任务，你都没有“改动”源代码。所以，你能够将这些“改进”打包成一个新扩展，然后发布出去，分享给所有人；
+
+反过来讲，你可以安装别人发布的扩展，以及更多“增强”的扩展。
 
 
 ---
 
-# 文档目录
+# 文档
 
 ## 开发者手册
 
-1. 安装和部署
+1. [如何开始](doc/manual/how-to-start.md)
 
-2. 控制器
+2. [控制器](doc/manual/use-controller.md)
+	* [使用控制器](doc/manual/using-controller.md)
+		* [API:earth](doc/manual/earth-api.md)
+		* [API:nut](doc/manual/nut-api.md)
+	* [控制器组合](doc/manual/controller-aggregation.md)
+		* [layout](doc/manual/controller-aggregation.md#layout)
+		* [children](doc/manual/controller-aggregation.md#children)
+		* [向 layout 和 child 传递参数](doc/manual/controller-aggregation.md#向+layout+和+child+传递参数)
+		* [actions](doc/manual/controller-aggregation.md#actions)
+		* [控制器路径](doc/manual/controller-aggregation.md#控制器路径)
+	* [Ajax](doc/manual/ajax.md)
+	* [Pjax](doc/manual/pjax.md)
+	* [标题、关键词、描述](doc/manual/title-keywords-description.md)
 
-3. 视图和模板
+3. [视图和模板](doc/manual/template-and-view.md)
 
-4. 前端开发
+4. 数据库
 
-5. 扩展
+5. Session
 
-## API
+6. [扩展](doc/manual/extension.md)
 
-	* 控制器
-		* earth
-		* nut
-	* 模板
-	* 前端 API
+7. [“模板编织”]
+
+8. AOP
 
 
 
