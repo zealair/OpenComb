@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/ocplatform/public/style/ControlPanel/css/style.css" type="text/css" media="screen" />
+
+<header id="header">
+		<hgroup>
+			<h1 class="site_title"><a href="index.html">蜂巢</a></h1>
+			<h2 class="section_title">控制面板</h2><div class="btn_view_site"><a href="/" class="stay">网站首页</a></div>
+		</hgroup>
+	</header> <!-- end of header bar -->
+	
+	<section id="secondary_bar">
+		<div class="user">
+			<p>{@id&&id.username} (<a href="#">退出</a>)</p>
+			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
+		</div>
+		<div class="breadcrumbs_container">
+			<article class="breadcrumbs">
+				<a>控制面板</a>
+				<div class="breadcrumb_divider"></div>
+				<a class="current">Dashboard</a>
+			</article>
+		</div>
+	</section><!-- end of secondary bar -->
+	
+	<div id="underheader">
+
+		<aside id="sidebar" class="column">
+			<form class="quick_search">
+				<input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+			</form>
+			<hr/>
+
+			<ul id="sidemenu">
+
+				<li id="sidemenu-item-user">
+					<h3>用户</h3>
+					<ul class="toggle">
+						<li class="icn_add_user"><a href="#">添加用户</a></li>
+						<li class="icn_view_users"><a href="#">浏览用户</a></li>
+					</ul>
+				</li>
+
+				<li id="sidemenu-item-content">
+					<h3>内容</h3>
+					<ul class="toggle">
+						<li class="icn_new_article"><a href="#">New Article</a></li>
+						<li class="icn_edit_article"><a href="#">Edit Articles</a></li>
+						<li class="icn_categories"><a href="#">Categories</a></li>
+						<li class="icn_tags"><a href="#">Tags</a></li>
+					</ul>
+				</li>
+
+			</ul>
+			
+			<footer>
+				<hr />
+				<p><strong>Copyright &copy; 2013 蜂巢(OpenComb)</strong></p>
+				<p>ControlPanel Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
+			</footer>
+		</aside><!-- end of sidebar -->
+	
+		<section id="main">
+			<div id="main-view-container">
+				<view>
+			</div>
+		</section>
+
+		<div style="clear:both"></div>
+	</div>
