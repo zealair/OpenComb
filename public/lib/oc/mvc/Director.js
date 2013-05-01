@@ -19,7 +19,16 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		// 当前网页中的元素事件
 		function onRequestElement()
 		{
-			window.event && (window.event.returnValue=false) ;
+			if(window.event)
+			{
+				// 事件已经停止
+				if(window.event.returnValue===false)
+				{
+					return ;
+				}
+
+				window.event.returnValue = false ;
+			}
 
 			jQuery(this).request() ;
 
@@ -74,7 +83,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 			{
 				$element = $(element) ;
 				then = $element.hasClass('stay-top')? 'top':
-					( $element.hasClass('stay-view')? 'view': 'layze' ) ;
+					( $element.hasClass('stay-view')? 'view': 'lazy' ) ;
 			}
 			else
 			{
@@ -193,29 +202,6 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 
 		// ajax data
 		ajax.data = ajax.data || {} ;
-		if( ajax.data.constructor===Array )
-		{
-			var data = {} ;
-
-			// 来自 jQuery.serializeArray() 返回的数组
-			if( ajax.data.length && typeof ajax.data[0].name && typeof ajax.data[0].value )
-			{
-				jQuery.each( ajax.data, function(i, field){
-					data[field.name] = field.value ;
-				});
-			}
-
-			for(var name in ajax.data)
-			{
-				// include length property of Array
-				if( ! /^[0-9]+$/.test(name) )
-				{
-					data[name] = ajax.data[name] ;
-				}
-			}
-
-			ajax.data = data ;
-		}
 
 		// 根据 thenOptions.target 为 lazy 模式，且 ajaxOptions中未指定 @layout
 		if( thenOptions.target!==null && !ajax.data["@layout"] )
@@ -267,6 +253,31 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		}
 
 
+		if( ajax.data.constructor===Array )
+		{
+			for(var name in ajax.data)
+			{
+				// exclude length property of Array
+				if( ! /^[0-9]+$/.test(name) && name!="length")
+				{
+					ajax.data.push( {name:name,value:ajax.data[name]} ) ;
+					ajax.data[name] = undefined ;
+					delete ajax.data[name] ;
+				}
+			}
+		}
+		else
+		{
+			var data = [] ;
+
+			for(var name in ajax.data)
+			{
+				data.push( {name:name,value:ajax.data[name]} ) ;
+			}
+
+			ajax.data = data ;
+		}
+		// console.log(ajax.data) ;
 
 		// 发送请求
 		return jQuery.ajax(ajax) ;
@@ -287,7 +298,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		// 根据 thenOpt.target 决定是否需要向 history 增加记录
 		// thenOpt.target 在某个 layout 内， 则 thenOpt.target 为主视图 或 layout
 		// （todo:这个部分应该专门设计一个对象来负责）
-		if( thenOpt.history!==false && thenOpt.target && jQuery(thenOpt.target).parent().hasClass('oclayout-container') )
+		if( thenOpt.history!==false && thenOpt.target && jQuery(thenOpt.target).parent().hasClass('oclayout-container') /*&& (!ajaxReq.type || ajaxReq.type.toLowerCase()=='get')*/ )
 		{
 			// console.log(ajaxReq) ;
 			var info = utilstr.parseUrl(ajaxReq.url) ;
@@ -301,11 +312,12 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 			}
 			if(ajaxReq.data)
 			{
-				for(var name in ajaxReq.data)
+				for(var i=0;i<ajaxReq.data.length;i++)
 				{
+					var name = ajaxReq.data[i].name ;
 					if(name[0]!='@')
 					{
-						search.push( name+'='+ajaxReq.data[name] ) ;
+						search.push( name+'='+ajaxReq.data[i].value ) ;
 					}
 				}
 			}
@@ -567,10 +579,27 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 			ajaxOptions.contentType = this.attr("enctype") || ajaxOptions.contentType || "application/x-www-form-urlencoded" ;
 
 			// jQuery.serializeArray() 仅对 form 有效
-			ajaxOptions.data =  ajaxOptions.data || {} ;
-			this.find('input[name],select[name],textarea[name],checkbox[name][checked]').each(function(){
-				ajaxOptions.data[ jQuery(this).attr('name') ] = jQuery(this).val() ;
-			}) ;
+			if( tagName=='FORM' )
+			{
+				var data = jQuery(this[0]).serializeArray() ;
+			}
+			else
+			{
+				var data = this.serializeArrayNotform() ;
+			}
+
+			if( ajaxOptions.data && !_.isArray(ajaxOptions.data) )
+			{
+				for(var name in ajaxOptions.data)
+				{
+					data.push({name:name,value:ajaxOptions.data[name]}) ;
+				}
+			}
+			ajaxOptions.data = data ;
+
+//			this.find('input[name],select[name],textarea[name],checkbox[name][checked]').each(function(){
+//				ajaxOptions.data[ jQuery(this).attr('name') ] = jQuery(this).val() ;
+//			}) ;
 		}
 
 		else
@@ -582,6 +611,50 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		jQuery.director.request( ajaxOptions, thenOptions ) ;
 	}
 
+
+	jQuery.fn.serializeArrayNotform = function()
+	{
+		var data = [] ;
+		this.find("input[name],select[name],textarea[name]").each(function(){
+			var iptname = $(this).attr("name") ;
+			switch(this.tagName)
+			{
+				case 'INPUT' :
+					switch( ($(this).attr("type")||"text").toLowerCase() )
+					{
+						case 'checkbox':
+						case 'radio':
+							if( $(this).attr('checked') )
+							{
+								data.push( {name:iptname,value:$(this).val()} ) ;
+							}
+							break ;
+						default :
+							data.push( {name:iptname,value:$(this).val()} ) ;
+							break ;
+					}
+					break ;
+
+				case 'SELECT' :
+
+					for(var i=0;i<this.options; i++)
+					{
+						var option = this.options[i] ;
+						if( option.attr("selected") )
+						{
+							data.push( {name:iptname,value:$(option).val()} ) ;
+						}
+					}
+					break ;
+
+				case 'TEXTAREA' :
+					data.push( {name:iptname,value:$(this).val()} ) ;
+					break ;
+			}
+		}) ;
+
+		return data ;
+	}
 
 
 }) (jQuery) ;
