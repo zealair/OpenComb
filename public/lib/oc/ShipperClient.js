@@ -11,46 +11,62 @@ var Shipper = function()
 
 Shipper.prototype.require = function(path,callback,type)
 {
-	var shipper = this ;
-
-	util.array.pushIfNotExists(this._loadings,path) ;
-	this._callbacks.push(callback) ;
-
-	// console.log("require shipdown ",path,this._loadings.length) ;
-
-	var cache = this.cache(path,true,type) ;
-	cache.download( function moduelDownloaded(err,downloadedcache){
-
-		util.array.remove(shipper._loadings,downloadedcache.path) ;
-		// console.log(downloadedcache.path,shipper._loadings) ;
-
-		for(var i=0;i<downloadedcache.deps.length;i++)
+	if(path.constructor===Array)
+	{
+		callback && this._callbacks.push(callback) ;
+		for(var i=0;i<path.length;i++)
 		{
-			var depcache = shipper.cache(downloadedcache.deps[i],true,'module') ;
-			// console.log("	require module ",downloadedcache.deps[i]," ",depcache.downloaded? "loaded": "unloaded") ;
-
-			if(!depcache.downloaded && !depcache.downloading)
-			{
-				//console.log("	start loading") ;
-
-				util.array.pushIfNotExists(shipper._loadings,downloadedcache.deps[i]) ;
-				depcache.download(moduelDownloaded) ;
-			}
+			this.require(path[i],null,type) ;
 		}
 
-		// all modules downloaded
-		if(!shipper._loadings.length)
-		{
-			var cbs = shipper._callbacks.slice() ;
-			shipper._callbacks = [] ;
+		return ;
+	}
 
-			for(var i=0;i<cbs.length;i++)
+	else
+	{
+		path = path.replace(/^\/+/,'') ;
+
+		var shipper = this ;
+
+		util.array.pushIfNotExists(this._loadings,path) ;
+		callback && this._callbacks.push(callback) ;
+
+		// console.log("require shipdown ",path,this._loadings.length) ;
+
+		var cache = this.cache(path,true,type) ;
+		cache.download( function moduelDownloaded(err,downloadedcache){
+
+			util.array.remove(shipper._loadings,downloadedcache.path) ;
+			// console.log(downloadedcache.path,shipper._loadings) ;
+
+			for(var i=0;i<downloadedcache.deps.length;i++)
 			{
-				cbs[i](null) ;
-			}
-		}
+				var depcache = shipper.cache(downloadedcache.deps[i],true,'module') ;
+				// console.log("	require module ",downloadedcache.deps[i]," ",depcache.downloaded? "loaded": "unloaded") ;
 
-	} ) ;
+				if(!depcache.downloaded && !depcache.downloading)
+				{
+					//console.log("	start loading") ;
+
+					util.array.pushIfNotExists(shipper._loadings,downloadedcache.deps[i]) ;
+					depcache.download(moduelDownloaded) ;
+				}
+			}
+
+			// all modules downloaded
+			if(!shipper._loadings.length)
+			{
+				var cbs = shipper._callbacks.slice() ;
+				shipper._callbacks = [] ;
+
+				for(var i=0;i<cbs.length;i++)
+				{
+					cbs[i](null) ;
+				}
+			}
+
+		} ) ;
+	}
 }
 
 Shipper.prototype.module = function(path,type)
@@ -174,7 +190,7 @@ function ShipModuleCache (shipper,path,type)
 		if(!this.downloading)
 		{
 			this.downloading = true ;
-			shipper.createScript("/shipdown"+ (this.type=='module'? '': (':'+this.type)) +"/"+path,true) ;
+			shipper.createScript("/shipdown"+ (this.type=='module'? '': (':'+this.type)) +(path[0]=='/'?'':"/")+path,true) ;
 		}
 	}
 
