@@ -9,3 +9,4 @@ node_modules/*
 bin
 test*
 config.js
+public/files
