@@ -20,7 +20,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		// 当前网页中的元素事件
 		function onRequestElement()
 		{
-			if(!this.enable)
+			if(!director.enable)
 			{
 				return ;
 			}
