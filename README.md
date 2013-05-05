@@ -150,8 +150,14 @@ node index.js
 	* [Ajax](doc/manual/ajax.md)
 	* [Pjax](doc/manual/pjax.md)
 	* [标题、关键词、描述](doc/manual/title-keywords-description.md)
+	* XFormer
+		* 增删改查
+		* [二次开发]扩展表单和列表
+	* 数据校验
+		* 自定义校验插件
 
 3. [视图和模板](doc/manual/template-and-view.md)
+	* [二次开发]“模板编织”
 
 4. 数据库
 
@@ -159,9 +165,11 @@ node index.js
 
 6. [扩展](doc/manual/extension.md)
 
-7. [“模板编织”]
+7. AOP
 
-8. AOP
+8. [高级] 扩展框架
+	* 增加前端框架入口文件
+	* 模板引擎的 parser 和 shader
 
 
 
