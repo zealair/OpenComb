@@ -1,14 +1,14 @@
-<form class="form-horizontal">
+<form class="form-horizontal stay" action="/signup:save" method="post" collection="ocplatform/users">
     <fieldset>
-        <div id="legend" class="">
+        <div class="legend">
             <legend class="">用户注册</legend>
         </div>
         <div class="control-group">
 
             <!-- Text input-->
-            <label class="control-label" for="input01">用户名</label>
+            <label class="control-label">用户名</label>
             <div class="controls">
-                <input type="text" placeholder="email" class="input-xlarge">
+                <input type="text" placeholder="4-20字符" class="input-xlarge" name="username">
                 <p class="help-block"></p>
             </div>
         </div>
@@ -16,9 +16,9 @@
         <div class="control-group">
 
             <!-- Text input-->
-            <label class="control-label" for="input01">密码</label>
+            <label class="control-label">密码</label>
             <div class="controls">
-                <input type="text" placeholder="4-20字符" class="input-xlarge">
+                <input type="password" placeholder="4-20字符" class="input-xlarge" name="password">
                 <p class="help-block"></p>
             </div>
         </div>
@@ -26,12 +26,22 @@
         <div class="control-group">
 
             <!-- Text input-->
-            <label class="control-label" for="input01">重复密码</label>
+            <label class="control-label">重复密码</label>
             <div class="controls">
-                <input type="text" placeholder="重复输入密码，以确认密码输入无误" class="input-xlarge">
-                <p class="help-block"></p>
+                <input type="password" placeholder="4-20字符" class="input-xlarge" name="password_repeat">
+                <p class="help-block">重复输入密码以确认密码输入无误</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label"></label>
+
+            <!-- Button -->
+            <div class="controls">
+                <button class="btn btn-success">注册</button>
             </div>
         </div>
 
     </fieldset>
 </form>
+

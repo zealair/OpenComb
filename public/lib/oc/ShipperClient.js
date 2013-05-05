@@ -14,6 +14,7 @@ Shipper.prototype.require = function(path,callback,type)
 	if(path.constructor===Array)
 	{
 		callback && this._callbacks.push(callback) ;
+
 		for(var i=0;i<path.length;i++)
 		{
 			this.require(path[i],null,type) ;
@@ -56,6 +57,7 @@ Shipper.prototype.require = function(path,callback,type)
 			// all modules downloaded
 			if(!shipper._loadings.length)
 			{
+				// notice watcher
 				var cbs = shipper._callbacks.slice() ;
 				shipper._callbacks = [] ;
 

@@ -3,7 +3,12 @@
 <div class="miniuserpad-login form" style="width:205px;padding:12px 0; padding-left: 10px;">
 <if condition="@$model.currentId">
 
+    <span class="hello">
+         hi, {@currentId.username}
+    </span>
+
     <div class="btn-group">
+
 
         <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#">
             退出
@@ -20,8 +25,10 @@
 
 <else />
 
-    <input type="text" name="username" class="input-mini" placeholder="email" style="margin-bottom:0px;" />
-    <input type="password" name="password" class="input-mini" placeholder="password here" style="margin-bottom:0px;" />
+    <input type="text" name="username" class="input-mini" placeholder="email" style="margin-bottom:0px;"
+        v:notempty />
+    <input type="password" name="password" class="input-mini" placeholder="password here" style="margin-bottom:0px;" v:notempty />
     <button class="miniuserpad-btn-signin">登陆</button>
+    <a href="/signup" class="stay">注册</a>
 </if>
 </div>
