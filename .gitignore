@@ -5,8 +5,7 @@
 .idea
 node_modules/*
 .DS_Store
-.config.js
+config.json
 bin
 test*
-config.js
 public/files
