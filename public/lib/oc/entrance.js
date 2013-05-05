@@ -35,6 +35,10 @@ jQuery(function($){
 		}) ;
 
 
+
+		// init validator (validator 应该在 director.setup() 前面，以便事件顺序争取e)
+		jQuery.shipper.module("ocplatform/lib/mvc/Validator.js") ;
+
 		// init controller director
 		jQuery.shipper.module("ocplatform/public/lib/oc/mvc/Director.js") ;
 		jQuery.director.setup() ;
@@ -44,9 +48,6 @@ jQuery(function($){
 
 		// init switcher
 		jQuery.shipper.module("ocplatform/public/lib/oc/mvc/Switcher.js") ;
-
-		// init validator
-		jQuery.shipper.module("ocplatform/lib/mvc/Validator.js") ;
 
 		/**
 		 * 创建一个受限制的 jQuery 函数，所有的selector 仅在 root 内查找（包括root）

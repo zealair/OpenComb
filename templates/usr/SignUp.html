@@ -8,8 +8,8 @@
             <!-- Text input-->
             <label class="control-label">用户名</label>
             <div class="controls">
-                <input type="text" placeholder="4-20字符" class="input-xlarge" name="username">
-                <p class="help-block"></p>
+                <input type="text" placeholder="4-20字符" class="input-xlarge" name="username" v:min='4' v:max='20'>
+                <p class="help-block vlabel-username"></p>
             </div>
         </div>
 
@@ -18,8 +18,8 @@
             <!-- Text input-->
             <label class="control-label">密码</label>
             <div class="controls">
-                <input type="password" placeholder="4-20字符" class="input-xlarge" name="password">
-                <p class="help-block"></p>
+                <input type="password" placeholder="4-20字符" class="input-xlarge" name="password" v:min='4' v:max='20'>
+                <p class="help-block vlabel-password"></p>
             </div>
         </div>
 
@@ -28,8 +28,8 @@
             <!-- Text input-->
             <label class="control-label">重复密码</label>
             <div class="controls">
-                <input type="password" placeholder="4-20字符" class="input-xlarge" name="password_repeat">
-                <p class="help-block">重复输入密码以确认密码输入无误</p>
+                <input type="password" placeholder="4-20字符" class="input-xlarge" name="password_repeat" v:same="password">
+                <p class="help-block vlabel-password_repeat">重复输入密码以确认密码输入无误</p>
             </div>
         </div>
 
