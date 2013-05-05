@@ -10,6 +10,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 	{
 		this.$document = $document || jQuery(document) ;
 		this._request = null ;
+		this.enable = true ;
 	}
 
 	Director.prototype.setup = function($)
@@ -19,6 +20,11 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		// 当前网页中的元素事件
 		function onRequestElement()
 		{
+			if(!this.enable)
+			{
+				return ;
+			}
+
 			if(window.event)
 			{
 				// 事件已经停止
@@ -50,7 +56,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 				director.request(
 					{
 						url: e.state.url
-						, data: e.state.data || {}
+						, data: e.state.data || []
 					}
 					, {
 						target: 'lazy'
@@ -152,6 +158,30 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		return then ;
 	}
 
+	function searchData(data,name)
+	{
+		for(var i=0;i<data.length;i++)
+		{
+			if( data[i].name==name )
+			{
+				return i ;
+			}
+		}
+		return false ;
+	}
+	function dataValue(data,name)
+	{
+		var idx = searchData(data,name) ;
+		if( idx===false )
+		{
+			return undefined ;
+		}
+		else
+		{
+			return data[idx].value ;
+		}
+	}
+
 	/**
 	 * 向服务器发送请求，并从服务器取回 nut 对象
 	 */
@@ -201,25 +231,36 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		} ;
 
 		// ajax data
-		ajax.data = ajax.data || {} ;
+		ajax.data = ajax.data || [] ;
+
+		if(ajax.data.constructor!==Array)
+		{
+			throw new Error("Director.request()的参数 ajaxOptions.data 必须是 Array") ;
+		}
 
 		// 根据 thenOptions.target 为 lazy 模式，且 ajaxOptions中未指定 @layout
-		if( thenOptions.target!==null && !ajax.data["@layout"] )
+		if( thenOptions.target!==null && searchData(ajax.data,"@layout")===false )
 		{
-			ajax.data["@layout"] = false ;
+			ajax.data.push({name:"@layout",value:"false"}) ;
 		}
 
 		// 如果需要执行 layout, 则提供 sumsign
-		if( ajax.data["@layout"]!==false )
+		if( dataValue(ajax.data,"@layout")!='false' && searchData(ajax.data,"@sumsign")===false )
 		{
-			ajax.data["@sumsigns"] = [] ;
+			var sumsigns = [] ;
 			jQuery(".oclayout[sumsign]").each(function(){
-				ajax.data["@sumsigns"].push( jQuery(this).attr("sumsign") ) ;
+				sumsigns.push( jQuery(this).attr("sumsign") ) ;
 			}) ;
-			ajax.data["@sumsigns"] = ajax.data["@sumsigns"].length? ajax.data["@sumsigns"].join(','): undefined ;
+			if(sumsigns.length)
+			{
+				ajax.data.push({name:"@sumsigns",value:sumsigns.join(',')})
+			}
 		}
 
-		ajax.data["@render"] = false ;
+		if(searchData(ajax.data,"@render")===false)
+		{
+			ajax.data.push({name:"@render",value:"false"}) ;
+		}
 
 		var callback = ajax.success ;
 		ajax.success = function(nut)
