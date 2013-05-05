@@ -1,0 +1,21 @@
+<script type="template/script">
+$model.currentPage || ($model.currentPage=1) ;
+$model.lastPage || ($model.lastPage=1) ;
+$model.range || ($model.range=5) ;
+
+$model.currentPage = parseInt($model.currentPage) ;
+$model.lastPage = parseInt($model.lastPage) ;
+$model.range = parseInt($model.range) ;
+
+var first = Math.max(currentPage-range,1) ;
+var last = Math.min(currentPage+range,lastPage) ;
+</script>
+<div class="pagination">
+    <ul class="pagination">
+        <li class="@ currentPage==1 && 'disabled'"><a href="@url.replace('%pagenum%',$helper.gt(currentPage,1)?currentPage-1:1)" class="stay">&laquo;</a></li>
+        <loop var="pageNum" start="@first" end="@last">
+        <li class="@ currentPage==pageNum && 'active'"><a href="@url.replace('%pagenum%',pageNum)" class="stay">{@pageNum}</a></li>
+        </loop>
+        <li class="@ $helper.ge(currentPage,lastPage) && 'disabled'"><a href="@url.replace('%pagenum%',$helper.ge(currentPage,lastPage)?lastPage:currentPage+1)" class="stay">&raquo;</a></li>
+    </ul>
+</div>
