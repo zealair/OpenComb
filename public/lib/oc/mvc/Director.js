@@ -87,9 +87,17 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 			// 从elemt
 			if(element)
 			{
-				$element = $(element) ;
-				then = $element.hasClass('stay-top')? 'top':
-					( $element.hasClass('stay-view')? 'view': 'lazy' ) ;
+				$element = $(element) ;				
+				var staytarget = $element.attr("stay-target") ;
+				if( staytarget )
+				{
+					then = staytarget ;
+				}
+				else
+				{
+					then = $element.hasClass('stay-top')? 'top':
+						( $element.hasClass('stay-view')? 'view': 'lazy' ) ;
+				}
 			}
 			else
 			{
@@ -593,7 +601,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 			throw new Error("$.fn.request() only called on a jQuery array") ;
 			return ;
 		}
-
+		
 		ajaxOptions = ajaxOptions || {} ;
 		thenOptions = Director.buildParamThen(
 						thenOptions
@@ -601,6 +609,8 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 					) ;
 
 		var tagName = this[0].tagName.toUpperCase() ;
+		
+		
 
 		// 链接
 		if( tagName == 'A' )
