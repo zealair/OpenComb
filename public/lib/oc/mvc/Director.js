@@ -397,11 +397,7 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 			var assets = nut.view.assets ;
 			for(var i=0;i<assets.css.length;i++)
 			{
-				var selector = "link[href='"+assets.css[i]+"']" ;
-				if( !jQuery(selector).length )
-				{
-					jQuery(document.head).append('<link type="text/css" href="'+assets.css[i]+'" rel="stylesheet">') ;
-				}
+				jQuery(document.head).append('<link type="text/css" href="'+assets.css[i]+'" rel="stylesheet">') ;
 			}
 
 			// 创建视图
