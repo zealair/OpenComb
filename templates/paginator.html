@@ -6,6 +6,7 @@ $model.range || ($model.range=5) ;
 $model.currentPage = parseInt($model.currentPage) ;
 $model.lastPage = parseInt($model.lastPage) ;
 $model.range = parseInt($model.range) ;
+$model.url || ($model.url='##') ;
 
 var first = Math.max(currentPage-range,1) ;
 var last = Math.min(currentPage+range,lastPage) ;
