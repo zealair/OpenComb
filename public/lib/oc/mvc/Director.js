@@ -43,10 +43,10 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		}
 
 		// for link(a tag)
-		this.$document.on("click","a.stay,a.stay-view,a.stay-top,a.stay-lazy",onRequestElement) ;
+		this.$document.on("click","a.stay,a.stay-view,a.stay-top,a.stay-lazy,a.stay-action",onRequestElement) ;
 
 		// for form
-		this.$document.on("submit","form.stay,form.stay-view,form.stay-top,form.stay-lazy",onRequestElement) ;
+		this.$document.on("submit","form.stay,form.stay-view,form.stay-top,form.stay-lazy,form.stay-action",onRequestElement) ;
 
 		// state 事件
 		window.onpopstate = function(e) {
@@ -56,11 +56,11 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 				if(e.state.data && e.state.data.constructor!==Array)
 				{
 					var data = [] ;
-					for(var name in e.status.data)
+					for(var name in e.state.data)
 					{
-						data.push({name:name,value:e.status.data[name]}) ;
+						data.push({name:name,value:e.state.data[name]}) ;
 					}
-					e.status.data = data ;
+					e.state.data = data ;
 				}
 			
 				director.request(
@@ -105,8 +105,22 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 				}
 				else
 				{
-					then = $element.hasClass('stay-top')? 'top':
-						( $element.hasClass('stay-view')? 'view': 'lazy' ) ;
+					if( $element.hasClass('stay-top') )
+					{
+						then = 'top' ;
+					}
+					else if( $element.hasClass('stay-view') )
+					{
+						then = 'view' ;
+					}
+					else if( $element.hasClass('stay-action') )
+					{
+						then = 'action' ;
+					}
+					else
+					{
+						then = 'lazy' ;
+					}
 				}
 			}
 			else
@@ -161,6 +175,19 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 					then.target = jQuery(jQuery(ele).parents(".oclayout")[0]).find(".ocview")[0] || null ;
 					break ;
 
+				case 'action' :
+					then = {
+						callback: function(err,nut)
+						{
+							if(err)
+							{
+								console.log(err) ;
+							}
+							nut.msgqueue && nut.msgqueue.popup() ;
+						}
+					}
+					break ;
+					
 				case 'lazy' :
 				case 'default' :
 					then.target = null ;
