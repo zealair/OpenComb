@@ -1,0 +1,48 @@
+<include file="ocplatform/templates/paginator.html" model="@page" model.url="/ocplatform/usr/UserList:page?page=%pagenum%&haha" />
+
+<table class="table table-striped table-hover">
+
+    <thaed>
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>昵称</th>
+            <th>注册日期</th>
+            <th>#</th>
+        </tr>
+    </thaed>
+
+    <foreach for="@page.docs" var="doc">
+        <tr>
+            <td>
+            	<a class="show-user-id" title="用户ID" data-content="@doc._id.toString()" href="javascript:void();">...</a>
+            </td>
+            <td>
+                {@doc.username}
+            </td>
+            <td>
+                {@doc.nickname}
+            </td>
+            <td>
+                {@doc.createTime}
+            </td>
+            <td>
+                <a class="show-user-detail" href="javascript:void(0)" _id="@doc._id.toString()">详细</a>
+                
+                <div class="user-detail" style="display:none" _id="@doc._id.toString()">
+					<p>ID：{@doc._id.toString()}</p>
+					<p>用户名：{@doc.username}</p>
+					<p>昵称：{@doc.nickname}</p>
+					<p>注册日期：{@doc.createTime}</p>
+					<p>
+						<a class="stay" href="/ocplatform/usr/UserList:view?_id={@doc._id.toString()}">新窗口</a>
+					</p>
+                </div>
+            </td>
+        </tr>
+    </foreach>
+
+
+</table>
+
+<include file="ocplatform/templates/paginator.html" model="@page" model.url="/ocplatform/usr/UserList:page?page=%pagenum%&haha" />
