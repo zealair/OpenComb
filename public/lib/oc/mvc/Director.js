@@ -53,6 +53,16 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 
 			if(e.state && e.state.ocstate)
 			{
+				if(e.state.data && e.state.data.constructor!==Array)
+				{
+					var data = [] ;
+					for(var name in e.status.data)
+					{
+						data.push({name:name,value:e.status.data[name]}) ;
+					}
+					e.status.data = data ;
+				}
+			
 				director.request(
 					{
 						url: e.state.url
