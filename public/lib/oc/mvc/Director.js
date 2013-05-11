@@ -523,13 +523,13 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 
 	Director.prototype.showViewLoading = function()
 	{
-		this.viewLoadingWidget().show() ;
+		this.viewLoadingWidget().fadeIn(300) ;
 		return this ;
 	}
 
 	Director.prototype.hideViewLoading = function()
 	{
-		this.viewLoadingWidget().hide() ;
+		this.viewLoadingWidget().fadeOut(400) ;
 		return this ;
 	}
 
@@ -541,18 +541,19 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 
 	Director.prototype.createViewLoading = function()
 	{
-		var $widget = jQuery('<div class="ocview-loading" style="position: fixed; z-index: 1000"><img src="/ocplatform/public/style/images/loader_light.gif" ></div>')
+		var $widget = jQuery('<div class="ocview-loading" style="position: fixed; z-index: 1000;"><img src="/ocplatform/public/style/images/github-loading.gif" ></div>')
 						.appendTo(document.body) ;
 
 		function loadingPlace()
 		{
+			// console.log(document.body.clientHeight,$widget.outerHeight(),document.body.clientHeight/2 - $widget.outerHeight()/2) ;
 			$widget.css({
-				left: '10px'
-				, top: (jQuery(window).height() - $widget.height() - 25 ) + 'px'
+				left: (document.body.clientWidth/2 - $widget.outerWidth()/2 ) + 'px'
+				, top: (document.body.clientHeight/2 - $widget.outerHeight()/2 ) + 'px'
 			}) ;
 		}
-
-		loadingPlace () ;
+		loadingPlace() ;
+		
 		jQuery(window).resize(loadingPlace) ;
 
 		return $widget ;
