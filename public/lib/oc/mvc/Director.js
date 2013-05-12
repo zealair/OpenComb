@@ -18,22 +18,22 @@ var utilstr = require("ocplatform/lib/util/string.js") ;
 		var director = this ;
 
 		// 当前网页中的元素事件
-		function onRequestElement()
+		function onRequestElement(event)
 		{
-			if(!director.enable)
+			if( !director.enable || jQuery(event.target).attr("target") )
 			{
 				return ;
 			}
 
-			if(window.event)
+			if(event)
 			{
 				// 事件已经停止
-				if(window.event.returnValue===false)
+				if(event.returnValue===false)
 				{
 					return ;
 				}
 
-				window.event.returnValue = false ;
+				event.returnValue = false ;
 			}
 
 			jQuery(this).request() ;
