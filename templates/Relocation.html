@@ -1,0 +1,13 @@
+<div>
+
+	<msgqueue />
+
+</div>
+
+<button class="btn btn-link" onclick="history.back()" sec={@$model.waitingsec||'5'}>{@$model.waitingsec||'5'}秒后返回</button>
+<script>
+setTimeout(function(){
+	history.back()
+	}
+	,{@($model.waitingsec||5)*1000}
+)</script>
