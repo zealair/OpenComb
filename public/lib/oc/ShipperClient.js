@@ -153,7 +153,7 @@ Shipper.prototype.createScript = function(src,load)
 	ele.type = "text/javascript" ;
 	if(load)
 	{
-		document.head.appendChild(ele) ;
+		document.getElementsByTagName("head")[0].appendChild(ele) ;
 	}
 	return ele ;
 }

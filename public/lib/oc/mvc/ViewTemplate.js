@@ -33,7 +33,7 @@ module.exports = Template.extend({
 		var ele = document.createElement("script") ;
 		ele.src = "/shipdown:tpl/" + this.filePath ;
 		ele.type = "text/javascript" ;
-		document.head.appendChild(ele) ;
+		document.getElementsByName("head")[0].appendChild(ele) ;
 	}
 
 }) ;
