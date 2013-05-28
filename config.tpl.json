@@ -1,37 +1,37 @@
 {
 	"db": {
-		"server": "127.0.0.1"
+	"server": "127.0.0.1"
 		, "name": "opencomb"
 		, "username": ""
 		, "password": ""
-	}
+}
 
-	, "server": {
+, "server": {
 	"port": 6060
 }
 
 
-	, "compile": {
+, "compile": {
 	"file": true
-	, "dir": "bin"
+		, "dir": "bin"
 }
 
-	, "enableDev": true
+, "enableDev": true
 
 
 	, "dev": {
 
 	"comment": "/* 所有的调试选项，都应该以 true表示开启，false表示关闭，以便 enableDev=false 能够自动禁止所有的选项 */"
 
-	, "frontend": {
+		, "frontend": {
 		"dontBundle": true
 	}
 
-	, "watching": {
+, "watching": {
 		"template": true
-		, "controller": true
-		, "shipdown": true
-		, "markdown": true
+			, "controller": true
+			, "shipdown": true
+			, "markdown": true
 	}
 }
 }
