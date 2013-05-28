@@ -1,8 +1,8 @@
 
-var Platform = require("ocplatform") ;
+var Application = require("ocframework") ;
 
-var platform = new Platform() ;
-platform.startup(function(err){
+var app = new Application() ;
+app.startup(function(err){
 
 	if(err)
 	{
@@ -10,7 +10,6 @@ platform.startup(function(err){
 	}
 
 	console.log("OpenComb has started up :)") ;
-
 }) ;
 
 
