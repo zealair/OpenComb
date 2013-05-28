@@ -24,7 +24,7 @@
 		"comment": "/* 所有的调试选项，都应该以 true表示开启，false表示关闭，以便 enableDev=false 能够自动禁止所有的选项 */"
 
 		, "frontend": {
-			"bundle": false
+			"dontBundle": true
 		}
 
 		, "watching": {

@@ -155,8 +155,6 @@ node index.js
 		* [二次开发]扩展表单和列表
 	* 数据校验
 		* 自定义校验插件
-	* 分页
-	* [高级] 动态决定控制器的视图、layout、children
 
 3. [视图和模板](doc/manual/template-and-view.md)
 	* [二次开发]“模板编织”
