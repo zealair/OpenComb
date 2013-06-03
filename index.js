@@ -16,4 +16,3 @@ app.startup(function(err)
 		console.log("OpenComb("+pkgmeta.version+") has startuped :)") ;
 	}
 }) ;
-
