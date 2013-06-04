@@ -3,8 +3,9 @@
 .settings.xml
 .settings
 .idea
-node_modules/*
 .DS_Store
+.directory
+node_modules/*
 config.json
 bin
 compiled
