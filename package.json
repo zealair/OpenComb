@@ -1,5 +1,5 @@
 {
-	"name": "opencomb",
+	"name": "ocframework",
 	"version": "0.9.1",
 
 	"readmeFilename": "README.md",
@@ -25,11 +25,12 @@
 		"send": "0.1.0"
 		, "connect": "2.7.0"
 		, "octemplate": "0.1.1"
-		, "ocsteps": "0.2.11"
+		, "ocsteps": "0.2.12"
 		, "step": "0.0.5"
 		, "mongodb": "1.2.14"
 		, "stack-trace": "0.0.6"
 		, "mocks": "0.0.11"
-        ,"browserify":"2.17.3"
+        , "browserify":"2.17.3"
+		, "log4js": "0.6.6"
 	}
 }
