@@ -1,16 +1,4 @@
-
-// 释放 $ 变量
-// jQuery.noConflict() ;
-
-// 兼容 jquery 1.9 以前的版本
-jQuery.browser = {
-	mozilla:	/firefox/.test(navigator.userAgent.toLowerCase())
-	, webkit:	/webkit/.test(navigator.userAgent.toLowerCase())
-	, opera:	/opera/.test(navigator.userAgent.toLowerCase())
-	, msie:		/msie/.test(navigator.userAgent.toLowerCase())
-} ;
-
-var $oc = null ;
+window.$oc = null ;
 
 jQuery(function($){
 
@@ -19,11 +7,11 @@ jQuery(function($){
 		console.log("initOpenComb()") ;
 
 		// 为浏览器打补丁，以便一些为 node.js 开发的 module 可以在浏览器中运行
-		jQuery.shipper.module("ocplatform/public/lib/oc/patchs.js") ;
+		require("./patchs.js") ;
 
 
 		// 初始化视图
-		var View = jQuery.shipper.module("ocplatform/public/lib/oc/mvc/View.js") ;
+		var View = require("./mvc/View.js") ;
 		jQuery(".ocview").each(function(){
 			View.buildView( this, jQuery.shipper, function(err,view){
 				if(err)
@@ -37,17 +25,17 @@ jQuery(function($){
 
 
 		// init validator (validator 应该在 director.setup() 前面，以便事件顺序争取e)
-		jQuery.shipper.module("ocplatform/lib/mvc/Validator.js") ;
+		require("../../../lib/mvc/Validator.js") ;
 
 		// init controller director
-		jQuery.shipper.module("ocplatform/public/lib/oc/mvc/Director.js") ;
+        require("./mvc/Director.js") ;
 		jQuery.director.setup() ;
 
 		// template cahces for frontend
-		jQuery.shipper.module("ocplatform/lib/mvc/view/ViewTemplateCaches.js").initForFrontend() ;
+		require("../../../lib/mvc/view/ViewTemplateCaches.js").initForFrontend() ;
 
 		// init switcher
-		jQuery.shipper.module("ocplatform/public/lib/oc/mvc/Switcher.js") ;
+        require("./mvc/Switcher.js") ;
 
 		/**
 		 * 创建一个受限制的 jQuery 函数，所有的selector 仅在 root 内查找（包括root）
@@ -85,23 +73,5 @@ jQuery(function($){
 	$oc.views = {} ;
 	$oc.viewpool = [] ;
 
-	var waiting = window.__ocFrameworkFrontendRequires.length ;
-	for(var i=0;i<window.__ocFrameworkFrontendRequires.length;i++)
-	{
-		jQuery.shipper.require(window.__ocFrameworkFrontendRequires[i],function(err,path,module){
-
-			if(err)
-			{
-				throw err ;
-			}
-			if( !(--waiting) )
-			{
-				initOpenComb() ;
-			}
-		}) ;
-	}
-
-
-
+    initOpenComb() ;
 }) ;
-

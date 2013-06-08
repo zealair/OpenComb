@@ -35,4 +35,16 @@ if (!Function.prototype.bind) {
 		fBound.prototype = new fNOP(); 
 		return fBound; 
 	}; 
-} 
+}
+
+
+// 释放 $ 变量
+// jQuery.noConflict() ;
+
+// 兼容 jquery 1.9 以前的版本
+jQuery.browser = {
+    mozilla:	/firefox/.test(navigator.userAgent.toLowerCase())
+    , webkit:	/webkit/.test(navigator.userAgent.toLowerCase())
+    , opera:	/opera/.test(navigator.userAgent.toLowerCase())
+    , msie:		/msie/.test(navigator.userAgent.toLowerCase())
+} ;

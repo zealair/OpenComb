@@ -1,4 +1,5 @@
-var module = require("module");
+var m = 'module' ;
+var module = require(m);
 
 
 var indent = 0 ;

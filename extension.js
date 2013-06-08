@@ -1,4 +1,4 @@
-var md5 = require("ocplatform/lib/util/md5.js") ;
+var md5 = require("./lib/util/md5.js") ;
 var mongodb = require("mongodb") ;
 
 exports.onload = function(platform)
@@ -12,7 +12,7 @@ exports.onload = function(platform)
 		}
 		
 		// 插入 root 账号
-		(new mongodb.Collection(client,'ocplatform/users')).insert(
+		(new mongodb.Collection(client,'ocuser/users')).insert(
 			{username:'root',password:md5('111111')}
 			, {safe:true}
 			, function(err)
@@ -26,10 +26,10 @@ exports.onload = function(platform)
 
 		//
 		function callback(err){ err && console.log(err) ; }
-		client.ensureIndex('ocplatform/users',{username:-1},  {background: true,unique:true}, callback) ;
-		client.ensureIndex('ocplatform/users',{nickname:-1},  {background: true}, callback) ;
-		client.ensureIndex('ocplatform/users',{groups:-1},  {background: true}, callback) ;
-		client.ensureIndex('ocplatform/groups',{path:-1}, {background: true}, callback) ;
+		client.ensureIndex('ocuser/users',{username:-1},  {background: true,unique:true}, callback) ;
+		client.ensureIndex('ocuser/users',{nickname:-1},  {background: true}, callback) ;
+		client.ensureIndex('ocuser/users',{groups:-1},  {background: true}, callback) ;
+		client.ensureIndex('ocuser/groups',{path:-1}, {background: true}, callback) ;
 	}) ;
 
 }

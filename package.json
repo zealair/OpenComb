@@ -7,15 +7,14 @@
 		"test": "make"
 	},
 	"main": "PackageManager.js",
-	"repository": "",
 	"author": "alee chou",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:OpenComb/OpenComb.git"
+		"url": "git@github.com:OpenComb/ocFramework.git"
 	},
 	"bugs": {
-		"url": "https://github.com/OpenComb/OpenComb/issues"
+		"url": "https://github.com/OpenComb/ocFramework/issues"
 	},
 	"devDependencies": {
 		"should": "*",

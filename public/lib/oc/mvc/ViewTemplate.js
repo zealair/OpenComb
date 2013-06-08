@@ -1,41 +1,40 @@
 var Template = require("octemplate/lib/Template.js") ;
 
-module.exports = Template.extend({
+module.exports = function(){}
+module.exports.prototype = new Template ;
 
-	load: function(callback)
-	{
-		// 加载、分析 模板
-		if(!this.loaded)
-		{
-			if(callback)
-			{
-				this.loadCallbacks.push(callback) ;
-			}
+module.exports.prototype.load = function(callback)
+{
+    // 加载、分析 模板
+    if(!this.loaded)
+    {
+        if(callback)
+        {
+            this.loadCallbacks.push(callback) ;
+        }
 
-			if(!this.loading)
-			{
-				this.loading = true ;
-				this._readTemplateFile() ;
-			}
-		}
+        if(!this.loading)
+        {
+            this.loading = true ;
+            this._readTemplateFile() ;
+        }
+    }
 
-		//
-		else
-		{
-			callback && callback(null,this) ;
-		}
+    //
+    else
+    {
+        callback && callback(null,this) ;
+    }
 
-		return this ;
-	}
+    return this ;
+}
 
-	, _readTemplateFile: function()
-	{
-		var ele = document.createElement("script") ;
-		ele.src = "/shipdown:tpl/" + this.filePath ;
-		ele.type = "text/javascript" ;
-		document.getElementsByTagName("head")[0].appendChild(ele) ;
-	}
-
-}) ;
+module.exports.prototype.load = _readTemplateFile = function()
+{
+    var ele = document.createElement("script") ;
+    ele.src = "/shipdown:tpl/" + this.filePath ;
+    ele.type = "text/javascript" ;
+    document.getElementsByTagName("head")[0].appendChild(ele) ;
+}
 
 
