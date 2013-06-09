@@ -757,7 +757,6 @@ img {
 .footer-widget ul { margin: 0 0 0 0 }
 
 .footer-widget li {
-    background: url(images/arrow-bullet.png) no-repeat left 8px;
     padding-left: 14px;
     list-style-type: none;
 }

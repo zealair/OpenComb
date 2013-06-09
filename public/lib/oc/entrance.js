@@ -1,77 +1,98 @@
-window.$oc = null ;
+
+// 释放 $ 变量
+// jQuery.noConflict() ;
+
+var $oc = null ;
 
 jQuery(function($){
 
-	var initOpenComb = function() {
+    var initOpenComb = function() {
 
-		console.log("initOpenComb()") ;
+        console.log("initOpenComb()") ;
 
-		// 为浏览器打补丁，以便一些为 node.js 开发的 module 可以在浏览器中运行
-		require("./patchs.js") ;
-
-
-		// 初始化视图
-		var View = require("./mvc/View.js") ;
-		jQuery(".ocview").each(function(){
-			View.buildView( this, jQuery.shipper, function(err,view){
-				if(err)
-				{
-					console.log(err) ;
-				}
-				view.viewIn && view.viewIn() ;
-			} ) ;
-		}) ;
+        // 为浏览器打补丁，以便一些为 node.js 开发的 module 可以在浏览器中运行
+        jQuery.shipper.module("ocframework/public/lib/oc/patchs.js") ;
 
 
+        // 初始化视图
+        var View = jQuery.shipper.module("ocframework/public/lib/oc/mvc/View.js") ;
+        jQuery(".ocview").each(function(){
+            View.buildView( this, jQuery.shipper, function(err,view){
+                if(err)
+                {
+                    console.log(err) ;
+                }
+                view.viewIn && view.viewIn() ;
+            } ) ;
+        }) ;
 
-		// init validator (validator 应该在 director.setup() 前面，以便事件顺序争取e)
-		require("../../../lib/mvc/Validator.js") ;
 
-		// init controller director
-        require("./mvc/Director.js") ;
-		jQuery.director.setup() ;
 
-		// template cahces for frontend
-		require("../../../lib/mvc/view/ViewTemplateCaches.js").initForFrontend() ;
+        // init validator (validator 应该在 director.setup() 前面，以便事件顺序争取e)
+        jQuery.shipper.module("ocframework/lib/mvc/Validator.js") ;
 
-		// init switcher
-        require("./mvc/Switcher.js") ;
+        // init controller director
+        jQuery.shipper.module("ocframework/public/lib/oc/mvc/Director.js") ;
+        jQuery.director.setup() ;
 
-		/**
-		 * 创建一个受限制的 jQuery 函数，所有的selector 仅在 root 内查找（包括root）
-		 */
-		jQuery.sandbox = function(root)
-		{
-			var $root = jQuery(root) ;
-			function $(selector)
-			{
-				if(typeof selector=='string' && !/^\s*</.test(selector) )
-				{
-					return $root.find.apply($root,arguments) ;
-				}
-				else
-				{
-					return jQuery.apply(this,arguments) ;
-				}
-			}
-			// jQuery 的全局函数
-			for(var name in jQuery)
-			{
-				if( typeof jQuery[name]=='function' )
-				{
-					$[name] = jQuery[name].bind(jQuery) ;
-				}
-			}
+        // template cahces for frontend
+        jQuery.shipper.module("ocframework/lib/mvc/view/ViewTemplateCaches.js").initForFrontend() ;
 
-			return $ ;
-		}
+        // init switcher
+        jQuery.shipper.module("ocframework/public/lib/oc/mvc/Switcher.js") ;
 
-		console.log("OpenComb frontend has loaded on your browser :)") ;
-	}
+        /**
+         * 创建一个受限制的 jQuery 函数，所有的selector 仅在 root 内查找（包括root）
+         */
+        jQuery.sandbox = function(root)
+        {
+            var $root = jQuery(root) ;
+            function $(selector)
+            {
+                if(typeof selector=='string' && !/^\s*</.test(selector) )
+                {
+                    return $root.find.apply($root,arguments) ;
+                }
+                else
+                {
+                    return jQuery.apply(this,arguments) ;
+                }
+            }
+            // jQuery 的全局函数
+            for(var name in jQuery)
+            {
+                if( typeof jQuery[name]=='function' )
+                {
+                    $[name] = jQuery[name].bind(jQuery) ;
+                }
+            }
 
-	$oc = jQuery(document) ;
-	$oc.views = {} ;
-	$oc.viewpool = [] ;
+            return $ ;
+        }
 
-    initOpenComb() ;
+        console.log("OpenComb frontend has loaded on your browser :)") ;
+    }
+
+    $oc = jQuery(document) ;
+    $oc.views = {} ;
+    $oc.viewpool = [] ;
+
+    var waiting = window.__ocFrameworkFrontendRequires.length ;
+    for(var i=0;i<window.__ocFrameworkFrontendRequires.length;i++)
+    {
+        jQuery.shipper.require(window.__ocFrameworkFrontendRequires[i],function(err,path,module){
+
+            if(err)
+            {
+                throw err ;
+            }
+            if( !(--waiting) )
+            {
+                initOpenComb() ;
+            }
+        }) ;
+    }
+
+
+
 }) ;

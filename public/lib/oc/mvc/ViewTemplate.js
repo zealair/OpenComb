@@ -1,6 +1,8 @@
 var Template = require("octemplate/lib/Template.js") ;
 
-module.exports = function(){}
+module.exports = function(path){
+    this.filePath = path ;
+}
 module.exports.prototype = new Template ;
 
 module.exports.prototype.load = function(callback)
@@ -8,10 +10,7 @@ module.exports.prototype.load = function(callback)
     // 加载、分析 模板
     if(!this.loaded)
     {
-        if(callback)
-        {
-            this.loadCallbacks.push(callback) ;
-        }
+        this.once('loaded',callback) ;
 
         if(!this.loading)
         {
@@ -29,7 +28,7 @@ module.exports.prototype.load = function(callback)
     return this ;
 }
 
-module.exports.prototype.load = _readTemplateFile = function()
+module.exports.prototype._readTemplateFile = function()
 {
     var ele = document.createElement("script") ;
     ele.src = "/shipdown:tpl/" + this.filePath ;
