@@ -1,10 +1,10 @@
 var md5 = require("./lib/util/md5.js") ;
 var mongodb = require("mongodb") ;
 
-exports.onload = function(platform)
+exports.onload = function(app)
 {
 	// 数据表 建立索引, 创建默认账号
-	platform.on('openDB',function(err,client){
+	app.on('openDB',function(err,client){
 
 		if(err || !client)
 		{

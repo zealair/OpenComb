@@ -24,7 +24,7 @@
 		"send": "0.1.0"
 		, "connect": "2.7.0"
 		, "octemplate": "0.1.1"
-		, "ocsteps": "0.2.12"
+		, "ocsteps": "0.2.16"
 		, "step": "0.0.5"
 		, "mongodb": "1.2.14"
 		, "stack-trace": "0.0.6"
