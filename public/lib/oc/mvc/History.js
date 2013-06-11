@@ -50,7 +50,7 @@
 			var search = [] ;
 			for(var name in info.params)
 			{
-				if(name[0]!='@')
+				if(name[0]!='$')
 				{
 					search.push( name+'='+info.params[name] ) ;
 				}
@@ -59,7 +59,7 @@
 			{
 				for(var name in ajaxReq.data)
 				{
-					if(name[0]!='@')
+					if(name[0]!='$')
 					{
 						search.push( name+'='+ajaxReq.data[name] ) ;
 					}

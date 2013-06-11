@@ -282,14 +282,14 @@ var utilstr = require("../../../../lib/util/string.js") ;
 			throw new Error("Director.request()的参数 ajaxOptions.data 必须是 Array") ;
 		}
 
-		// 根据 thenOptions.target 为 lazy 模式，且 ajaxOptions中未指定 @layout
-		if( thenOptions.target!==null && searchData(ajax.data,"@layout")===false )
+		// 根据 thenOptions.target 为 lazy 模式，且 ajaxOptions中未指定 $layout
+		if( thenOptions.target!==null && searchData(ajax.data,"$layout")===false )
 		{
-			ajax.data.push({name:"@layout",value:"false"}) ;
+			ajax.data.push({name:"$layout",value:"false"}) ;
 		}
 
 		// 如果需要执行 layout, 则提供 sumsign
-		if( dataValue(ajax.data,"@layout")!='false' && searchData(ajax.data,"@sumsign")===false )
+		if( dataValue(ajax.data,"$layout")!='false' && searchData(ajax.data,"$sumsign")===false )
 		{
 			var sumsigns = [] ;
 			jQuery(".oclayout[sumsign]").each(function(){
@@ -297,13 +297,13 @@ var utilstr = require("../../../../lib/util/string.js") ;
 			}) ;
 			if(sumsigns.length)
 			{
-				ajax.data.push({name:"@sumsigns",value:sumsigns.join(',')})
+				ajax.data.push({name:"$sumsigns",value:sumsigns.join(',')})
 			}
 		}
 
-		if(searchData(ajax.data,"@render")===false)
+		if(searchData(ajax.data,"$render")===false)
 		{
-			ajax.data.push({name:"@render",value:"false"}) ;
+			ajax.data.push({name:"$render",value:"false"}) ;
 		}
 
 		var callback = ajax.success ;
@@ -390,7 +390,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 			var search = [] ;
 			for(var name in info.params)
 			{
-				if(name[0]!='@')
+				if(name[0]!='$')
 				{
 					search.push( name+'='+info.params[name] ) ;
 				}
@@ -400,7 +400,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 				for(var i=0;i<ajaxReq.data.length;i++)
 				{
 					var name = ajaxReq.data[i].name ;
-					if(name[0]!='@')
+					if(name[0]!='$')
 					{
 						search.push( name+'='+ajaxReq.data[i].value ) ;
 					}
