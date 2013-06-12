@@ -40,6 +40,11 @@
 
 	History.prototype.addState = function(ajaxOpt,target)
 	{
+        // 仅针对 Get,
+        if(ajaxOpt.type.toLowerCase()!='get')
+        {
+            console.log() ;            return ;
+        }
 
 		// 根据 thenOpt.target 决定是否需要向 history 增加记录
 		// thenOpt.target 在某个 layout 内， 则 thenOpt.target 为主视图 或 layout

@@ -12,3 +12,4 @@ compiled
 public/files
 log
 npm-debug.log
+test*

@@ -279,6 +279,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 
 		if(ajax.data.constructor!==Array)
 		{
+            console.log("ajax.data: ",ajax.data) ;
 			throw new Error("Director.request()的参数 ajaxOptions.data 必须是 Array") ;
 		}
 
@@ -395,7 +396,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 					search.push( name+'='+info.params[name] ) ;
 				}
 			}
-			if(ajaxReq.data)
+			if(ajaxReq.data && (!ajaxReq.type || ajaxReq.type.toLowerCase()=='get') )
 			{
 				for(var i=0;i<ajaxReq.data.length;i++)
 				{
@@ -412,6 +413,12 @@ var utilstr = require("../../../../lib/util/string.js") ;
 				url+= '?' + search.join('&') ;
 			}
 			// console.log("history",ajaxReq.url,ajaxReq.data,'=>',url) ;
+
+            if(ajaxReq.data.constructor!==Array)
+            {
+                console.log(ajaxReq.data) ;
+                throw new Error("hengheng") ;
+            }
 
 			window.history.pushState && window.history.pushState(
 				{
@@ -559,8 +566,8 @@ var utilstr = require("../../../../lib/util/string.js") ;
 	}
 
 	var queryStrings=function(query) {
-		var params=query,reg=/(?:^\?|&)(.*?)=(.*?)(?=&|$)/g,temp,args={};
-		while((temp=reg.exec(params))!=null) args[temp[1]]=decodeURIComponent(temp[2]);
+		var params=query,reg=/(?:^\?|&)(.*?)=(.*?)(?=&|$)/g,temp,args=[];
+		while((temp=reg.exec(params))!=null) args.push([temp[1],decodeURIComponent(temp[2])]);
 		return args;
 	};
 
