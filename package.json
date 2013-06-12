@@ -35,6 +35,32 @@
 
 
 	"logger": {
-
+		"appenders": [
+			{
+				"type": "console"
+				, "category": ["controller","access","ocframework"]
+			}
+			, {
+				"type": "file"
+				, "category": "ocframework"
+				, "filename": "log/trace/ocframework.log"
+				, "maxLogSize": 20480
+				, "backups": 3
+			}
+			, {
+				"type": "file"
+				, "category": "controller"
+				, "filename": "log/trace/ocframework.controller.log"
+				, "maxLogSize": 20480
+				, "backups": 3
+			}
+			, {
+				"type": "file"
+				, "category": "access"
+				, "filename": "log/ocframework.access.log"
+				, "maxLogSize": 20480
+				, "backups": 10
+			}
+		]
 	}
 }
