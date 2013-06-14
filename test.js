@@ -1,4 +1,9 @@
-var browserify = require('browserify');
-var b = browserify();
-b.add('./test-a.js');
-b.bundle().pipe(process.stdout);
+var m = require("module") ;
+
+var ful = require.resolve("./test-b.js") ;
+var b = require("./test-b.js") ;
+delete require.cache[ful] ;
+var b = require("./test-b.js") ;
+delete require.cache[ful] ;
+
+var b = require("./test-b.js") ;

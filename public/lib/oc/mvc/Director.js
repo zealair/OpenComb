@@ -1,6 +1,6 @@
 var View = require("./View.js") ;
 var Nut = require("../../../../lib/mvc/Nut.js") ;
-var Step = require("step") ;
+var Steps = require("ocsteps") ;
 var utilstr = require("../../../../lib/util/string.js") ;
 
 (function(jQuery){
@@ -317,7 +317,9 @@ var utilstr = require("../../../../lib/util/string.js") ;
 				if(err)
 				{
 					thenOptions.callback && thenOptions.callback(err) ;
-					throw err ;
+					console.log(err) ;
+					console.log(err.stack) ;
+					return ;
 				}
 
 				director.then(nut,thenOptions,ajax) ;
@@ -453,42 +455,29 @@ var utilstr = require("../../../../lib/util/string.js") ;
 
 			// 创建视图
 			var $rootview = jQuery(html,document.ownerDocument) ;
-			Step(
+			var steps = Steps(
 				function buildViews(){
-					var group = this.group() ;
-
 					$rootview.find('.ocview').andSelf().each(function(){
-						View.buildView(this,jQuery.shipper,group()) ;
 						this.nut = nut ;
 						this.ajaxOpt = ajaxReq ;
+						View.buildView(this,jQuery.shipper,steps.holdButThrowError()) ;
 					}) ;
 				}
-				, function placeInViews(err){
-					if(err)
-					{
-						console.log(err) ;
-						thenOpt.callback && thenOpt.callback(err,nut,$rootview) ;
-					}
-
+				, function placeInViews(){
 					// 切换视图
 					if( thenOpt.target )
 					{
-						$.switcher.replacein(undefined,$rootview[0],thenOpt.target,this) ;
-					}
-					else
-					{
-						return 1 ;
+						$.switcher.replacein(undefined,$rootview[0],thenOpt.target,this.holdButThrowError()) ;
 					}
 				}
-
-				, function done(err){
-					if(err)
-					{
-						console.log(err.stack) ;
-					}
-					thenOpt.callback && thenOpt.callback(err,nut,$rootview) ;
+			).done(function done(err){
+				if(err)
+				{
+					console.log(err) ;
+					console.log(err.stack) ;
 				}
-			)
+				thenOpt.callback && thenOpt.callback(err,nut,$rootview) ;
+			}) () ;
 
 		}) ;
 	}

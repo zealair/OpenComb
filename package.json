@@ -24,8 +24,7 @@
 		"send": "0.1.0"
 		, "connect": "2.7.0"
 		, "octemplate": "0.1.1"
-		, "ocsteps": "0.2.16"
-		, "step": "0.0.5"
+		, "ocsteps": "0.2.18"
 		, "mongodb": "1.2.14"
 		, "stack-trace": "0.0.6"
 		, "mocks": "0.0.11"
@@ -38,7 +37,7 @@
 		"appenders": [
 			{
 				"type": "console"
-				, "category": ["controller","access","ocframework"]
+				, "category": ["controller","nut","access","ocframework","former"]
 			}
 			, {
 				"type": "file"
@@ -53,6 +52,20 @@
 				, "filename": "log/trace/ocframework.controller.log"
 				, "maxLogSize": 20480
 				, "backups": 3
+			}
+			, {
+				"type": "file"
+				, "category": "nut"
+				, "filename": "log/trace/ocframework.nut.log"
+				, "maxLogSize": 20480
+				, "backups": 3
+			}
+			, {
+				"type": "file"
+				, "category": "former"
+				, "filename": "log/trace/ocframework.former.log"
+				, "maxLogSize": 20480
+				, "backups": 10
 			}
 			, {
 				"type": "file"

@@ -2,8 +2,9 @@ var Template = require("octemplate/lib/Template.js") ;
 
 module.exports = function(path){
     this.filePath = path ;
+	Template.apply(this,arguments) ;
 }
-module.exports.prototype = new Template ;
+module.exports.prototype = Template.prototype ;
 
 module.exports.prototype.load = function(callback)
 {

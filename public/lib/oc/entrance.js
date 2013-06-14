@@ -11,6 +11,7 @@ jQuery(function($){
         console.log("initOpenComb()") ;
 
         // 为浏览器打补丁，以便一些为 node.js 开发的 module 可以在浏览器中运行
+	    jQuery.shipper.module("ocframework/lib/core/reset.js") ;
         jQuery.shipper.module("ocframework/public/lib/oc/patchs.js") ;
 
 

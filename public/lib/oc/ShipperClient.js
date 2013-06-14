@@ -252,6 +252,8 @@ function ShipModuleCache (shipper,path,type)
 
 		if(err)
 		{
+			console.log(err) ;
+			console.log(err.stack) ;
 			throw err ;
 		}
 
