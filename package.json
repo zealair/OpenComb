@@ -23,8 +23,8 @@
 	"dependencies": {
 		"send": "0.1.0"
 		, "connect": "2.7.0"
-		, "octemplate": "0.1.1"
-		, "ocsteps": "0.2.18"
+		, "octemplate": "0.1.2"
+		, "ocsteps": "0.2.19"
 		, "mongodb": "1.2.14"
 		, "stack-trace": "0.0.6"
 		, "mocks": "0.0.11"
