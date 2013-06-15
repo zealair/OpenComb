@@ -36,7 +36,8 @@
 		"appenders": [
 			{
 				"type": "console"
-				, "category": ["controller","nut","access","ocframework","former"]
+				, "category": ["access","ocframework"]
+				, "category-dev": ["access","ocframework","controller","nut","former"]
 			}
 			, {
 				"type": "file"
@@ -44,27 +45,6 @@
 				, "filename": "log/trace/ocframework.log"
 				, "maxLogSize": 20480
 				, "backups": 3
-			}
-			, {
-				"type": "file"
-				, "category": "controller"
-				, "filename": "log/trace/ocframework.controller.log"
-				, "maxLogSize": 20480
-				, "backups": 3
-			}
-			, {
-				"type": "file"
-				, "category": "nut"
-				, "filename": "log/trace/ocframework.nut.log"
-				, "maxLogSize": 20480
-				, "backups": 3
-			}
-			, {
-				"type": "file"
-				, "category": "former"
-				, "filename": "log/trace/ocframework.former.log"
-				, "maxLogSize": 20480
-				, "backups": 10
 			}
 			, {
 				"type": "file"
