@@ -226,6 +226,24 @@ var utilstr = require("../../../../lib/util/string.js") ;
 		}
 	}
 
+	function dataObjectToArray(data)
+	{
+		if(_.isArray(data))
+		{
+			return data ;
+		}
+		else if(data)
+		{
+			var newdata = [] ;
+			for(var name in data)
+			{
+				newdata.push({name:name,value:data[name]}) ;
+			}
+			return newdata ;
+		}
+	}
+
+
 	/**
 	 * 向服务器发送请求，并从服务器取回 nut 对象
 	 */
@@ -578,7 +596,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 	jQuery.controller = function(url,data,thenOpts)
 	{
 		var ajaxOpts = typeof url=='string'? {url:url}: (url||{}) ;
-		ajaxOpts.data = data ;
+		ajaxOpts.data = dataObjectToArray(data) ;
 
 		jQuery.request(ajaxOpts,thenOpts) ;
 	}
@@ -614,7 +632,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 		}
 
 		var ajaxOpts = typeof url=='string'? {url:url}: (url||{}) ;
-		ajaxOpts.data = data ;
+		ajaxOpts.data = dataObjectToArray(data) ;
 
 		jQuery.request(ajaxOpts,thenOpts) ;
 	}
@@ -735,6 +753,5 @@ var utilstr = require("../../../../lib/util/string.js") ;
 
 		return data ;
 	}
-
 
 }) (jQuery) ;
