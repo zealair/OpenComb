@@ -1,13 +1,9 @@
-<div>
-
-	<msgqueue />
-
-</div>
-
-<button class="btn btn-link" onclick="history.back()" sec={@$model.waitingsec||'5'}>{@$model.waitingsec||'5'}秒后返回</button>
+<button class="btn btn-link" onclick="location='{@$model.locatioUrl}'" sec={@$model.waitingsec||'3'}>{@$model.waitingsec||'5'}秒后前往目标网页……</button>
 <script>
-setTimeout(function(){
-	history.back()
+setTimeout(
+    function(){
+	    location = "{@$model.locatioUrl}" ;
 	}
-	,{@($model.waitingsec||5)*1000}
-)</script>
+	, {@($model.waitingsec||3)*1000}
+)
+</script>
