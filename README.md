@@ -81,7 +81,7 @@ node index.js
 
 # 开发者资源
 
-* [文档](doc/manual/index.md)
+* [框架ocFramework文档](doc/manual)
 
 
 
