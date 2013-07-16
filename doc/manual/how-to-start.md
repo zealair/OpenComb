@@ -89,20 +89,18 @@ module.exports.__as_controller = true ;
 
 ## 增加导航链接
 
-接下来我将向你演示，怎么将控制器的链接添加到导航菜单里，就像 ocxblog 扩展实现的效果一样。
+接下来我将向你演示，怎么将控制器的链接添加到导航菜单里，这用到了蜂巢框架的重要特性。
 
 在新扩展 exmaple 目录下，建一个文件 extension.js ，然后写入以下代码：
 
 ```javascript
-var tplCahces = require("octemplate") ;
-
 module.exports = {
 
 	// 扩展的加载事件，在蜂巢启动时被调用
 	onload: function(platform,callback)
 	{
 		// 载入模板
-		tplCahces.template('ocplatform/templates/WebLayout',function(err,tpl){
+		helper.template('ocplatform/templates/WebLayout',function(err,tpl){
 			if(!err)
 			{
 				// 用 jQuery 找到导航菜单，
@@ -130,8 +128,8 @@ module.exports = {
 
 观察一下 `extension.js` 文件的代码，为了向导航菜单里加入一项链接，我们用到了 jQuery !
 
-没错，蜂巢的模板引擎允许你使用 jQuery 来控制和修改模板结构。
+没错，蜂巢的模板引擎允许你在后端的Nodejs环境里使用 jQuery 来控制和修改模板结构。
 
 > 这是一个相当有用的特性，你能改变其他包的模板，而不必直接修改他们的源代。当你的扩展被安装到蜂巢里时，这些“修改”就会生效，将你的扩展移除，效果就会还原，对系统和其他包没有任何“副作用”。
 
-[返回文档首页](../../README.md)
+[返回文档首页](./README.md)

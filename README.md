@@ -1,9 +1,12 @@
 ![opencomb logo](public/images/logo.png)
 
-蜂巢(OpenComb)
+ocFramework（蜂巢平台的核心框架）
 ===
 
-蜂巢(OpenComb)不只是一个 Node.js 的开发框架。
+ocFramework 是一个Nodejs框架，它是OpenComb平台的核心代码，几乎所有OpenComb平台上的关键特性都由ocFramework实现。
+OpenComb实际上只是 ocFramework 和其他一些扩展（例如 ocUser,ocAuth 等）的集合。
+
+ocFramework 也可以脱离OpenComb单独使用。
 
 ## 依赖环境
 
@@ -81,7 +84,7 @@ node index.js
 
 # 开发者资源
 
-* [框架ocFramework文档](doc/manual)
+* [框架ocFramework文档](doc/manual/README.md)
 
 
 
