@@ -2,9 +2,10 @@ var should = require("should") ;
 var PackagesManager = require("../../../lib/core/packages/PackagesManager.js");
 var loader = require("../../../lib/mvc/ControllerLoader.js") ;
 
+var pkgsmgr ;
 
 suiteSetup(function(done){
-	var pkgsmgr = new PackagesManager() ;
+	pkgsmgr = new PackagesManager() ;
 	pkgsmgr.root.load(__dirname+"/../../..",function(err,root){
 		done() ;
 	}) ;
@@ -31,6 +32,9 @@ suite('mvc', function(){
 			(new loader.ControllerPath("./data/ControllerA",__dirname)).loadDefine().fullpath.should.be.eql(__dirname+"/data/ControllerA.js") ;
 			(new loader.ControllerPath("./data/ControllerA:bbb",__dirname)).loadDefine().fullpath.should.be.eql(__dirname+"/data/ControllerB.js") ;
 			(new loader.ControllerPath("./data/ControllerA:ccc",__dirname)).loadDefine().fullpath.should.be.eql(__dirname+"/data/ControllerA.js") ;
+
+			(new loader.ControllerPath("./data/ControllerA:ccc",__dirname)).loadDefine()
+					.pathname(pkgsmgr).should.be.eql("ocframework/test/TDD/mvc/data/ControllerA:ccc") ;
 
 			done() ;
 		});
