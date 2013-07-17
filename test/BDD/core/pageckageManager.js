@@ -1,4 +1,4 @@
-var PackagesManager = require("../../lib/core/packages/PackagesManager.js");
+var PackagesManager = require("../../../lib/core/packages/PackagesManager.js");
 var should = require("should") ;
 
 describe("core",function(){

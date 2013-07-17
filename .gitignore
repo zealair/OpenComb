@@ -5,7 +5,7 @@
 .idea
 .DS_Store
 .directory
-node_modules
+node_modules/*
 config.json
 bin
 compiled

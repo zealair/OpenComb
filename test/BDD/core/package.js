@@ -1,4 +1,4 @@
-var Package = require("../../lib/core/packages/Package.js");
+var Package = require("../../../lib/core/packages/Package.js");
 var should = require("should") ;
 
 describe("core",function(){
