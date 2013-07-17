@@ -12,4 +12,4 @@ compiled
 public/files
 log
 npm-debug.log
-test*
+test*.js

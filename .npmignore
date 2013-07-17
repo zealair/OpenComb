@@ -4,3 +4,4 @@ bin
 compiled
 public/files
 log
+test*.js
