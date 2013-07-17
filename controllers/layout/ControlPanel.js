@@ -10,5 +10,3 @@ module.exports = {
 		return true ;
 	}
 }
-
-module.exports.__as_controller = true ;

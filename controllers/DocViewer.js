@@ -1,4 +1,4 @@
-var Application = require("../../core/Application.js") ;
+var Application = require("../lib/core/Application.js") ;
 var fs = require("fs") ;
 var https = require("https") ;
 
@@ -98,7 +98,6 @@ module.exports = {
 
 		},'ocframework/lib/mvc/controllers/DocViewer.js') ;
 	}
-	, __as_controller: true
 }
 
 function renderMarkdownViaGithub(mdBuff,callback)
