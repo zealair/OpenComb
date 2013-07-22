@@ -1,6 +1,6 @@
 # Former
 
-Former 是OpenComb框架中最重要的特性之一，Former通过反射视图模板中的<form>,<input>,<select>,<textarea>标签信息，来自动处理对数据表的“增删改查”操作。
+Former 是OpenComb框架中最重要的特性之一，Former通过反射视图模板中的&lt;form&gt;,&lt;input&gt;,&lt;select&gt;,&lt;textarea&gt;标签信息，来自动处理对数据表的“增删改查”操作。
 
 ## 一个简单的例子
 
@@ -60,7 +60,7 @@ module.exports = {
 
 如你所见，Former 让 MIS 里最常见的工作（“增删改查”）变得如此简单，Former 会如何工作，是由模板文件 form.html 里的标签决定。
 
-而 OpenComb 的模板引擎(ocTemplate) 支持完整的jQuery DOM操作，这样一来，你就可以在其他扩展中控制模板文件中表单(<form>)的结构，从而扩展表单内容，这不需要修改任何源代码。
+而 OpenComb 的模板引擎(ocTemplate) 支持完整的jQuery DOM操作，这样一来，你就可以在其他扩展中控制模板文件中表单(&lt;form&gt;)的结构，从而扩展表单内容，这不需要修改任何源代码。
 
 因此，你应该尽量使用 former 。
 
@@ -70,12 +70,12 @@ module.exports = {
 
 Former 的秘密都集中在模板的标签上。
 
-### <form> 标签可用的属性
+### &lt;form&gt; 标签可用的属性
 
-Former 通过 <form> 标签的属性获悉数据表信息。
+Former 通过 &lt;form&gt; 标签的属性获悉数据表信息。
 
 * [必须] collection 数据表名称，如果缺少这个属性，Former 不会做任何操作。
-	> 在你debug的时候，应该优先检查这个属性
+	&gt; 在你debug的时候，应该优先检查这个属性
 
 * [可选] keys='_id', Former.load()/save()/remve() 等操作查找doc的主键，可以是一个普通属性值表示字段名称（默认为 _id），也可以是一个表达式，返回数组格式的多个字段名称。
 
@@ -88,32 +88,36 @@ Former 通过 <form> 标签的属性获悉数据表信息。
 
 * [可选] autoIncreaseId, 自增型主键名称。
 
-* [可选] name, 表单的名称，一个模板里可能有多个<form>，创建Former对象时可以指定<form>的名称
+* [可选] name, 表单的名称，一个模板里可能有多个&lt;form&gt;，创建Former对象时可以指定&lt;form&gt;的名称
 
-### <input>, <textarea>, <select> 标签可用的属性
+### &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt; 标签可用的属性
 
-Former 从 <form> 内的输入控件（<input>, <textarea>, <select> 等标签）中搜集对应的文档（document）字段信息。
+Former 从 &lt;form&gt; 内的输入控件（&lt;input&gt;, &lt;textarea&gt;, &lt;select&gt; 等标签）中搜集对应的文档（document）字段信息。
 
-* [必须] name 该<input>(或 <textarea>, <select>)对应的文档(document)字段。如果缺少name属性，Former 忽略该输入控件
-	> 在你debug的时候，应该优先检查这个属性
+* [必须] name 该&lt;input&gt;(或 &lt;textarea&gt;, &lt;select&gt;)对应的文档(document)字段。如果缺少name属性，Former 忽略该输入控件
+	&gt; 在你debug的时候，应该优先检查这个属性
 
 * [可选] value, 输入控件的默认值，如果执行过 Former.load()/fillForm()，则文档中的数据会替代value中的值。
 
 #### Former 支持的输入控件类型：
 
-* <input type="text" >
+* &lt;input type="text" &gt;
 
-* <input type="hidden" >
+* &lt;input type="hidden" &gt;
 
-* <input type="radio" >
+* &lt;input type="radio" &gt;
 
-* <input type="checkbox" >
+* &lt;input type="checkbox" &gt;
 
-* <select>
+	Former 会将该控件内的值保存为一个数组
 
-* <select list>
+* &lt;select&gt;
 
-* <textarea>
+* &lt;select list&gt;
+
+	如果控件的属性 multiple="multiple",Former 会将该控件内的值保存为一个数组
+
+* &lt;textarea&gt;
 
 
-其他形式的html高级输入控件（例如富文本编辑器），实际上可以通过 <input type="hidden"> 将和 Former 协作。
+其他形式的html高级输入控件（例如富文本编辑器），实际上可以通过 &lt;input type="hidden"&gt; 将和 Former 协作。
