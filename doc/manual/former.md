@@ -233,6 +233,8 @@ Former 的最常用的4个方法：
 
 ### Former.load()
 
+    从数据库里加载文档并填充表单。数据库find()操作的条件用
+
 ### Former.doc()
 
 
