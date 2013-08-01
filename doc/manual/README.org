@@ -33,7 +33,7 @@
       + template/controller
       + aop
    5. 数据校验
-      + 自定义校验插件
+      1. 自定义校验插件
    6. Session
    7. [[./extension.md][扩展]]
    8. [高级] 扩展框架
