@@ -8,7 +8,7 @@
 
 1. [控制器](./using-controller.md)
 	* [使用控制器](./using-controller.md)
-		* [API:控制器的属性]
+		* [API:控制器的属性](./controller-define-properties.md)
 		* [API:nut](./nut-api.md)
 	* [控制器组合](./controller-aggregation.md)
 		* [layout](./controller-aggregation.md#layout)
