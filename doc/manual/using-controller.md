@@ -6,11 +6,10 @@ ing[返回文档首页](../../README.md)
 
 ## 定义控制器
 
-在 Node.js 下定义控制器很简单：
+在 OpenComb 下定义控制器很简单：
 
-1. 写一个 options 对象，赋值给变量 exports
+在扩展的 `controllers` 目录下写一个js文件，在文件用 exports 导出一个函数，这个函数就是控制器。
 
-2. 然后用 `__as_controller=true` 声明为控制器
 
 ```javascript
 // 定义控制器
@@ -27,9 +26,6 @@ module.exports = {
 		return true ;
 	}
 }
-
-// 声明该文件导出的是一个控制器
-module.exports.__as_controller = true ;
 ```
 
 定义控制器的options对象里，最重要的成员就是 `process` 函数，请求一个控制器，实际上就是在执行其`process`函数。
