@@ -36,20 +36,13 @@
 		"appenders": [
 			{
 				"type": "console"
-				, "category": ["access","ocframework"]
+				, "category": ["access"]
 				, "category-dev": ["access","ocframework","controller","nut","former"]
 			}
 			, {
 				"type": "file"
-				, "category": "ocframework"
-				, "filename": "log/trace/ocframework.log"
-				, "maxLogSize": 20480
-				, "backups": 3
-			}
-			, {
-				"type": "file"
 				, "category": "access"
-				, "filename": "log/ocframework.access.log"
+				, "filename": "log/access.log"
 				, "maxLogSize": 20480
 				, "backups": 10
 			}

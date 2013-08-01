@@ -601,11 +601,12 @@ var utilstr = require("../../../../lib/util/string.js") ;
 		jQuery.request(ajaxOpts,thenOpts) ;
 	}
 
-	jQuery.action = function(url,data,thenOpts)
-	{
+	function buildActionThenOpts(thenOpts){
+
+		// default: popup 消息队列
 		if(!thenOpts)
 		{
-			thenOpts = {
+			return {
 				callback: function(err,nut)
 				{
 					if(err)
@@ -616,10 +617,12 @@ var utilstr = require("../../../../lib/util/string.js") ;
 				}
 			}
 		}
+
+		// 显示消息队列的 selector
 		else if( typeof thenOpts=='string' )
 		{
 			var selector = thenOpts ;
-			thenOpts = {
+			return {
 				callback: function(err,nut)
 				{
 					if(err)
@@ -631,10 +634,18 @@ var utilstr = require("../../../../lib/util/string.js") ;
 			}
 		}
 
+		// others
+		else
+			return  thenOpts ;
+	}
+
+	jQuery.action = function(url,data,thenOpts)
+	{
+
 		var ajaxOpts = typeof url=='string'? {url:url}: (url||{}) ;
 		ajaxOpts.data = dataObjectToArray(data) ;
 
-		jQuery.request(ajaxOpts,thenOpts) ;
+		jQuery.request(ajaxOpts,buildActionThenOpts(thenOpts)) ;
 	}
 
 	/**
@@ -709,6 +720,9 @@ var utilstr = require("../../../../lib/util/string.js") ;
 		jQuery.director.request( ajaxOptions, thenOptions ) ;
 	}
 
+	jQuery.fn.action = function(thenOpts){
+		return this.request(null,buildActionThenOpts(thenOpts)) ;
+	}
 
 	jQuery.fn.serializeArrayNotform = function()
 	{
