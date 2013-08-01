@@ -9,43 +9,43 @@
 
 *** 后端开发
    1. [[./using-controller.md][控制器]]
-      * [[./using-controller.md][使用控制器]]
-        + [[./earth-api.md][API:earth]]
-        + [[./nut-api.md][API:nut]]
-      * [[./controller-aggregation.md][控制器组合]]
-        + [[./controller-aggregation.md#layout][layout]]
-        + [[./controller-aggregation.md#children][children]]
-        + [[./controller-aggregation.md#向+layout+和+child+传递参数][向 layout 和 child 传递参数]]
-        + [[./controller-aggregation.md#actions][actions]]
-        + [[./controller-aggregation.md#控制器路径][控制器路径]]
-      * [[./title-keywords-description.md][标题、关键词、描述]]
+      + [[./using-controller.md][使用控制器]]
+        - [[./earth-api.md][API:earth]]
+        - [[./nut-api.md][API:nut]]
+      + [[./controller-aggregation.md][控制器组合]]
+        - [[./controller-aggregation.md#layout][layout]]
+        - [[./controller-aggregation.md#children][children]]
+        - [[./controller-aggregation.md#向+layout+和+child+传递参数][向 layout 和 child 传递参数]]
+        - [[./controller-aggregation.md#actions][actions]]
+        - [[./controller-aggregation.md#控制器路径][控制器路径]]
+      + [[./title-keywords-description.md][标题、关键词、描述]]
 
    2. [[./template-and-view.md][视图和模板]]
-      * [二次开发]“模板编织”
+      + [二次开发]“模板编织”
 
    3. XFormer
-      * 增删改查
-      * [二次开发]扩展表单和列表
+      + 增删改查
+      + [二次开发]扩展表单和列表
 
    4. helper
-      * db
-      * log
-      * fs
-      * former
-      * _ (underscore)
-      * template/controller
-      * aop
+      + db
+      + log
+      + fs
+      + former
+      + _ (underscore)
+      + template/controller
+      + aop
 
    5. 数据校验
-      * 自定义校验插件
+      + 自定义校验插件
 
    6. Session
 
    7. [[./extension.md][扩展]]
 
    8. [高级] 扩展框架
-      * 增加前端框架入口文件
-      * 模板引擎的 parser 和 shader
+      + 增加前端框架入口文件
+      + 模板引擎的 parser 和 shader
 
 *** 前端开发
    1. [[./ajax.md][Ajax]]
