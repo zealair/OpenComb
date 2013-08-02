@@ -5,6 +5,11 @@
 
 * nut.write(content)
 * nut.message(sentence[,args[,type[,title]]])
+* nut.error(sentence[,args[,title]])
+* nut.success(sentence[,args[,title]])
+* nut.danger(sentence[,args[,title]])
+* nut.info(sentence[,args[,title]])
+* nut.warning(sentence[,args[,title]])
 * nut.msgqueue.popup([tplname]) [仅前端可用]
 * nut.msgqueue.renderAndAppendTo([eleOrSelector[,callback[,tplname]]]) [仅前端可用]
 * nut.model
@@ -54,6 +59,13 @@
 	</div>
 	```
 
+	nut.message() 有5个简化版本（使用更少的参数）：
+
+		* nut.error(sentence[,args[,title]])
+		* nut.success(sentence[,args[,title]])
+		* nut.danger(sentence[,args[,title]])
+		* nut.info(sentence[,args[,title]])
+		* nut.warning(sentence[,args[,title]])
 
 * ___nut.msgqueue.popup([tplname])___ [仅前端可用]
 
