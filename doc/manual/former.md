@@ -194,13 +194,10 @@ save()方法会自动调用saveFile()方法，因此通常你不必主动调用s
 
 saveFile() 的重载版本：
 
-* function([opts])
-
-* function(doc,[opts])
-
-* function(done,[opts])
-
-* function(doc,done,[opts])
+* saveFile([opts])
+* saveFile(doc,[opts])
+* saveFile(done,[opts])
+* saveFile(doc,done,[opts])
 
 参数说明：
 
@@ -222,14 +219,39 @@ saveFile() 的重载版本：
 
 		该函数收到的file参数是一个对象：
 
-			* name: 原始文件名
+		* name: 原始文件名
 
-			* path: 上传到服务器后的临时存放路径（你需要在归档后删除他）
+		* path: 上传到服务器后的临时存放路径（你需要在归档后删除他）
 
 	> 以上所有的属性都是完整的字符串， `opts["msg.upload.file.error"]` 而不是 `opts.msg.upload.file.error`
 
 
 ### Former.remove()
+
+remove() 的重载版本：
+
+* remove(condition,done,opts) ;
+* remove(condition,opts) ;
+* remove([done[,opts]]) ;
+
+参数说明：
+
+* done=function(err,doc) : 执行完成后的回调函数。同样 done 需要 `this.hold` 已确保控制器等待 done 触发后回应用户（参考 Former.save() 参数 done）。
+
+* condition : 用来find文档的条件，缺省情况下会调用 `Former.condition()`。
+
+* opts 对象的可用属性：
+
+	* done
+	* condition
+	* "msg.remove.success" : "内容已经删除"
+	* "msg.remove.fail" : "没有删除文档，可能是因为指定的文档并不存在。"
+	* "msg.remove.error" : "系统删除内容时遇到了错误"
+	* "msg.remove.abort" : "没有指定删除的内容"
+	* "msg.remove.file.success" : "删除文件：%s"
+	* "msg.remove.file.error" : "系统在删除文件时遇到错误：%s"
+	* "func.file.delete" = function(file,callback) 删除文档时调用 func.file.delete 函数删除文档中的附件
+	* "func.file.restorName" = function(name) 从归档附件的文件命中返回原始文件名，用删除附件时输出的消息
 
 ### Former.load()
 
