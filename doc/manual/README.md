@@ -8,6 +8,7 @@
 
 1. [控制器](./using-controller.md)
 	* [使用控制器](./using-controller.md)
+		* [控制器路径](./using-controller.md#控制器的路径规则)
 		* [API:控制器的属性](./controller-define-properties.md)
 		* [API:nut](./nut-api.md)
 	* [控制器组合](./controller-aggregation.md)
@@ -15,7 +16,6 @@
 		* [children](./controller-aggregation.md#children)
 		* [向 layout 和 child 传递参数](./controller-aggregation.md#向+layout+和+child+传递参数)
 		* [actions](./controller-aggregation.md#actions)
-		* [控制器路径](./controller-aggregation.md#控制器路径)
 	* [标题、关键词、描述](./title-keywords-description.md)
 
 2. [视图和模板](./template-and-view.md)
