@@ -58,7 +58,7 @@ module.exports = {
 }
 ```
 
-如你所见，Former 让 MIS 里最常见的工作（“增删改查”）变得如此简单：Former 如何工作，这是由模板文件 form.html 里的&lt&form&gt;标签和&lt&input&gt;等控件标签定义的，不需要你写繁琐又重复的业务代码。
+如你所见，Former 让 MIS 里最常见的工作（“增删改查”）变得如此简单：Former 如何工作，这是由模板文件 form.html 里的&lt;form&gt;标签和&lt;input&gt;等控件标签定义的，不需要你写繁琐又重复的业务代码。
 
 OpenComb 的模板引擎(ocTemplate) 支持完整的jQuery DOM操作，这样一来，你就可以在其他扩展中控制表单(&lt;form&gt;)的结构，从而扩展表单内容，这不需要修改任何源代码。
 

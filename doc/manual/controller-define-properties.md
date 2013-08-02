@@ -1,7 +1,7 @@
 
 # API：控制器属性
 
-* __view__ string/null/undefined
+* ___view___ string/null/undefined
 
     视图模板的路径，例如 `"example/templates/hello.html"`.
 
