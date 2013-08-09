@@ -165,11 +165,9 @@ var utilstr = require("../../../../lib/util/string.js") ;
                         // 最里层ocLayout
                         var aAllOcviewLayout = jQuery(element).parents(".ocview.oclayout").first();
 
-                        // 第一个ocview
-						then.target = aAllOcviewLayout.find(".ocview:eq(0)") || null ;
-
-
-
+                        // 主view
+                        // .oclayout-container 包含 .ocview.oclayout（一个） 包含 .ocview（多个）
+						then.target = aAllOcviewLayout.find(".oclayout-container:eq(0) > .ocview:eq(0)") || null ;
 					}
 					else
 					{
@@ -515,6 +513,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 	 */
 	Director.prototype.compareLayoutStruct = function(nut)
 	{
+
 		var target = (function findAvailLayout( nut )
 		{
 			if( nut._children && nut._children.layout )
