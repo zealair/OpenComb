@@ -163,10 +163,13 @@ var utilstr = require("../../../../lib/util/string.js") ;
 					if(element)
 					{
                         // 最里层ocLayout
-                        var aAllOcviewLayout = jQuery(element).parents(".ocview,.oclayout").first();
+                        var aAllOcviewLayout = jQuery(element).parents(".ocview.oclayout").first();
 
                         // 第一个ocview
 						then.target = aAllOcviewLayout.find(".ocview:eq(0)") || null ;
+
+
+
 					}
 					else
 					{
