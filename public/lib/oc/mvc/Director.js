@@ -96,7 +96,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 			// 从elemt
 			if(element)
 			{
-				$element = $(element) ;				
+				$element = $(element) ;
 				var staytarget = $element.attr("stay-target") ;
 				if( staytarget )
 				{
@@ -162,7 +162,11 @@ var utilstr = require("../../../../lib/util/string.js") ;
 				case 'view' :
 					if(element)
 					{
-						then.target = jQuery(element).parents(".ocview")[0] || null ;
+                        // 最里层ocLayout
+                        var aAllOcviewLayout = jQuery(element).parents(".ocview,.oclayout").first();
+
+                        // 第一个ocview
+						then.target = aAllOcviewLayout.find(".ocview:eq(0)") || null ;
 					}
 					else
 					{
