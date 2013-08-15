@@ -96,7 +96,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 			// 从elemt
 			if(element)
 			{
-				$element = $(element) ;				
+				$element = $(element) ;
 				var staytarget = $element.attr("stay-target") ;
 				if( staytarget )
 				{
@@ -162,7 +162,12 @@ var utilstr = require("../../../../lib/util/string.js") ;
 				case 'view' :
 					if(element)
 					{
-						then.target = jQuery(element).parents(".ocview")[0] || null ;
+                        // 最里层ocLayout
+                        var aAllOcviewLayout = jQuery(element).parents(".ocview.oclayout").first();
+
+                        // 主view
+                        // .oclayout-container 包含 .ocview.oclayout（一个） 包含 .ocview（多个）
+						then.target = aAllOcviewLayout.find(".oclayout-container:eq(0) > .ocview:eq(0)") || null ;
 					}
 					else
 					{
@@ -298,7 +303,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 
 		if(ajax.data.constructor!==Array)
 		{
-            console.log("ajax.data: ",ajax.data) ;
+            zconsole.log("ajax.data: ",ajax.data) ;
 			throw new Error("Director.request()的参数 ajaxOptions.data 必须是 Array") ;
 		}
 
@@ -509,6 +514,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 	 */
 	Director.prototype.compareLayoutStruct = function(nut)
 	{
+
 		var target = (function findAvailLayout( nut )
 		{
 			if( nut._children && nut._children.layout )
