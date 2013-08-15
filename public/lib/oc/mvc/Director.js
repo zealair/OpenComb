@@ -159,26 +159,21 @@ var utilstr = require("../../../../lib/util/string.js") ;
 		{
 			switch(then.target)
 			{
-				case 'view' :
-					if(element)
-					{
-                        // 最里层ocLayout
-                        var aAllOcviewLayout = jQuery(element).parents(".ocview.oclayout").first();
+                case 'view' :
+                    if(element)
+                    {
+                        then.target = jQuery(element).parents(".ocview")[0] || null ;
+                    }
+                    else
+                    {
+                        then.target = null ;
+                    }
+                    break ;
 
-                        // 主view
-                        // .oclayout-container 包含 .ocview.oclayout（一个） 包含 .ocview（多个）
-						then.target = aAllOcviewLayout.find(".oclayout-container:eq(0) > .ocview:eq(0)") || null ;
-					}
-					else
-					{
-						then.target = null ;
-					}
-					break ;
-
-				case 'top' :
+                case 'top' :
                     then.target = jQuery(document.body).find(".oclayout-container:last > .ocview:eq(0)") || null ;
-					//then.target = jQuery(jQuery(ele).parents(".oclayout")[0]).find(".ocview")[0] || null ;
-					break ;
+                    //then.target = jQuery(jQuery(ele).parents(".oclayout")[0]).find(".ocview")[0] || null ;
+                    break ;
 
 				case 'action' :
 					then = {
