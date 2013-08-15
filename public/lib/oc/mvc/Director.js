@@ -61,7 +61,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 		    }
 		    e.state.data = data ;
 		}
-
+		
 		director.request(
 		    {
 			url: e.state.url
@@ -159,20 +159,21 @@ var utilstr = require("../../../../lib/util/string.js") ;
 	{
 	    switch(then.target)
 	    {
-	    case 'view' :
-		if(element)
-		{
-		    then.target = jQuery(element).parents(".ocview")[0] || null ;
-		}
-		else
-		{
-		    then.target = null ;
-		}
-		break ;
+            case 'view' :
+                if(element)
+                {
+                    then.target = jQuery(element).parents(".ocview")[0] || null ;
+                }
+                else
+                {
+                    then.target = null ;
+                }
+                break ;
 
-	    case 'top' :
-		then.target = jQuery(jQuery(ele).parents(".oclayout")[0]).find(".ocview")[0] || null ;
-		break ;
+            case 'top' :
+                then.target = jQuery(document.body).find(".oclayout-container:last > .ocview:eq(0)") || null ;
+                //then.target = jQuery(jQuery(ele).parents(".oclayout")[0]).find(".ocview")[0] || null ;
+                break ;
 
 	    case 'action' :
 		then = {
@@ -186,7 +187,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 		    }
 		}
 		break ;
-
+		
 	    case 'lazy' :
 	    case 'default' :
 		then.target = null ;
@@ -464,16 +465,15 @@ var utilstr = require("../../../../lib/util/string.js") ;
 		return ;
 	    }
 
-	    // 导入视图中引用的 css/ss
+	    // 导入视图中引用的 css
 	    var assets = nut.view.assets ;
 	    for(var i=0;i<assets.css.length;i++)
 		jQuery(document.head).append('<link type="text/css" href="'+assets.css[i]+'" rel="stylesheet">') ;
-	    for(var i=0;i<assets.script.length;i++)
+            for(var i=0;i<assets.script.length;i++)
             {
                 if( !$("script[src='"+assets.script[i]+"']").size() )
 		    jQuery(document.head).append('<script type="text/javascript" src="'+assets.script[i]+'"></script>') ;
             }
-
 
 	    // 创建视图
 	    var $rootview = jQuery(html,document.ownerDocument) ;
@@ -512,6 +512,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
      */
     Director.prototype.compareLayoutStruct = function(nut)
     {
+
 	var target = (function findAvailLayout( nut )
 		      {
 			  if( nut._children && nut._children.layout )
