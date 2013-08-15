@@ -302,7 +302,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 
 		if(ajax.data.constructor!==Array)
 		{
-            console.log("ajax.data: ",ajax.data) ;
+            zconsole.log("ajax.data: ",ajax.data) ;
 			throw new Error("Director.request()的参数 ajaxOptions.data 必须是 Array") ;
 		}
 
