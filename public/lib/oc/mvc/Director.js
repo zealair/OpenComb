@@ -171,7 +171,8 @@ var utilstr = require("../../../../lib/util/string.js") ;
 					break ;
 
 				case 'top' :
-					then.target = jQuery(jQuery(ele).parents(".oclayout")[0]).find(".ocview")[0] || null ;
+                    then.target = jQuery(document.body).find(".oclayout-container:last > .ocview:eq(0)") || null ;
+					//then.target = jQuery(jQuery(ele).parents(".oclayout")[0]).find(".ocview")[0] || null ;
 					break ;
 
 				case 'action' :
