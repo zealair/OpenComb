@@ -37,7 +37,7 @@
 			{
 				"type": "console"
 				, "category": ["access"]
-				, "category-dev": ["access","ocframework","controller","nut","former"]
+				, "category-dev": ["access","ocframework","former"]
 			}
 			, {
 				"type": "file"
