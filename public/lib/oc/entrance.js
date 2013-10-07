@@ -11,12 +11,12 @@ jQuery(function($){
         console.log("initOpenComb()") ;
 
         // 为浏览器打补丁，以便一些为 node.js 开发的 module 可以在浏览器中运行
-	    jQuery.shipper.module("ocframework/lib/core/reset.js") ;
-        jQuery.shipper.module("ocframework/public/lib/oc/patchs.js") ;
+	    jQuery.shipper.module("opencomb/lib/core/reset.js") ;
+        jQuery.shipper.module("opencomb/public/lib/oc/patchs.js") ;
 
 
         // 初始化视图
-        var View = jQuery.shipper.module("ocframework/public/lib/oc/mvc/View.js") ;
+        var View = jQuery.shipper.module("opencomb/public/lib/oc/mvc/View.js") ;
         jQuery(".ocview").each(function(){
             View.buildView( this, jQuery.shipper, function(err,view){
                 if(err)
@@ -30,17 +30,17 @@ jQuery(function($){
 
 
         // init validator (validator 应该在 director.setup() 前面，以便事件顺序争取e)
-        jQuery.shipper.module("ocframework/lib/mvc/Validator.js") ;
+        jQuery.shipper.module("opencomb/lib/mvc/Validator.js") ;
 
         // init controller director
-        jQuery.shipper.module("ocframework/public/lib/oc/mvc/Director.js") ;
+        jQuery.shipper.module("opencomb/public/lib/oc/mvc/Director.js") ;
         jQuery.director.setup() ;
 
         // template cahces for frontend
-        jQuery.shipper.module("ocframework/lib/mvc/view/ViewTemplateCaches.js").initForFrontend() ;
+        jQuery.shipper.module("opencomb/lib/mvc/view/ViewTemplateCaches.js").initForFrontend() ;
 
         // init switcher
-        jQuery.shipper.module("ocframework/public/lib/oc/mvc/Switcher.js") ;
+        jQuery.shipper.module("opencomb/public/lib/oc/mvc/Switcher.js") ;
 
         /**
          * 创建一个受限制的 jQuery 函数，所有的selector 仅在 root 内查找（包括root）
@@ -78,10 +78,10 @@ jQuery(function($){
     $oc.views = {} ;
     $oc.viewpool = [] ;
 
-    var waiting = window.__ocFrameworkFrontendRequires.length ;
-    for(var i=0;i<window.__ocFrameworkFrontendRequires.length;i++)
+    var waiting = window.__opencombFrontendRequires.length ;
+    for(var i=0;i<window.__opencombFrontendRequires.length;i++)
     {
-        jQuery.shipper.require(window.__ocFrameworkFrontendRequires[i],function(err,path,module){
+        jQuery.shipper.require(window.__opencombFrontendRequires[i],function(err,path,module){
 
             if(err)
             {

@@ -3,7 +3,7 @@ module.exports = {
 	title: "蜂巢"
 	, titleTemplate: "%s - 蜂巢"
 	, layout: null
-	, view: "ocframework/templates/WebLayout.html"
+	, view: "opencomb/templates/WebLayout.html"
 	, process: function()
 	{
 		// nothing todo

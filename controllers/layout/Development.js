@@ -1,3 +1,3 @@
 module.exports = {
-	view: "ocframework/templates/Development.html"
+	view: "opencomb/templates/Development.html"
 } ;

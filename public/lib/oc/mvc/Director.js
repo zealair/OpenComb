@@ -559,7 +559,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 
     Director.prototype.createViewLoading = function()
     {
-        var $widget = jQuery('<div class="ocview-loading" style="position: fixed; z-index: 1000;"><img src="/ocframework/public/style/images/github-loading.gif" ></div>')
+        var $widget = jQuery('<div class="ocview-loading" style="position: fixed; z-index: 1000;"><img src="/opencomb/public/style/images/github-loading.gif" ></div>')
                 .appendTo(document.body) ;
 
         function loadingPlace()

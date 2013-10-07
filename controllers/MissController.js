@@ -1,5 +1,5 @@
 module.exports = {
-	view: 'ocframework/templates/404.html'
+	view: 'opencomb/templates/404.html'
 
 	, process: function(seed,nut){
 		nut.model.message = seed.message || "Page not found.";

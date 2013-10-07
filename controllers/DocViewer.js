@@ -6,7 +6,7 @@ var markdownDocumentCaches = {} ;
 
 module.exports = {
 
-	view: "ocframework/templates/DocViewer.html"
+	view: "opencomb/templates/DocViewer.html"
 
 	, process: function(seed,nut)
 	{
@@ -96,7 +96,7 @@ module.exports = {
             controller.seed.fillFromReq() ;
             controller.main() ;
 
-		},'ocframework/lib/mvc/controllers/DocViewer.js') ;
+		},'opencomb/lib/mvc/controllers/DocViewer.js') ;
 	}
 }
 

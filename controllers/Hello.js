@@ -2,7 +2,7 @@
 module.exports = {
 
 	title: "Hello World, this is OpenComb"
-	, view: "ocframework/templates/Hello.html"
+	, view: "opencomb/templates/Hello.html"
 
 	, process: function(seed,nut,earth){
 		return true ;

@@ -1,6 +1,6 @@
 module.exports = {
 
-	view: "ocframework/templates/ControlPanel.html"
+	view: "opencomb/templates/ControlPanel.html"
 	, layout: null
 	, title: "蜂巢控制面板"
 	, titleTemplate: "%s-蜂巢控制面板"
