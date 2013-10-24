@@ -4,6 +4,7 @@
 * fixed bug: validation for select element
 * + jQuery.fn.validate() 能够处理结果集里的所有元素，而不仅仅是第一个
 * 对select multiple=false 元素进行长度校验时，如果 selectedIndex=-1 则返回 0，否则都返回 1
+* validator 增加 v:failedclass 属性
 
 
 0.9.5 2013.10.16
