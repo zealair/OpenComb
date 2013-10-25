@@ -6,6 +6,7 @@
 * 对select multiple=false 元素进行长度校验时，如果 selectedIndex=-1 则返回 0，否则都返回 1
 * validator 增加 v:failedclass 属性
 * validator 后端实现(unit test)
+* + validator: int, num, telnumber, mobilenumber
 
 
 0.9.5 2013.10.16
