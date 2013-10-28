@@ -1,17 +1,17 @@
 {
     "name": "opencomb",
-    "version": "0.9.5",
+    "version": "0.9.6",
 
     "readmeFilename": "README.md",
     "scripts": {
 	"test": "make"
     },
-    "main": "PackageManager.js",
+    "main": "index.js",
     "author": "alee chou",
     "license": "MIT",
     "repository": {
 	"type": "git",
-	"url": "git://github.com/OpenComb/ocFramework.git#0.9.5"
+	"url": "git://github.com/OpenComb/ocFramework.git#0.9.6"
     },
     "bugs": {
 	"url": "https://github.com/OpenComb/ocFramework/issues"
