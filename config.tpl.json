@@ -1,58 +1,58 @@
 {
-	"db": {
-		"server": "127.0.0.1"
-		, "name": "opencomb"
-		, "username": ""
-		, "password": ""
+    "db": {
+	"server": "127.0.0.1"
+	, "name": "opencomb"
+	, "username": ""
+	, "password": ""
+    }
+
+    , "server": {
+	"port": 6060
+    }
+
+
+    , "compile": {
+	"file": true
+	, "dir": "compiled"
+    }
+
+    , "dev": {
+
+	"enable": true
+	, "enable:comment": "/* 所有的调试选项，都应该以 true表示开启，false表示关闭，以便 config.dev.enable=false 能够自动禁止所有的选项 */"
+
+	, "frontend": {
+	    "notBundle": true
 	}
 
-	, "server": {
-		"port": 6060
+	, "watching": {
+	    "template": true
+	    , "controller": true
+	    , "shipdown": true
+	    , "markdown": true
 	}
 
+	, "outputControllerError": true
+    }
 
-	, "compile": {
-		"file": true
-		, "dir": "compiled"
-	}
+    , "logger": {
 
-	, "dev": {
-
-		"enable": true
-		, "enable:comment": "/* 所有的调试选项，都应该以 true表示开启，false表示关闭，以便 config.dev.enable=false 能够自动禁止所有的选项 */"
-
-		, "frontend": {
-			"notBundle": true
-		}
-
-		, "watching": {
-			"template": true
-			, "controller": true
-			, "shipdown": true
-			, "markdown": true
-		}
-
-		, "outputControllerError": true
-	}
-
-	, "logger": {
-
-		"appenders": [
-			{ "type": "console" }
-			, {
-				"type": "file",
-				"filename": "log/opencomb.log",
-				"maxLogSize": 20480,
-				"backups": 3,
-				"category": "opencomb"
-			}
-			, {
-				"type": "file",
-				"filename": "log/opencomb.access.log",
-				"maxLogSize": 20480,
-				"backups": 3,
-				"category": "opencomb.access"
-			}
-		]
-	}
+	"appenders": [
+	    { "type": "console" }
+	    , {
+		"type": "file",
+		"filename": "log/opencomb.log",
+		"maxLogSize": 20480,
+		"backups": 3,
+		"category": "opencomb"
+	    }
+	    , {
+		"type": "file",
+		"filename": "log/opencomb.access.log",
+		"maxLogSize": 20480,
+		"backups": 3,
+		"category": "opencomb.access"
+	    }
+	]
+    }
 }
