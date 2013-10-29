@@ -2,7 +2,9 @@
 // 释放 $ 变量
 // jQuery.noConflict() ;
 
-var $oc = null ;
+var $opencomb = null ;
+var frontendConfig =  {/*frontend configure*/} ;
+
 
 jQuery(function($){
 
@@ -11,7 +13,7 @@ jQuery(function($){
         console.log("initOpenComb()") ;
 
         // 为浏览器打补丁，以便一些为 node.js 开发的 module 可以在浏览器中运行
-	    jQuery.shipper.module("opencomb/lib/core/reset.js") ;
+        jQuery.shipper.module("opencomb/lib/core/reset.js") ;
         jQuery.shipper.module("opencomb/public/lib/oc/patchs.js") ;
 
 
@@ -34,6 +36,7 @@ jQuery(function($){
 
         // init controller director
         jQuery.shipper.module("opencomb/public/lib/oc/mvc/Director.js") ;
+	jQuery.director.enable = !!$opencomb.config.enableStay ;
         jQuery.director.setup() ;
 
         // template cahces for frontend
@@ -74,9 +77,10 @@ jQuery(function($){
         console.log("OpenComb frontend has loaded on your browser :)") ;
     }
 
-    $oc = jQuery(document) ;
-    $oc.views = {} ;
-    $oc.viewpool = [] ;
+    $opencomb = jQuery(document) ;
+    $opencomb.config = frontendConfig ;
+    $opencomb.views = {} ;
+    $opencomb.viewpool = [] ;
 
     var waiting = window.__opencombFrontendRequires.length ;
     for(var i=0;i<window.__opencombFrontendRequires.length;i++)

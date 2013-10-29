@@ -28,7 +28,7 @@ module.exports.buildView = function(ele,shipper,callback)
 
 	if(ele.sumsign)
 	{
-		$oc.views[ ele.sumsign ] = ele ;
+		$opencomb.views[ ele.sumsign ] = ele ;
 	}
 
 	// 加载 frontend view script

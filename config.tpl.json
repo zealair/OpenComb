@@ -55,4 +55,8 @@
 	    }
 	]
     }
+
+    , "frontend": {
+	"enableStay": true
+    }
 }

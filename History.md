@@ -1,5 +1,12 @@
 
 ==================
+* fix bug: forward/backward of frontend histroy for pjax 
+* + config.frontend.enableStay
+* rename $oc to $opencomb
+
+
+0.9.6 2013.10.29
+==================
 
 * fixed bug: validation for select element
 * + jQuery.fn.validate() 能够处理结果集里的所有元素，而不仅仅是第一个
