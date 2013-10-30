@@ -13,3 +13,4 @@ public/files
 log
 npm-debug.log
 test*.js
+bower_components
