@@ -6,11 +6,8 @@
 .DS_Store
 .directory
 node_modules/*
-config.json
-bin
-compiled
-public/files
-log
-npm-debug.log
 test*.js
-bower_components
+*~
+#*
+.#*
+*#
