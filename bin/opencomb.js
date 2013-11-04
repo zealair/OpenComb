@@ -41,8 +41,9 @@ cli.parse(
 	"dir": ['d', "Which dir you want to install an opencomb application.","path",process.cwd()]
 	, "as-repo-workdir": ['R',"Install extensions as a repository(Git) workdir."]
 	, "dbg-urllib-mockup": ['dm',"Use locale mockup data instead fetch package information from remote repositories."]
+	, "dbg-clear-here-first": ['dc',"Clear target dir before installition."]
     }
-/
+
     // commands
     , ['init','install','deply','help']
 ) ;

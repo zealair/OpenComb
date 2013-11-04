@@ -2,6 +2,8 @@ var inquirer = require("inquirer") ;
 var urllib = require('urllib') ;
 var fs = require('fs') ;
 var childprocess = require('child_process') ;
+var rimraf = require('rimraf') ;
+
 
 module.exports = function() {
 
@@ -9,13 +11,25 @@ module.exports = function() {
     console.log("Initializing an OpenComb Application in this dir\n") ;
 
     this.step(
-	actCollectionVersionInfo
+	actDbgClearHereFirst
+	, actCollectionVersionInfo
 	, actDoQuestions
-	, actProcess
+	, actInstallPackagesViaNPM
+	, actCreateAppFiles
     ) ;
 
 }
 
+
+function actDbgClearHereFirst(){
+    if(!this.options['dbg-clear-here-first'])
+	return ;
+    waiting(this,"clear dir :",this.options.dir," ... ") ;
+    
+    rimraf(this.options.dir+"/*",this.holdButThrowError(function(err){
+	done(this) ;
+    })) ;
+}
 
 
 function actCollectionVersionInfo(){
@@ -275,18 +289,53 @@ function actSelectedRepoWorkdir(answers){
     }) ;
 }
 
-function actProcess() {
-    console.log("actProcess",this.recv.answers) ;
+function actInstallPackagesViaNPM() {
+    var answers = this.recv.answers ;
 
     // install packages by npm
-    childprocess.spawn('rnpm') ;
+    var argv = [ 
+	require.resolve('repo-npm/bin/npm-cli.js')
+	, "install"
+    ] ;
+    var options = {
+	cwd: this.options.dir
+	, env: process.env
+    } ;
+
+    // opencomb url
+    if(answers.ocversion.type=='npm')
+	argv.push('opencomb@'+answers.ocversion.version) ;
+    else
+	argv.push('https://github.com/OpenComb/OpenComb.git#'+answers.ocversion.version) ;
+
+    // as repo workdirs
+    if( answers["as-repo-workdir"] && answers.asrepos && answers.asrepos.length ){
+	argv = argv.concat("as-repo-workdir",answers.asrepos) ;
+    }
+    
+//console.log(argv,options) ;
+    var reponpm = childprocess.spawn('node',argv,options) ;
+    waiting(this,"install packages") ;
+
+    reponpm.stdout.on('data',function(data){
+	process.stdout.write(data.toString()) ;
+    }) ;
+    reponpm.stderr.on('data',function(data){
+	process.stderr.write(data.toString()) ;
+    }) ;
+    reponpm.on('close', this.holdButThrowError(function(){
+	done(this) ;
+    })) ;
+}
+
+function actCreateAppFiles(){
 
     // mkdir data folders
     this.each(
 	['bin','public','public/data','log']
 	, function(i,name){
 	    process.stdout.write('mkdir '+name+' ... ') ;
-	    fs.mkdir(cli.options.dir+'/'+name,this.hold(function(err){
+	    fs.mkdir(this.options.dir+'/'+name,this.hold(function(err){
 		if( err ) {
 		    if( err.code=='EEXIST' )
 			console.log('aleady exists'.yellow) ;
