@@ -50,17 +50,23 @@ var utilstr = require("../../../../lib/util/string.js") ;
         // state 事件
         window.onpopstate = function(e) {
 
-            if(e.state && e.state.ocstate)
-            {
-                if(e.state.data && e.state.data.constructor!==Array)
+            if(e.state && e.state.ocstate) {
+                if(e.state.data && e.state.data.constructor!==Array) 
                 {
                     var data = [] ;
                     for(var name in e.state.data)
-                    {
                         data.push({name:name,value:e.state.data[name]}) ;
-                    }
                     e.state.data = data ;
                 }
+
+		// 前进/后退时需要$layout=true,以便 compareLayoutStruct() 能够正确计算 target
+		// 这是一个不完善的解决方案，完善的方案应该在history里记录 target
+		if(e.state.data){
+		    for(var i=e.state.data.length-1;i>=0;i--){
+			if( e.state.data[i].name=='$layout' && (e.state.data[i].value=='false'||e.state.data[i].value=='0') )
+			    e.state.data.splice(i,1) ;
+		    }
+		}
 
                 director.request(
                     {

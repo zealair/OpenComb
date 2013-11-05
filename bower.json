@@ -1,0 +1,23 @@
+{
+    "name": "opencomb",
+    "main": "index.js",
+    "version": "0.9.6",
+    "homepage": "https://github.com/OpenComb/OpenComb",
+    "authors": [
+	"alee chou <zq@alee2002.com>"
+    ],
+    "license": "MIT",
+    "ignore": [
+	"**/.*",
+	"node_modules",
+	"bower_components",
+	"test",
+	"tests"
+    ],
+    "dependencies": {
+	"jquery": "*"
+	, "messenger": "1.3.5"
+	, "underscore": "1.5.2"
+    }
+
+}
