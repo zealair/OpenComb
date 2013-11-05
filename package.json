@@ -10,10 +10,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/OpenComb/ocFramework.git#0.9.6"
+    "url": "git://github.com/OpenComb/OpenComb.git#0.9.7"
   },
   "bugs": {
-    "url": "https://github.com/OpenComb/ocFramework/issues"
+    "url": "https://github.com/OpenComb/OpenComb/issues"
   },
   "devDependencies": {
     "should": "*",
