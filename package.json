@@ -19,9 +19,6 @@
     "should": "*",
     "mocha": "*"
   },
-  "bin": {
-    "opencomb": "./bin/opencomb.js"
-  },
   "dependencies": {
     "send": "0.1.0",
     "connect": "2.7.0",
@@ -31,12 +28,7 @@
     "stack-trace": "0.0.6",
     "mocks": "0.0.11",
     "log4js": "0.6.6",
-    "underscore": "~1.5.2",
-    "colors": "~0.6.2",
-    "inquirer": "~0.3.4",
-    "urllib": "~0.5.3",
-    "repo-npm": "0.0.1",
-    "rimraf": "~2.2.2"
+    "underscore": "~1.5.2"
   },
   "logger": {
     "appenders": [
