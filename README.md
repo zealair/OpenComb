@@ -20,64 +20,36 @@ ocFramework 也可以脱离OpenComb单独使用。
 
 ## 快速开始
 
-在 `~/opencomb` 目录下部署蜂巢：
-
+1. 安装 opencomb-cli 
 ```
-git clone git@github.com:OpenComb/OpenComb.git opencomb
-```
-
-安装蜂巢的依赖：
-
-```
-cd opencomb && npm i
+sudo npm install -g opencomb-cli
 ```
 
-安装一个 blog 扩展
 
+2. 创建项目目录：
 ```
-npm i ocxblog
+mkdir ~/opencomb.app
+cd ~/opencomb.app
 ```
 
-启动 mongodb
+3. 在项目目录里创建 opencomb app
+```
+opencomb init
+```
 
+> opencomb 命令由 opecomb-cli 提供，因此需要已全局方式(`-g`)安装 opencomb-cli
+
+4. 启动 mongodb
 ```
 mongod &
 ```
 
-启动蜂巢
-
+5. 启动蜂巢
 ```
 node index.js
 ```
 
-在浏览器里访问 url `http://127.0.0.1:6060`
-
-
-## 安装部署开发版本
-
-如果你想为蜂巢贡献代码，或是使用最新版本，可以使用以下方法。
-
-
-从github clone OpenComb 库
-```
-git clone https://github.com/OpenComb/OpenComb.git
-cd OpenComb
-```
-
-切换到对应版本
-```
-git checkout 0.9.1
-```
-
-执行部署脚本：
-```
-node script/deployFromGithub.js
-```
-
-启动蜂巢
-```
-node index.js
-```
+6. 在浏览器里访问 url `http://127.0.0.1:6060`
 
 
 ---
