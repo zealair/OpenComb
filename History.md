@@ -1,8 +1,9 @@
-
+0.9.7 2013.11.5
 ==================
 * fix bug: forward/backward of frontend histroy for pjax 
 * + config.frontend.enableStay
 * rename $oc to $opencomb
+* supports bower(important!)
 
 
 0.9.6 2013.10.29
