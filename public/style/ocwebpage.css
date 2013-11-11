@@ -4,7 +4,5 @@
     filter:alpha(Opacity=80);
     -moz-opacity:0.8;
     opacity: 0.5;
-    width:128px;
-    height:128px;
     border-radius: 6px;
 }
