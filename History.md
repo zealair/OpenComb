@@ -1,3 +1,10 @@
+
+
+==================
+* fix bug: conflict of root path("/") and bower components routement
+* template/view 增加 `<require>` 标签
+
+
 0.9.7 2013.11.5
 ==================
 * fix bug: forward/backward of frontend histroy for pjax 
