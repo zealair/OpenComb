@@ -3,7 +3,7 @@
 OpenComb
 ===
 
-OpenComb 是一个Nodejs框架
+OpenComb 是一个Nodejs框架，她实现了许多有趣的事情。
 
 ## 依赖环境
 
