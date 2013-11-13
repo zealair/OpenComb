@@ -4,6 +4,7 @@
 * fix bug: conflict of root path("/") and bower components routement
 * template/view 增加 `<require>` 标签
 * remove public/lib/3party (moved to bower)
+* former support <select>
 
 
 0.9.7 2013.11.5
