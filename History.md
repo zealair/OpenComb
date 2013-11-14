@@ -7,6 +7,7 @@
 * remove public/lib/3party (moved to bower)
 * former support <select>
 * + helper.http/https
+* ajaxOpts.showViewLoading=false when call $.action() 
 
 
 0.9.7 2013.11.5

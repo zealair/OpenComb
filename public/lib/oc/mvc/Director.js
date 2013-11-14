@@ -293,7 +293,8 @@ var utilstr = require("../../../../lib/util/string.js") ;
             }
 
             // 显示 loading
-            director.showViewLoading() ;
+	    if( ajaxOptions.showViewLoading || ajaxOptions.showViewLoading===undefined )
+		director.showViewLoading() ;
 
             // this time
             director._request = req ;
@@ -547,13 +548,16 @@ var utilstr = require("../../../../lib/util/string.js") ;
 
     Director.prototype.showViewLoading = function()
     {
-        this.viewLoadingWidget().fadeIn(300) ;
+        this.viewLoadingWidget()
+	    .stop()
+	    .fadeIn(300) ;
         return this ;
     }
 
     Director.prototype.hideViewLoading = function()
     {
-        this.viewLoadingWidget().fadeOut(400) ;
+        this.viewLoadingWidget()
+	    .stop().fadeOut(400) ;
         return this ;
     }
 
@@ -652,9 +656,9 @@ var utilstr = require("../../../../lib/util/string.js") ;
 
     jQuery.action = function(url,data,thenOpts)
     {
-
         var ajaxOpts = typeof url=='string'? {url:url}: (url||{}) ;
         ajaxOpts.data = dataObjectToArray(data) ;
+	ajaxOpts.showViewLoading = false ;
 
         jQuery.request(ajaxOpts,buildActionThenOpts(thenOpts)) ;
     }
