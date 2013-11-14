@@ -36,19 +36,17 @@ mmodule.exports = {
 	}
 
 	, actions: {
-		say: {
-			, process: function(seed,nut,earth)
-			{
-				nut.message( "hello world" ) ;
-				nut.model.message = "hello world" ;
-				nut.write("hello world") ;
+		say: function(seed,nut,earth)
+		{
+			nut.message( "hello world" ) ;
+			nut.model.message = "hello world" ;
+			nut.write("hello world") ;
 
-				return true ;
-			}
+			return true ;
 		}
 	}
 
-	// 前端的视图事件
+	// 前端执行的代码（视图载入到页面中）
 	, viewIn: function()
 	{
 		$("a.say").click(
@@ -120,7 +118,7 @@ module.exports = true ;
 		* 属性callback: 请求完成后的回调函数
 		* 属性switch: 在 $.switcher注册过的动画名称
 
-`$.controller(url,data,callback)` 和 `$.action(url,data,callback)` 是 `$.request()` 的参数简化版本。如果省略 callback ，$.controller() 则自动根据返回的nut生成 html 更新当前网页上的主控制器视图；`$.action()`在省略callback的情况下，弹出 nut 里的消息。
+`$.controller(url,data,then)` 和 `$.action(url,data,then)` 是 `$.request()` 的参数简化版本。如果省略 callback ，$.controller() 则自动根据返回的nut生成 html 更新当前网页上的主控制器视图；`$.action()`在省略callback的情况下，弹出 nut 里的消息。
 
 
 
