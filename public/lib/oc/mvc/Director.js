@@ -82,19 +82,13 @@ var utilstr = require("../../../../lib/util/string.js") ;
             }
 	    else
 	    {
-		console.log("not a stay page") ;
+		console.log("not a stay page",e) ;
 	    }
         } ;
 
         // 处理首次请求
-        if( window.history.replaceState )
-        {
-            window.history.replaceState({
-                url: location.pathname
-                , data: location.search
-                , ocstate: true
-            },null) ;
-        }
+        if( window.history.ocstate )
+	    window.history.state.ocstate = true ;
     }
 
     /**
