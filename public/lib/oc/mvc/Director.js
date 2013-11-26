@@ -91,7 +91,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
         {
             window.history.replaceState({
                 url: location.pathname
-                , data: queryStrings(location.search)
+                , data: location.search
                 , ocstate: true
             },null) ;
         }
