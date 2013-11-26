@@ -50,7 +50,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
         // state 事件
         window.onpopstate = function(e) {
 
-            if(e.state && e.state.ocstate) {
+            if(e.state && e.state.ocstate && e.state.ocbystay) {
                 if(e.state.data && e.state.data.constructor!==Array) 
                 {
                     var data = [] ;
@@ -68,6 +68,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
 		    }
 		}
 
+		console.log("ready request") ;
                 director.request(
                     {
                         url: e.state.url
@@ -79,6 +80,10 @@ var utilstr = require("../../../../lib/util/string.js") ;
                     }
                 ) ;
             }
+	    else
+	    {
+		console.log("not a stay page") ;
+	    }
         } ;
 
         // 处理首次请求
@@ -454,6 +459,7 @@ var utilstr = require("../../../../lib/util/string.js") ;
                     , data: ajaxReq.data
                     , type: ajaxReq.type
                     , ocstate: true
+		    , ocbystay:true
                 }
                 , null
                 , url
