@@ -54,10 +54,12 @@ suite('mvc', function(){
 		"hellow word"
 		, [{ name: 'email'}]
 	    ).should.be.an.Array ;
-	    validators.validateRules(
-		"hellow@word"
-		, [{ name: 'email'}]
-	    ).should.be.false ;
+	    (function(){
+		validators.validateRules(
+		    "hellow@word"
+		    , [{ name: 'email'}]
+		).should.be.false ;
+	    }).should.throw();
 
 	    done() ;
 	});
@@ -120,10 +122,12 @@ suite('mvc', function(){
 
 
 	test('## regexp', function(done){
-	    validators.validateRules(
-		"123"
-		, [{ name: 'regexp', value: '/^\d{3}$/' }]
-	    ).should.be.false ;
+	    (function(){
+		validators.validateRules(
+		    "123"
+		    , [{ name: 'regexp', value: '/^\d{3}$/' }]
+		).should.be.false ;
+	    }).should.throw();
 	    validators.validateRules(
 		"1234"
 		, [{ name: 'regexp', value: '/^\d{3}$/' }]

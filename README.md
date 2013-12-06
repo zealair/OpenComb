@@ -9,6 +9,7 @@ OpenComb 是一个Nodejs框架，她实现了许多有趣的事情。
 
 * [Node.js](http://nodejs.org/)
 * [MongoDB](http://www.mongodb.org/)
+> 在ubuntu上安装最新版本的mongodb：[http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/]
 * [Git](http://git-scm.com/)
 
 它们都是流行的开源项目，支持几乎所有平台，安装也很简单，你可以直接访问它们的主页，或google。

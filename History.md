@@ -8,6 +8,7 @@
 * former support <select>
 * + helper.http/https
 * ajaxOpts.showViewLoading=false when call $.action() 
+* implements aop by uglify2 (aopjs 0.1.3)
 
 
 0.9.7 2013.11.5
